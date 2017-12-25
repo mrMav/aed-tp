@@ -46,12 +46,13 @@ Jogador* novoJogador(char n[], int num, float vM, time_t* dC, int aC, char p[], 
 Jogador* novoJogadorVazio();
 
 
+// TODO: Criar funcoes para libertar memoria
+
 /*
 
 Funcoes para lidar com os objectos:
 
 */
-
 
 // representacao da informacao:
 
