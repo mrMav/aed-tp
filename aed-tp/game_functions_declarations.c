@@ -6,15 +6,15 @@
 #include <string.h>
 
 #include "game_typedefs.h"
+#include "game_constants.h"
+#include "game_functions_prototypes.h"
+
 
 /*
-Retorna float entre 0 e 1
+
+Funcoes para criar os objectos :
+
 */
-float randomFloat()
-{
-	float r = (float)rand() / (float)RAND_MAX;
-	return r;
-}
 
 /*
 Cria e retorna um Atributos.
@@ -32,11 +32,26 @@ Atributos* novoAtributos() {
 
 };
 
+/*
+Cria e retorna um Atributos Vazio.
+*/
+Atributos* novoAtributosVazio() {
+
+	Atributos* a = malloc(sizeof(Atributos));
+
+	a->gr = 0.0;
+	a->df = 0.0;
+	a->md = 0.0;
+	a->av = 0.0;
+
+	return a;
+
+};
 
 /*
 Cria e retorna um Jogador.
 */
-Jogador* novoJogador(char n[], int num, float vM, time_t* dC, int aC, Atributos *a) {
+Jogador* novoJogador(char n[], int num, float vM, time_t* dC, int aC, char p[], Atributos *a) {
 
 	Jogador* j = malloc(sizeof(Jogador));
 
@@ -45,11 +60,71 @@ Jogador* novoJogador(char n[], int num, float vM, time_t* dC, int aC, Atributos 
 	j->vencimentoMensal = vM;
 	j->dataContracto = dC;
 	j->anosContracto = aC;
+	strcpy(j->posicao, p);
 	j->atributos = a;
 	
 	return j;
 
 };
+/*
+Cria e retorna um Jogador vazio.
+*/
+Jogador* novoJogadorVazio() {
+
+	Jogador* j = malloc(sizeof(Jogador));
+
+	j->nome[0] = NULL;
+	j->numero = -1;
+	j->vencimentoMensal = -1.0;
+	j->dataContracto = NULL;
+	j->anosContracto = -1;
+	strcpy(j->posicao, "AAA");
+	j->atributos = novoAtributosVazio();
+
+	return j;
+
+};
+
+/*
+Cria e retorna um Treinador.
+*/
+Treinador* novoTreinador(char n[]) {
+
+	Treinador* t = malloc(sizeof(Treinador));
+
+	strcpy(t->nome, n);
+
+	return t;
+
+};
+
+/*
+Cria e retorna um Plantel.
+*/
+Plantel* novoPlantel(Treinador *t, Jogador *j[]) {
+
+	Plantel* p = malloc(sizeof(Plantel));
+
+	p->treinador = t;
+	
+	int i;
+	for (i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
+
+		p->jogadores[i] = j[i];
+
+	};
+
+	return p;
+
+};
+
+
+/*
+
+Funcoes para lidar com os objectos:
+
+*/
+
 
 /*
 Imprime atributos do argumento
@@ -73,12 +148,66 @@ void imprimeJogador(Jogador* j) {
 	printf("Cartao do jogador: %s\n", j->nome);
 
 	printf("Numero: %i\n", j->numero);
-	printf("Vencimento: %f\n", j->vencimentoMensal);
+	printf("Vencimento: %.2f\n", j->vencimentoMensal);
 	printf("Data do contracto: %s", ctime(j->dataContracto));  // reparar na funcao ctime()
 	printf("Anos de contracto: %i\n", j->anosContracto);
-	printf("Atributos do jogador:\n");
+	printf("Posicao:%s\n", j->posicao);
+	printf("Atributos:\n");
 
 	imprimeAtributos(j->atributos);
 
 	printf("--------\n");
 };
+
+/*
+Imprime a informação do treinador no argumento
+*/
+void imprimeTreinador(Treinador* t) {
+
+	printf("--------\n");
+
+	printf("Cartao do Treinador: %s\n", t->nome);
+	
+	printf("--------\n");
+};
+
+/*
+Imprime plantel
+*/
+void imprimePlantel(Plantel* p) {
+
+	printf("--------\n");
+
+	printf("Treinador: %s\n", p->treinador->nome);
+	printf("Jogadores:\n");
+
+	int i;
+	for (i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
+
+		// apenas imprime se o jogador estiver definido!
+		// (apontador não é nulo)
+		if (p->jogadores[i]->nome[0] != NULL) {
+
+			printf("+ %s | %s\n", p->jogadores[i]->posicao, p->jogadores[i]->nome);
+
+		}
+	
+	}
+
+	printf("--------\n");
+};
+
+/*
+
+Funcoes uteis:
+
+*/
+
+/*
+Retorna float entre 0 e 1
+*/
+float randomFloat()
+{
+	float r = (float)rand() / (float)RAND_MAX;
+	return r;
+}

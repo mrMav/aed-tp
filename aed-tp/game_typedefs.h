@@ -1,6 +1,8 @@
 #pragma once
 #include <time.h>
 
+#include "game_constants.h"
+
 typedef struct {
 
 	// Forca posicao de guardaredes
@@ -24,6 +26,7 @@ typedef struct {
 	float vencimentoMensal;
 	time_t* dataContracto;
 	int anosContracto;
+	char posicao[3];
 	Atributos* atributos;
 
 } Jogador;
@@ -37,7 +40,7 @@ typedef struct {
 typedef struct {
 
 	Treinador* treinador;
-	Jogador* jogadores[20];
+	Jogador* jogadores[NUMERO_JOGADORES_PLANTEL];
 
 } Plantel;
 

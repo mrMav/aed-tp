@@ -23,6 +23,7 @@
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="game_constants.h" />
     <ClInclude Include="game_functions_prototypes.h" />
     <ClInclude Include="game_typedefs.h" />
   </ItemGroup>

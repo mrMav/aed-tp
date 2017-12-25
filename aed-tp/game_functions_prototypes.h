@@ -16,7 +16,7 @@ Equipa* novaEquipa(char n[], Estadio *e, int s, Plantel *p, Resultado *r);
 /*
 Cria e retorna um Plantel.
 */
-Plantel* novoPlantel(Treinador *t, Jogador *j[], int nJ);
+Plantel* novoPlantel(Treinador *t, Jogador *j[]);
 
 /*
 Cria e retorna um Estadio.
@@ -32,6 +32,7 @@ Resultado* novoResultado();
 Cria e retorna um Atributos.
 */
 Atributos* novoAtributos();
+Atributos* novoAtributosVazio();
 
 /*
 Cria e retorna um Treinador.
@@ -41,7 +42,8 @@ Treinador* novoTreinador(char n[]);
 /*
 Cria e retorna um Jogador.
 */
-Jogador* novoJogador(char n[], int num, float vM, time_t* dC, int aC, Atributos *a);
+Jogador* novoJogador(char n[], int num, float vM, time_t* dC, int aC, char p[], Atributos *a);
+Jogador* novoJogadorVazio();
 
 
 /*
@@ -55,7 +57,11 @@ Funcoes para lidar com os objectos:
 
 void imprimeJogador(Jogador* j);
 
+void imprimeTreinador(Treinador* t);
+
 void imprimeAtributos(Atributos* a);
+
+void imprimePlantel(Plantel* p);
 
 /*
 
