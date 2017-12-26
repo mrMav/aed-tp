@@ -21,7 +21,7 @@ typedef struct {
 
 typedef struct {
 
-	char nome[40];
+	char nome[100];
 	int numero;
 	float vencimentoMensal;
 	time_t* dataContracto;
@@ -33,7 +33,7 @@ typedef struct {
 
 typedef struct {
 
-	char nome[40];
+	char nome[100];
 
 } Treinador;
 
@@ -57,7 +57,7 @@ typedef struct {
 
 typedef struct {
 
-	char nome[40];
+	char nome[100];
 	int lugares;
 	float despesaMensal;
 
@@ -65,10 +65,11 @@ typedef struct {
 
 typedef struct {
 
-	char nome[40];
-	Estadio estadio;
+	char nome[100];
+	Estadio* estadio;
 	int socios;
-	Resultado resultados;
-	Plantel plantel;
+	float fundos;
+	Resultado* resultados;
+	Plantel* plantel;
 
 } Equipa;

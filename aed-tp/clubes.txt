@@ -1,0 +1,18 @@
+Sporting CP	Estádio José Alvalade	50080	160000	17000000	270400	Jorge Jesus
+FC Porto	Estádio do Dragão	50399	103300	11330000	271995	Sérgio Conceição
+SL Benfica	Estádio da Luz	65000	184264	19426400	345000	Rui Vitória
+SC Braga	Estádio Municipal de Braga	30286	20000	3000000	171430	Abel Ferreira
+CS Maritimo	Estádio dos Barreiros	10600	10000	2000000	73000	Daniel Ramos
+Rio Ave FC	Estádio dos Arcos	9065	2500	1250000	65325	Miguel Cardoso
+Vitória SC	Estádio D. Afonso Henriques	29865	26827	3682700	169325	Pedro Martins
+Boavista FC	Estádio do Bessa	28263	25000	3500000	161315	Jorge Simão
+CF Belenenses	Estádio do Restelo	12614	8500	1850000	83070	Domingos Paciência
+Portimonense SC	Estádio Municipal de Portimão	9544	3200	1320000	67720	Vitor Oliveira
+GD Chaves	Estádio Municipal de Chaves	12000	5000	1500000	80000	Luís Castro
+CD Tondela	Estádio João Cardoso	5000	2000	1200000	45000	Pepa
+FC Paços de Ferreira	Estádio Capital do Móvel	9200	3000	1300000	66000	Petit
+CD Feirense	Estádio Marcolino de Castro	5401	4000	1400000	47005	Nuno Santos
+CD Aves	Estádio Clube Desportivo das Aves	5441	2400	1240000	47205	Lito Vidigal
+Vitória FC	Estádio do Bonfim	21400	16400	2640000	127000	José Couceiro
+Moreirense FC	Estádio Comendador Joaquim de Almeida Freitas	6153	2000	1200000	50765	Sérgio Vieira
+GD Estoril Praia	Estádio António Coimbra da Mota	8000	3000	1300000	60000	Ivo Vieira

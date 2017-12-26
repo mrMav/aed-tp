@@ -1,3 +1,4 @@
 #pragma once
 
 #define NUMERO_JOGADORES_PLANTEL 20
+#define NUMERO_EQUIPAS 18

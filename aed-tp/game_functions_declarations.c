@@ -73,7 +73,7 @@ Jogador* novoJogadorVazio() {
 
 	Jogador* j = malloc(sizeof(Jogador));
 
-	j->nome[0] = NULL;
+	j->nome[0] = '\0';
 	j->numero = -1;
 	j->vencimentoMensal = -1.0;
 	j->dataContracto = NULL;
@@ -115,6 +115,57 @@ Plantel* novoPlantel(Treinador *t, Jogador *j[]) {
 	};
 
 	return p;
+
+};
+
+/*
+Cria e retorna um Estadio
+*/
+Estadio* novoEstadio(char n[], int l, float dM) {
+
+	Estadio *e = malloc(sizeof(Estadio));
+
+	strcpy(e->nome, n);
+	e->lugares = l;
+	e->despesaMensal = dM;
+
+	return e;
+
+};
+
+/*
+Cria e retorna uma Equipa
+*/
+Equipa* novaEquipa(char n[], Estadio *e, int s, Plantel *p, Resultado *r, float f) {
+
+	Equipa *equipa = malloc(sizeof(Equipa));
+
+	strcpy(equipa->nome, n);
+	equipa->estadio = e;
+	equipa->socios = s;
+	equipa->plantel = p;
+	equipa->resultados = r;
+	equipa->fundos = f;
+
+	return equipa;
+
+};
+
+/*
+Cria e retorna um Resultado.
+*/
+Resultado* novoResultado() {
+
+	Resultado *r = malloc(sizeof(Resultado));
+
+	r->jogosRealizados = 0;
+	r->vitorias = 0;
+	r->empates = 0;
+	r->derrotas = 0;
+	r->golosMarcados = 0;
+	r->golosSofridos = 0;
+
+	return r;
 
 };
 
@@ -186,13 +237,36 @@ void imprimePlantel(Plantel* p) {
 
 		// apenas imprime se o jogador estiver definido!
 		// (apontador não é nulo)
-		if (p->jogadores[i]->nome[0] != NULL) {
+		if (p->jogadores[i]->nome[0] != '\0') {
 
 			printf("+ %s | %s\n", p->jogadores[i]->posicao, p->jogadores[i]->nome);
 
 		}
 	
 	}
+
+	printf("--------\n");
+};
+
+void imprimeEquipa(Equipa* e) {
+
+	printf("--------\n");
+	
+	printf("Nome: %s\n", e->nome);
+	printf("Estadio: %s\n", e->estadio->nome);
+	printf("Socios: %i\n", e->socios);
+	printf("Fundos: %0.2f\n", e->fundos);
+	
+	printf("--------\n");
+};
+
+void imprimeEstadio(Estadio* e) {
+
+	printf("--------\n");
+
+	printf("Nome: %s\n", e->nome);
+	printf("Lugares: %i\n", e->lugares);
+	printf("Despesa Mensal: %0.2f\n", e->despesaMensal);
 
 	printf("--------\n");
 };

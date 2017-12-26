@@ -11,7 +11,7 @@ Funcoes para criar os objectos:
 /*
 Cria e retorna Equipa;
 */
-Equipa* novaEquipa(char n[], Estadio *e, int s, Plantel *p, Resultado *r);
+Equipa* novaEquipa(char n[], Estadio *e, int s, Plantel *p, Resultado *r, float f);
 
 /*
 Cria e retorna um Plantel.
@@ -63,6 +63,11 @@ void imprimeTreinador(Treinador* t);
 void imprimeAtributos(Atributos* a);
 
 void imprimePlantel(Plantel* p);
+
+void imprimeEquipa(Equipa* e);
+
+void imprimeEstadio(Estadio* e);
+
 
 /*
 

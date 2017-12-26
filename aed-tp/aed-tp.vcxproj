@@ -19,13 +19,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="game_data_load.c" />
     <ClCompile Include="game_functions_declarations.c" />
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game_constants.h" />
+    <ClInclude Include="game_data_load.h" />
     <ClInclude Include="game_functions_prototypes.h" />
     <ClInclude Include="game_typedefs.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="clubes.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
