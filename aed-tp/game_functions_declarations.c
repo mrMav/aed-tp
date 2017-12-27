@@ -116,9 +116,30 @@ Plantel* novoPlantel(Treinador *t, Jogador *j[]) {
 
 	};
 
+	p->numeroActualJogadores = NUMERO_JOGADORES_PLANTEL;
+
 	return p;
 
 };
+Plantel* novoPlantelVazio() {
+
+	Plantel* p = malloc(sizeof(Plantel));
+
+	p->treinador = NULL;
+
+	int i;
+	for (i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
+
+		p->jogadores[i] = NULL;
+
+	};
+
+	p->numeroActualJogadores = 0;
+
+	return p;
+
+};
+
 
 /*
 Cria e retorna um Estadio
@@ -240,7 +261,7 @@ void imprimePlantel(Plantel* p) {
 
 		// apenas imprime se o jogador estiver definido!
 		// (apontador não é nulo)
-		if (p->jogadores[i]->nome[0] != '\0') {
+		if (p->jogadores[i]) {
 
 			printf("+ %s | %s\n", p->jogadores[i]->posicao, p->jogadores[i]->nome);
 
@@ -273,6 +294,32 @@ void imprimeEstadio(Estadio* e) {
 
 	printf("--------\n");
 };
+
+/*
+Adiciona o jogador no plantel.
+Return 0: fail
+Return 1: sucess
+*/
+int adicionarJogadorAPlantel(Plantel* plantel, Jogador* jogador) {
+
+	// verificar se plantel está cheio:
+	if (plantel->numeroActualJogadores == NUMERO_JOGADORES_PLANTEL) {
+
+		return 0;
+
+	}
+
+	// nesta fase, podemos adicionar o jogador ao ultimo indice disponivel:
+
+	int indice = plantel->numeroActualJogadores;
+
+	plantel->jogadores[indice] = jogador;
+	plantel->numeroActualJogadores++;  // passo muito importante.
+
+	return 1;
+
+};
+
 
 /*
 
@@ -317,5 +364,27 @@ struct tm* novaData(char string[]) {
 	data->tm_mday = atoi(dia);
 
 	return data;
+
+};
+
+/*
+Retorna a equipa por nome.
+*/
+Equipa* obterEquipaPorNome(Equipa* equipas[], char string[]) {
+
+	int i;
+
+	for (i = 0; i < NUMERO_EQUIPAS; i++) {
+		
+		if (strcmp(string, equipas[i]->nome) == 0) {
+
+			return equipas[i];
+
+		}
+
+	}
+
+	// caso a equipa não seja encontrada:
+	return NULL;
 
 };

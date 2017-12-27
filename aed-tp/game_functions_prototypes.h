@@ -18,6 +18,8 @@ Cria e retorna um Plantel.
 */
 Plantel* novoPlantel(Treinador *t, Jogador *j[]);
 
+Plantel* novoPlantelVazio();
+
 /*
 Cria e retorna um Estadio.
 */
@@ -68,6 +70,10 @@ void imprimeEquipa(Equipa* e);
 
 void imprimeEstadio(Estadio* e);
 
+// manipulação da informação:
+
+int adicionarJogadorAPlantel(Plantel* plantel, Jogador* jogador);
+
 
 /*
 
@@ -78,3 +84,5 @@ Funcoes uteis:
 float randomFloat();
 
 struct tm* novaData(char string[]);
+
+Equipa* obterEquipaPorNome(Equipa* equipas[], char string[]);

@@ -87,8 +87,10 @@ void carregarEquipas(Equipa *equipas[]) {
 				if (c == '\n') {
 
 					bufferEstadio = novoEstadio(estadio, atoi(lotacao), atof(despesasEstadio));
-					bufferEquipa = novaEquipa(clube, bufferEstadio, atoi(nsocios), NULL, novoResultado(), atof(fundos));
-
+					bufferEquipa = novaEquipa(clube, bufferEstadio, atoi(nsocios), novoPlantelVazio(), novoResultado(), atof(fundos));
+					
+					bufferEquipa->plantel->treinador = novoTreinador(treinador);
+					
 					equipas[j] = bufferEquipa;
 					j++;
 
@@ -231,15 +233,12 @@ void carregarPlanteis(Equipa *equipas[]) {
 						posicao,
 						atrib
 					);
+					
+					//adicionar jogador a plantel da sua equipa:
+					int sucess = adicionarJogadorAPlantel(obterEquipaPorNome(equipas, clube)->plantel, jogador);
 
-					imprimeJogador(jogador);
-					printf("%i\n", ++nJogadores);
-
-					/*
-					equipas[j] = bufferEquipa;
-					j++;
-					*/
-
+					nJogadores += sucess;
+					jogador = NULL;					
 					tabs = 0;
 
 				}
@@ -254,6 +253,8 @@ void carregarPlanteis(Equipa *equipas[]) {
 			}
 
 		}
+
+		printf("Numero total de jogadores carregados: %i\n", nJogadores);
 
 		fclose(f);
 

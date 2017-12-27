@@ -42,6 +42,7 @@ typedef struct {
 
 	Treinador* treinador;
 	Jogador* jogadores[NUMERO_JOGADORES_PLANTEL];
+	int numeroActualJogadores;
 
 } Plantel;
 

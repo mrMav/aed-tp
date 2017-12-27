@@ -24,7 +24,11 @@ int main(void) {
 	// array para guardar todas as equipas
 	Equipa *equipas[NUMERO_EQUIPAS];
 	carregarEquipas(equipas);
-	carregarPlanteis(equipas); // TODO: sort players into teams
+	carregarPlanteis(equipas);
+
+	int indice = 0;
+	imprimeEquipa(equipas[indice]);
+	imprimePlantel(equipas[indice]->plantel);
 
 	// System pause
 	scanf("%i", &i);
