@@ -20,7 +20,7 @@ void carregarEquipas(Equipa *equipas[]) {
 	char nomeFicheiro[] = "clubes.txt";
 
 	FILE *f = fopen(nomeFicheiro, "r");
-	
+
 	int i = 0, j = 0, tabs = 0, c;
 
 	char string[100];
@@ -32,53 +32,55 @@ void carregarEquipas(Equipa *equipas[]) {
 	char despesasEstadio[100];
 	char treinador[100];
 
-	Equipa  *bufferEquipa  = NULL;
+	Equipa  *bufferEquipa = NULL;
 	Estadio *bufferEstadio = NULL;
 
 	if (f == NULL) {
 
 		printf("\nErro ao abrir ficheiro %s\n", nomeFicheiro);
 
-	} else {
-		
+	}
+	else {
+
 		while ((c = fgetc(f)) != EOF) {
-			
+
 			if (c != '\t' && c != '\n') {
 
 				// collect all chars until a tab is found
 				string[i] = c;
 				i++;
-				
-			} else {
+
+			}
+			else {
 
 				// when found, store a terminator in the end
 				string[i] = '\0';
 
 				switch (tabs) {
 
-					case 0:
-						strcpy(clube, string);
-						break;
-					case 1:
-						strcpy(estadio, string);
-						break;
-					case 2:
-						strcpy(lotacao, string);
-						break;
-					case 3:
-						strcpy(nsocios, string);
-						break;
-					case 4:
-						strcpy(fundos, string);
-						break;
-					case 5:
-						strcpy(despesasEstadio, string);
-						break;
-					case 6:
-						strcpy(treinador, string);
-						break;
+				case 0:
+					strcpy(clube, string);
+					break;
+				case 1:
+					strcpy(estadio, string);
+					break;
+				case 2:
+					strcpy(lotacao, string);
+					break;
+				case 3:
+					strcpy(nsocios, string);
+					break;
+				case 4:
+					strcpy(fundos, string);
+					break;
+				case 5:
+					strcpy(despesasEstadio, string);
+					break;
+				case 6:
+					strcpy(treinador, string);
+					break;
 				}
-				
+
 				// this resets all the stuff so they are ready for the next
 				// chunk of data.
 				// if we have a new line in hands, we need to set the tabs to 0
@@ -86,7 +88,7 @@ void carregarEquipas(Equipa *equipas[]) {
 
 					bufferEstadio = novoEstadio(estadio, atoi(lotacao), atof(despesasEstadio));
 					bufferEquipa = novaEquipa(clube, bufferEstadio, atoi(nsocios), NULL, novoResultado(), atof(fundos));
-					
+
 					equipas[j] = bufferEquipa;
 					j++;
 
@@ -101,13 +103,13 @@ void carregarEquipas(Equipa *equipas[]) {
 					tabs++;
 
 				}
-				
+
 				i = 0;
 
 			}
-				
+
 		}
-		
+
 		fclose(f);
 
 	}
@@ -160,65 +162,65 @@ void carregarPlanteis(Equipa *equipas[]) {
 
 				// when found, store a terminator in the end
 				string[i] = '\0';
-				
+
 				switch (tabs) {
 
-					case 0:
-						strcpy(clube, string);
-						break;
-					case 1:
-						strcpy(nome, string);
-						break;
-					case 2:
-						strcpy(posicao, string);
-						break;
-					case 3:
-						strcpy(numero, string);
-						break;
-					case 4:
-						strcpy(valorMercado, string);
-						break;
-					case 5:
-						strcpy(vencimentoMensal, string);
-						break;
-					case 6:
-						strcpy(dataInicioNoClube, string);
-						break;
-					case 7:
-						strcpy(dataFimNoClube, string);
-						break;
-					case 8:
-						strcpy(anosConstrato, string);
-						break;
-					case 9:
-						strcpy(atribGR, string);
-						break;
-					case 10:
-						strcpy(atribDEF, string);
-						break;
-					case 11:
-						strcpy(atribMED, string);
-						break;
-					case 12:
-						strcpy(atribAV, string);
-						break;
+				case 0:
+					strcpy(clube, string);
+					break;
+				case 1:
+					strcpy(nome, string);
+					break;
+				case 2:
+					strcpy(posicao, string);
+					break;
+				case 3:
+					strcpy(numero, string);
+					break;
+				case 4:
+					strcpy(valorMercado, string);
+					break;
+				case 5:
+					strcpy(vencimentoMensal, string);
+					break;
+				case 6:
+					strcpy(dataInicioNoClube, string);
+					break;
+				case 7:
+					strcpy(dataFimNoClube, string);
+					break;
+				case 8:
+					strcpy(anosConstrato, string);
+					break;
+				case 9:
+					strcpy(atribGR, string);
+					break;
+				case 10:
+					strcpy(atribDEF, string);
+					break;
+				case 11:
+					strcpy(atribMED, string);
+					break;
+				case 12:
+					strcpy(atribAV, string);
+					break;
 				}
 
 				// this resets all the stuff so they are ready for the next
 				// chunk of data.
 				// if we have a new line in hands, we need to set the tabs to 0
 				if (c == '\n') {
-					
+
 					struct tm* dataInicio = novaData(dataInicioNoClube);
-					struct tm* dataFim    = novaData(dataFimNoClube);
+					struct tm* dataFim = novaData(dataFimNoClube);
 
 					Atributos* atrib = novoAtributos(
 						atof(atribGR),
-						atof(atribDEF), 
+						atof(atribDEF),
 						atof(atribMED),
 						atof(atribAV)
 					);
-										
+
 					jogador = novoJogador(
 						nome,
 						atoi(numero),
@@ -229,10 +231,10 @@ void carregarPlanteis(Equipa *equipas[]) {
 						posicao,
 						atrib
 					);
-					
+
 					imprimeJogador(jogador);
 					printf("%i\n", ++nJogadores);
-					
+
 					/*
 					equipas[j] = bufferEquipa;
 					j++;

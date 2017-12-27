@@ -27,7 +27,7 @@ Atributos* novoAtributos(float gr, float df, float md, float av) {
 	a->df = df;
 	a->md = md;
 	a->av = av;
-	
+
 	return a;
 
 };
@@ -55,7 +55,7 @@ Jogador* novoJogador(char n[], int num, float vM, struct tm* dC, struct tm* dF, 
 
 	Jogador* j = malloc(sizeof(Jogador));
 
-	strcpy(j->nome, n);	
+	strcpy(j->nome, n);
 	j->numero = num;
 	j->vencimentoMensal = vM;
 	j->dataContracto = dC;
@@ -63,7 +63,7 @@ Jogador* novoJogador(char n[], int num, float vM, struct tm* dC, struct tm* dF, 
 	j->anosContracto = aC;
 	strcpy(j->posicao, p);
 	j->atributos = a;
-	
+
 	return j;
 
 };
@@ -108,7 +108,7 @@ Plantel* novoPlantel(Treinador *t, Jogador *j[]) {
 	Plantel* p = malloc(sizeof(Plantel));
 
 	p->treinador = t;
-	
+
 	int i;
 	for (i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
 
@@ -183,7 +183,7 @@ Funcoes para lidar com os objectos:
 Imprime atributos do argumento
 */
 void imprimeAtributos(Atributos* a) {
-	
+
 	printf("+ GuardaRedes: %.2f\n", a->gr);
 	printf("+ Defesa: %.2f\n", a->df);
 	printf("+ Medio: %.2f\n", a->md);
@@ -221,7 +221,7 @@ void imprimeTreinador(Treinador* t) {
 	printf("--------\n");
 
 	printf("Cartao do Treinador: %s\n", t->nome);
-	
+
 	printf("--------\n");
 };
 
@@ -245,7 +245,7 @@ void imprimePlantel(Plantel* p) {
 			printf("+ %s | %s\n", p->jogadores[i]->posicao, p->jogadores[i]->nome);
 
 		}
-	
+
 	}
 
 	printf("--------\n");
@@ -254,12 +254,12 @@ void imprimePlantel(Plantel* p) {
 void imprimeEquipa(Equipa* e) {
 
 	printf("--------\n");
-	
+
 	printf("Nome: %s\n", e->nome);
 	printf("Estadio: %s\n", e->estadio->nome);
 	printf("Socios: %i\n", e->socios);
 	printf("Fundos: %0.2f\n", e->fundos);
-	
+
 	printf("--------\n");
 };
 
@@ -313,7 +313,7 @@ struct tm* novaData(char string[]) {
 	dia[1] = string[9];
 
 	data->tm_year = atoi(ano);
-	data->tm_mon  = atoi(mes) - 1;  // reparem no -1
+	data->tm_mon = atoi(mes) - 1;  // reparem no -1
 	data->tm_mday = atoi(dia);
 
 	return data;

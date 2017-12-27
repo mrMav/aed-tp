@@ -11,7 +11,7 @@
 #include "game_functions_prototypes.h"
 
 int main(void) {
-	
+
 	setlocale(LC_ALL, "");
 
 	// seed para numeros aleatorios
@@ -20,12 +20,12 @@ int main(void) {
 	// int for system pause
 	int i = 0;
 	int j = 0;
-	
+
 	// array para guardar todas as equipas
 	Equipa *equipas[NUMERO_EQUIPAS];
 	carregarEquipas(equipas);
 	carregarPlanteis(equipas); // TODO: sort players into teams
-	
+
 	// System pause
 	scanf("%i", &i);
 

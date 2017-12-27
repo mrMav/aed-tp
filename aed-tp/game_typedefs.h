@@ -7,13 +7,13 @@ typedef struct {
 
 	// Forca posicao de guardaredes
 	float gr;
-	
+
 	// Forca posicao defesa
 	float df;
-	
+
 	// Forca posicao medio
 	float md;
-	
+
 	// Forca posicao avancado
 	float av;
 
