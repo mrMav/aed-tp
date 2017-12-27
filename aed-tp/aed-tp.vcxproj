@@ -20,17 +20,26 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game_data_load.c" />
-    <ClCompile Include="game_functions_declarations.c" />
+    <ClCompile Include="game_menu.c" />
+    <ClCompile Include="game_object_creation.c" />
+    <ClCompile Include="game_information_output.c" />
+    <ClCompile Include="game_object_manipulation.c" />
+    <ClCompile Include="game_utils.c" />
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game_constants.h" />
     <ClInclude Include="game_data_load.h" />
-    <ClInclude Include="game_functions_prototypes.h" />
+    <ClInclude Include="game_object_creation.h" />
+    <ClInclude Include="game_information_output.h" />
+    <ClInclude Include="game_menu.h" />
+    <ClInclude Include="game_object_manipulation.h" />
     <ClInclude Include="game_typedefs.h" />
+    <ClInclude Include="game_utils.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="clubes.txt" />
+    <Text Include="planteis2.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

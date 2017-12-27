@@ -8,7 +8,11 @@
 #include "game_constants.h"
 #include "game_typedefs.h"
 #include "game_data_load.h"
-#include "game_functions_prototypes.h"
+#include "game_menu.h"
+#include "game_information_output.h"
+#include "game_object_creation.h"
+#include "game_object_manipulation.h"
+#include "game_utils.h"
 
 int main(void) {
 
@@ -17,21 +21,13 @@ int main(void) {
 	// seed para numeros aleatorios
 	srand(time(NULL));   // should only be called once
 
-	// int for system pause
-	int i = 0;
-	int j = 0;
-
 	// array para guardar todas as equipas
 	Equipa *equipas[NUMERO_EQUIPAS];
 	carregarEquipas(equipas);
 	carregarPlanteis(equipas);
-
-	int indice = 0;
-	imprimeEquipa(equipas[indice]);
-	imprimePlantel(equipas[indice]->plantel);
-
-	// System pause
-	scanf("%i", &i);
+	
+	// comeca o loop infinito do jogo
+	iniciarJogo(equipas);
 
 	return 0;
 

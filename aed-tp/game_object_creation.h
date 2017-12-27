@@ -1,10 +1,12 @@
 #pragma once
+
 #include <time.h>
+
 #include "game_typedefs.h"
 
 /*
 
-Funcoes para criar os objectos:
+Funcoes para criar objectos:
 
 */
 
@@ -47,42 +49,4 @@ Cria e retorna um Jogador.
 Jogador* novoJogador(char n[], int num, float vM, struct tm* dC, struct tm* dF, int aC, char p[], Atributos *a);
 Jogador* novoJogadorVazio();
 
-
 // TODO: Criar funcoes para libertar memoria
-
-/*
-
-Funcoes para lidar com os objectos:
-
-*/
-
-// representacao da informacao:
-
-void imprimeJogador(Jogador* j);
-
-void imprimeTreinador(Treinador* t);
-
-void imprimeAtributos(Atributos* a);
-
-void imprimePlantel(Plantel* p);
-
-void imprimeEquipa(Equipa* e);
-
-void imprimeEstadio(Estadio* e);
-
-// manipulação da informação:
-
-int adicionarJogadorAPlantel(Plantel* plantel, Jogador* jogador);
-
-
-/*
-
-Funcoes uteis:
-
-*/
-
-float randomFloat();
-
-struct tm* novaData(char string[]);
-
-Equipa* obterEquipaPorNome(Equipa* equipas[], char string[]);

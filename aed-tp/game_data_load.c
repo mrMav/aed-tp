@@ -1,5 +1,7 @@
 #pragma once
+
 #define _CRT_SECURE_NO_WARNINGS
+
 #include <time.h>
 #include <locale.h>
 #include <stdio.h>
@@ -8,7 +10,8 @@
 
 #include "game_typedefs.h"
 #include "game_constants.h"
-#include "game_functions_prototypes.h"
+#include "game_object_creation.h"
+#include "game_object_manipulation.h"
 
 /*
 
@@ -222,7 +225,7 @@ void carregarPlanteis(Equipa *equipas[]) {
 						atof(atribMED),
 						atof(atribAV)
 					);
-
+					
 					jogador = novoJogador(
 						nome,
 						atoi(numero),
@@ -254,7 +257,7 @@ void carregarPlanteis(Equipa *equipas[]) {
 
 		}
 
-		printf("Numero total de jogadores carregados: %i\n", nJogadores);
+		//printf("Numero total de jogadores carregados: %i\n", nJogadores);
 
 		fclose(f);
 
