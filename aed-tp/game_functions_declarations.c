@@ -19,14 +19,14 @@ Funcoes para criar os objectos :
 /*
 Cria e retorna um Atributos.
 */
-Atributos* novoAtributos() {
+Atributos* novoAtributos(float gr, float df, float md, float av) {
 
 	Atributos* a = malloc(sizeof(Atributos));
 
-	a->gr = randomFloat();
-	a->df = randomFloat();
-	a->md = randomFloat();
-	a->av = randomFloat();
+	a->gr = gr;
+	a->df = df;
+	a->md = md;
+	a->av = av;
 	
 	return a;
 
@@ -51,7 +51,7 @@ Atributos* novoAtributosVazio() {
 /*
 Cria e retorna um Jogador.
 */
-Jogador* novoJogador(char n[], int num, float vM, time_t* dC, int aC, char p[], Atributos *a) {
+Jogador* novoJogador(char n[], int num, float vM, struct tm* dC, struct tm* dF, int aC, char p[], Atributos *a) {
 
 	Jogador* j = malloc(sizeof(Jogador));
 
@@ -59,6 +59,7 @@ Jogador* novoJogador(char n[], int num, float vM, time_t* dC, int aC, char p[], 
 	j->numero = num;
 	j->vencimentoMensal = vM;
 	j->dataContracto = dC;
+	j->dataFimContracto = dF;
 	j->anosContracto = aC;
 	strcpy(j->posicao, p);
 	j->atributos = a;
@@ -77,6 +78,7 @@ Jogador* novoJogadorVazio() {
 	j->numero = -1;
 	j->vencimentoMensal = -1.0;
 	j->dataContracto = NULL;
+	j->dataFimContracto = NULL;
 	j->anosContracto = -1;
 	strcpy(j->posicao, "AAA");
 	j->atributos = novoAtributosVazio();
@@ -200,7 +202,8 @@ void imprimeJogador(Jogador* j) {
 
 	printf("Numero: %i\n", j->numero);
 	printf("Vencimento: %.2f\n", j->vencimentoMensal);
-	printf("Data do contracto: %s", ctime(j->dataContracto));  // reparar na funcao ctime()
+	printf("Data de inicio do contracto: %i/%i/%i\n", j->dataContracto->tm_mday, j->dataContracto->tm_mon + 1, j->dataContracto->tm_year);
+	printf("Data de finm do contracto: %i/%i/%i\n", j->dataFimContracto->tm_mday, j->dataFimContracto->tm_mon + 1, j->dataFimContracto->tm_year);
 	printf("Anos de contracto: %i\n", j->anosContracto);
 	printf("Posicao:%s\n", j->posicao);
 	printf("Atributos:\n");
@@ -285,3 +288,34 @@ float randomFloat()
 	float r = (float)rand() / (float)RAND_MAX;
 	return r;
 }
+
+/*
+Retorna estrutura com a data da string
+o formato da string tem de ser yyyy/mm/dd
+*/
+struct tm* novaData(char string[]) {
+
+	struct tm* data = malloc(sizeof(struct tm));
+
+	char ano[4];
+	char mes[2];
+	char dia[2];
+
+	ano[0] = string[0];
+	ano[1] = string[1];
+	ano[2] = string[2];
+	ano[3] = string[3];
+
+	mes[0] = string[5];
+	mes[1] = string[6];
+
+	dia[0] = string[8];
+	dia[1] = string[9];
+
+	data->tm_year = atoi(ano);
+	data->tm_mon  = atoi(mes) - 1;  // reparem no -1
+	data->tm_mday = atoi(dia);
+
+	return data;
+
+};

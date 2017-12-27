@@ -9,3 +9,5 @@ Data load
 */
 
 void carregarEquipas(Equipa *equipas[]);
+
+void carregarPlanteis(Equipa *equipas[]);

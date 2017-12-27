@@ -24,7 +24,8 @@ typedef struct {
 	char nome[100];
 	int numero;
 	float vencimentoMensal;
-	time_t* dataContracto;
+	struct tm* dataContracto;
+	struct tm* dataFimContracto;
 	int anosContracto;
 	char posicao[3];
 	Atributos* atributos;

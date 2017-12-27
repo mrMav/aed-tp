@@ -31,7 +31,7 @@ Resultado* novoResultado();
 /*
 Cria e retorna um Atributos.
 */
-Atributos* novoAtributos();
+Atributos* novoAtributos(float gr, float df, float md, float av);
 Atributos* novoAtributosVazio();
 
 /*
@@ -42,7 +42,7 @@ Treinador* novoTreinador(char n[]);
 /*
 Cria e retorna um Jogador.
 */
-Jogador* novoJogador(char n[], int num, float vM, time_t* dC, int aC, char p[], Atributos *a);
+Jogador* novoJogador(char n[], int num, float vM, struct tm* dC, struct tm* dF, int aC, char p[], Atributos *a);
 Jogador* novoJogadorVazio();
 
 
@@ -76,3 +76,5 @@ Funcoes uteis:
 */
 
 float randomFloat();
+
+struct tm* novaData(char string[]);
