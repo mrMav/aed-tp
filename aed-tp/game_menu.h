@@ -2,4 +2,8 @@
 
 void iniciarJogo(Equipa *equipas[]);
 
-void imprimirMenu();
+void iniciarMenuInicial(Equipa *equipas[]);
+void imprimirMenuInicial();
+
+void iniciarMenuNovoJogo(Equipa *equipas[]);
+void imprimirMenuNovoJogo();

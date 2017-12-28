@@ -20,55 +20,95 @@
 
 void iniciarJogo(Equipa *equipas[]) {
 
-	int opcao = 0;
-
-	Equipa* equipaSelecionada = equipas[0];
-
-	while (opcao != SAIR_JOGO) {
-
-		imprimirMenu();
-
-		scanf("%i", &opcao);
-
-		switch (opcao) {
-
-		case VER_RESULTADOS:
-
-
-
-			imprimeResultados(equipaSelecionada->resultados);
-
-			break;
-		case VER_EQUIPA:
-
-			imprimeEquipa(equipaSelecionada);
-
-			break;
-		case VER_PLANTEL:
-
-			imprimePlantel(equipaSelecionada->plantel);
-
-			break;
-		}
-
-
-
-	}
+	iniciarMenuInicial(equipas);
 
 	printf("\nExiting game....\n");
 	Sleep(1000);
 
 }
 
-void imprimirMenu() {
+void iniciarMenuInicial(Equipa * equipas[]) {
+	
+	enum MENU_INICIAL opcao = MENU_INICIAL_OPCAO_NULA;
 
-	printf("---- Futebol Game ----\n");
+	Equipa* equipaSelecionada = equipas[0];
 
-	printf("-1: SAIR DO JOGO\n");
-	printf(" 0: VER RESULTADOS\n");
-	printf(" 1: VER EQUIPA\n");
-	printf(" 2: VER PLANTEL\n");
+	while (opcao != MENU_INICIAL_OPCAO_SAIR) {
+
+		imprimirMenuInicial();
+
+		scanf("%i", &opcao);
+
+		switch (opcao) {
+
+		case MENU_INICIAL_OPCAO_CONTINUAR:
+
+			//iniciarMenuNovoJogo(equipas);
+
+			break;
+		case MENU_INICIAL_OPCAO_NOVO_JOGO:
+
+			iniciarMenuNovoJogo(equipas);
+
+			break;
+		}
+
+	}
+	
+}
+
+void imprimirMenuInicial() {
+
+	printf("\n---- Futebol Game ----\n");
+
+	printf("%i: SAIR DO JOGO\n", MENU_INICIAL_OPCAO_SAIR);
+	printf("%i: CONTINUAR\n", MENU_INICIAL_OPCAO_CONTINUAR);
+	printf("%i: NOVO JOGO\n", MENU_INICIAL_OPCAO_NOVO_JOGO);
 
 	printf("-----------------------\n");
-	
+
+}
+
+
+void iniciarMenuNovoJogo(Equipa * equipas[]) {
+
+	enum MENU_NOVO_JOGO opcao = MENU_NOVO_JOGO_OPCAO_NULA;
+
+	Equipa* equipaSelecionada = equipas[0];
+
+	while (opcao != MENU_NOVO_JOGO_OPCAO_SAIR) {
+
+		imprimirMenuNovoJogo();
+
+		scanf("%i", &opcao);
+
+		switch (opcao) {
+
+		case MENU_NOVO_JOGO_OPCAO_INSERIR_NOME:
+
+			//iniciarMenuInicial(equipas);
+
+			break;
+		
+		case MENU_NOVO_JOGO_OPCAO_ESCOLHER_EQUIPA:
+
+			//iniciarMenuInicial(equipas);
+
+			break;
+		}
+
+	}
+
+}
+
+void imprimirMenuNovoJogo() {
+
+	printf("\n---- Novo Jogo ----\n");
+
+	printf("%i: VOLTAR\n", MENU_NOVO_JOGO_OPCAO_SAIR);
+	printf("%i: INSERIR NOME\n", MENU_NOVO_JOGO_OPCAO_INSERIR_NOME);
+	printf("%i: ESCOLHER EQUIPA\n", MENU_NOVO_JOGO_OPCAO_ESCOLHER_EQUIPA);
+
+	printf("-----------------------\n");
+
 }
