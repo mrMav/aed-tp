@@ -14,4 +14,4 @@ Return 1: sucess
 int adicionarJogadorAPlantel(Plantel* plantel, Jogador* jogador);
 
 
-Equipa* obterEquipaPorNome(Equipa* equipas[], char string[]);
+Equipa* obterEquipaPorNome(Equipa* EQUIPAS[], char string[]);

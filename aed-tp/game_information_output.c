@@ -9,6 +9,8 @@
 
 #include "game_typedefs.h"
 #include "game_constants.h"
+#include "game_utils.h"
+#include "game_globals.h"
 
 /*
 
@@ -124,3 +126,85 @@ void imprimeResultados(Resultado* r) {
 
 	printf("--------\n");
 };
+
+void imprimirTitulo(char* string) {
+
+	int length = strlen(string);
+	int i;
+
+	for (i = 0; i < length + 4; i++) {
+
+		printf("-");
+
+	};
+
+	printf("\n| %s |\n", string);
+	
+	for (i = 0; i < length + 4; i++) {
+
+		printf("-");
+
+	};
+
+	printf("\n");
+
+};
+
+void imprimirCabecalho(char* string) {
+
+	int length = strlen(string);
+	int i;
+
+	for (i = 0; i < length + 6; i++) {
+
+		printf("#");
+
+	};
+
+	printf("\n## %s ##\n", string);
+
+	for (i = 0; i < length + 6; i++) {
+
+		printf("#");
+
+	};
+
+	printf("\n");
+
+};
+
+void imprimirOpcao(char* string, int opcao) {
+
+	printf(string, opcao);
+
+};
+
+void imprimirInstrucao(char* string) {
+
+	printf("-> %s", string);
+
+};
+
+void imprimirInicioDoJogo() {
+
+	int jogadorAleatorio = randomInt(0, NUMERO_JOGADORES_PLANTEL - 1);
+
+	printf("--------\n");
+	printf("Novo treinador do %s começa hoje a treinar a equipa!\nO jogador %s mostra-se confiante relativamente a %s.\n",
+		EQUIPAS[INDICE_EQUIPA_JOGADOR]->nome,		
+		EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel->jogadores[jogadorAleatorio],
+		NOME_JOGADOR
+	);
+
+};
+
+void listarEquipas() {
+
+	int i;
+	for (i = 0; i < NUMERO_EQUIPAS; i++) {
+
+		printf("%02i | %s\n", i + 1, EQUIPAS[i]->nome);
+
+	}
+	
+}

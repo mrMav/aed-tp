@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game_data_load.c" />
+    <ClCompile Include="game_globals.c" />
     <ClCompile Include="game_menu.c" />
     <ClCompile Include="game_object_creation.c" />
     <ClCompile Include="game_information_output.c" />
@@ -30,6 +31,7 @@
   <ItemGroup>
     <ClInclude Include="game_constants.h" />
     <ClInclude Include="game_data_load.h" />
+    <ClInclude Include="game_globals.h" />
     <ClInclude Include="game_object_creation.h" />
     <ClInclude Include="game_information_output.h" />
     <ClInclude Include="game_menu.h" />

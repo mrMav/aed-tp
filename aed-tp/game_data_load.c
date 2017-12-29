@@ -12,13 +12,14 @@
 #include "game_constants.h"
 #include "game_object_creation.h"
 #include "game_object_manipulation.h"
+#include "game_globals.h"
 
 /*
 
 	Data load
 
 */
-void carregarEquipas(Equipa *equipas[]) {
+void carregarEQUIPAS() {
 
 	char nomeFicheiro[] = "clubes.txt";
 
@@ -94,7 +95,7 @@ void carregarEquipas(Equipa *equipas[]) {
 					
 					bufferEquipa->plantel->treinador = novoTreinador(treinador);
 					
-					equipas[j] = bufferEquipa;
+					EQUIPAS[j] = bufferEquipa;
 					j++;
 
 					bufferEstadio = NULL;
@@ -121,7 +122,7 @@ void carregarEquipas(Equipa *equipas[]) {
 
 }
 
-void carregarPlanteis(Equipa *equipas[]) {
+void carregarPlanteis() {
 
 	char nomeFicheiro[] = "planteis2.txt";
 
@@ -238,7 +239,7 @@ void carregarPlanteis(Equipa *equipas[]) {
 					);
 					
 					//adicionar jogador a plantel da sua equipa:
-					int sucess = adicionarJogadorAPlantel(obterEquipaPorNome(equipas, clube)->plantel, jogador);
+					int sucess = adicionarJogadorAPlantel(obterEquipaPorNome(EQUIPAS, clube)->plantel, jogador);
 
 					nJogadores += sucess;
 					jogador = NULL;					

@@ -8,6 +8,6 @@ Data load
 
 */
 
-void carregarEquipas(Equipa *equipas[]);
+void carregarEQUIPAS();
 
-void carregarPlanteis(Equipa *equipas[]);
+void carregarPlanteis();

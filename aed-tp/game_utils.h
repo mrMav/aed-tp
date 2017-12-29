@@ -12,4 +12,6 @@ Funcoes uteis:
 
 float randomFloat();
 
+int randomInt(int, int);
+
 struct tm* novaData(char string[]);

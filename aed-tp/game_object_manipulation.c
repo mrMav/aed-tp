@@ -42,15 +42,15 @@ int adicionarJogadorAPlantel(Plantel* plantel, Jogador* jogador) {
 /*
 Retorna a equipa por nome.
 */
-Equipa* obterEquipaPorNome(Equipa* equipas[], char string[]) {
+Equipa* obterEquipaPorNome(Equipa* EQUIPAS[], char string[]) {
 
 	int i;
 
 	for (i = 0; i < NUMERO_EQUIPAS; i++) {
 
-		if (strcmp(string, equipas[i]->nome) == 0) {
+		if (strcmp(string, EQUIPAS[i]->nome) == 0) {
 
-			return equipas[i];
+			return EQUIPAS[i];
 
 		}
 

@@ -22,3 +22,15 @@ void imprimeEquipa(Equipa* e);
 void imprimeEstadio(Estadio* e);
 
 void imprimeResultados(Resultado* r);
+
+void imprimirCabecalho(char* string);
+
+void imprimirOpcao(char* string, int opcao);
+
+void imprimirInstrucao(char* string);
+
+void imprimirTitulo(char* string);
+
+void imprimirInicioDoJogo();
+
+void listarEquipas();

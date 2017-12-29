@@ -20,6 +20,15 @@ float randomFloat()
 }
 
 /*
+Retorna int entre min e max
+*/
+int randomInt(int min, int max)
+{
+	int r = (rand() % max) + min;
+	return r;
+}
+
+/*
 Retorna estrutura com a data da string
 o formato da string tem de ser yyyy/mm/dd
 */

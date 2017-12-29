@@ -1,9 +1,9 @@
 #pragma once
 
-void iniciarJogo(Equipa *equipas[]);
+void iniciarJogo();
 
-void iniciarMenuInicial(Equipa *equipas[]);
+void iniciarMenuInicial();
 void imprimirMenuInicial();
 
-void iniciarMenuNovoJogo(Equipa *equipas[]);
+void iniciarMenuNovoJogo();
 void imprimirMenuNovoJogo();
