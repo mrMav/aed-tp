@@ -181,14 +181,26 @@ void imprimirOpcao(char* string, int opcao) {
 
 void imprimirInstrucao(char* string) {
 
-	printf("-> %s", string);
+	printf("  %s", string);
 
 };
+
+void imprimirSeparador() {
+
+	printf("--------\n");
+
+}
+
+void imprimirCursor() {
+
+	printf("-> ");
+
+}
 
 void imprimirInicioDoJogo() {
 
 	int jogadorAleatorio = randomInt(0, NUMERO_JOGADORES_PLANTEL - 1);
-
+	
 	printf("--------\n");
 	printf("Novo treinador do %s começa hoje a treinar a equipa!\nO jogador %s mostra-se confiante relativamente a %s.\n",
 		EQUIPAS[INDICE_EQUIPA_JOGADOR]->nome,		

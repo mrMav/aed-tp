@@ -22,10 +22,16 @@
 void iniciarJogo() {
 
 	iniciarMenuInicial();
+	
+}
 
+void sairJogo() {
+	
 	printf("\nExiting game....\n");
+	
 	Sleep(1000);
 
+	exit(0);
 }
 
 void iniciarMenuInicial() {
@@ -54,6 +60,8 @@ void iniciarMenuInicial() {
 		}
 
 	}
+
+	sairJogo();
 	
 }
 
@@ -61,13 +69,12 @@ void imprimirMenuInicial() {
 
 	imprimirCabecalho(" F-TASTIC ");
 
-	//printf("%i: SAIR DO JOGO\n", MENU_INICIAL_OPCAO_SAIR);
 	imprimirOpcao("%i: SAIR DO JOGO\n", MENU_INICIAL_OPCAO_SAIR);
 	imprimirOpcao("%i: CONTINUAR\n", MENU_INICIAL_OPCAO_CONTINUAR);
 	imprimirOpcao("%i: NOVO JOGO\n", MENU_INICIAL_OPCAO_NOVO_JOGO);
 
-	printf("-----------------------\n");
-	printf("-> ");
+	imprimirSeparador();
+	imprimirCursor();
 
 }
 
@@ -106,18 +113,57 @@ void iniciarMenuNovoJogo() {
 
 	}
 
-	imprimirInicioDoJogo();
+	iniciarMenuPreparacaoEpoca();
 
 }
 
-void imprimirMenuNovoJogo() {
 
-	printf("\n---- Novo Jogo ----\n");
+void iniciarMenuPreparacaoEpoca() {
 
-	printf("%i: VOLTAR\n", MENU_NOVO_JOGO_OPCAO_SAIR);
-	printf("%i: INSERIR NOME\n", MENU_NOVO_JOGO_OPCAO_INSERIR_NOME);
-	printf("%i: ESCOLHER EQUIPA\n", MENU_NOVO_JOGO_OPCAO_ESCOLHER_EQUIPA);
+	enum MENU_INICIAL opcao = MENU_INICIAL_OPCAO_NULA;
 
-	printf("-----------------------\n");
+	while (opcao != MENU_INICIAL_OPCAO_SAIR) {
+
+		imprimirMenuPreparacaoEpoca();
+
+		scanf("%i", &opcao);
+		getchar();
+
+		switch (opcao) {
+
+		case MENU_PREPARACAO_EPOCA_OPCAO_TRANSFERENCIA_JOGADORES:
+
+			printf("\nNot working yet...\n");
+
+			break;
+		case MENU_PREPARACAO_EPOCA_OPCAO_INFORMACAO:
+
+			printf("\nNot working yet...\n");
+
+			break;
+		case MENU_PREPARACAO_EPOCA_INICIAR_EPOCA:
+
+			printf("\nNot working yet...\n");
+
+			break;
+		}
+
+	}
+
+	sairJogo();
+
+}
+
+void imprimirMenuPreparacaoEpoca() {
+
+	imprimirTitulo("Começar a Época");
+
+	imprimirOpcao("%i: SAIR DO JOGO\n", MENU_PREPARACAO_EPOCA_OPCAO_SAIR);
+	imprimirOpcao("%i: TRANSFERENCIA DE JOGADORES\n", MENU_PREPARACAO_EPOCA_OPCAO_TRANSFERENCIA_JOGADORES);
+	imprimirOpcao("%i: INFORMACAO\n", MENU_PREPARACAO_EPOCA_OPCAO_INFORMACAO);
+	imprimirOpcao("%i: INICIAR ÉPOCA\n", MENU_PREPARACAO_EPOCA_INICIAR_EPOCA);
+
+	imprimirSeparador();
+	imprimirCursor();
 
 }

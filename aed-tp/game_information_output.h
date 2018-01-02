@@ -31,6 +31,10 @@ void imprimirInstrucao(char* string);
 
 void imprimirTitulo(char* string);
 
+void imprimirSeparador();
+
+void imprimirCursor();
+
 void imprimirInicioDoJogo();
 
 void listarEquipas();
