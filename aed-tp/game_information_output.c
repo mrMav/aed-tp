@@ -179,16 +179,29 @@ void imprimirOpcao(char* string, int opcao) {
 
 };
 
+void imprimirSeparador() {
+
+	printf("--------\n");
+
+}
+
+void imprimirCursor() {
+
+	printf("-> ");
+
+}
+
 void imprimirInstrucao(char* string) {
 
-	printf("-> %s", string);
+	imprimirCursor();
+	printf("%s", string);
 
 };
 
 void imprimirInicioDoJogo() {
 
 	int jogadorAleatorio = randomInt(0, NUMERO_JOGADORES_PLANTEL - 1);
-
+	
 	printf("--------\n");
 	printf("Novo treinador do %s começa hoje a treinar a equipa!\nO jogador %s mostra-se confiante relativamente a %s.\n",
 		EQUIPAS[INDICE_EQUIPA_JOGADOR]->nome,		
@@ -207,4 +220,29 @@ void listarEquipas() {
 
 	}
 	
+}
+
+void listarJogadores(Equipa* e) {
+
+	int espacoReservadoParaNomeDoJogador = 30;
+
+	int i;
+	for (i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
+		
+		printf("%02i | %s | %s", i + 1, e->plantel->jogadores[i]->posicao, e->plantel->jogadores[i]->nome);
+
+		int j;
+		for (j = strlen(e->plantel->jogadores[i]->nome); j < espacoReservadoParaNomeDoJogador; j++) {
+			printf(" ");
+		}
+
+		printf("| GR: %.2f\% | DEF: %.2f\% | MED: %.2f\% | AV: %.2f\% | \n",
+			e->plantel->jogadores[i]->atributos->gr,
+			e->plantel->jogadores[i]->atributos->df,
+			e->plantel->jogadores[i]->atributos->md,
+			e->plantel->jogadores[i]->atributos->av
+		);
+		
+	}
+
 }

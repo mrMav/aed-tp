@@ -1,9 +1,14 @@
 #pragma once
 
 void iniciarJogo();
+void sairJogo();
 
 void iniciarMenuInicial();
 void imprimirMenuInicial();
 
 void iniciarMenuNovoJogo();
-void imprimirMenuNovoJogo();
+
+void iniciarMenuPreparacaoEpoca();
+void imprimirMenuPreparacaoEpoca(int a);
+
+void iniciarMenuCompraEVenda();

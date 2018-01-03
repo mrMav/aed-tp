@@ -15,3 +15,8 @@ int adicionarJogadorAPlantel(Plantel* plantel, Jogador* jogador);
 
 
 Equipa* obterEquipaPorNome(Equipa* EQUIPAS[], char string[]);
+
+/*
+Troca dois jogadores um por outro
+*/
+void trocaJogadores(Equipa* equipa1, Equipa* equipa2, int indice1, int indice2);
