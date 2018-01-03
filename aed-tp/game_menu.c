@@ -151,9 +151,7 @@ void iniciarMenuPreparacaoEpoca() {
 			break;
 		case MENU_PREPARACAO_EPOCA_OPCAO_INFORMACAO:
 
-			imprimeEquipa(EQUIPAS[INDICE_EQUIPA_JOGADOR]);
-			imprimePlantel(EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel);
-			imprimeEstadio(EQUIPAS[INDICE_EQUIPA_JOGADOR]->estadio);
+			iniciarMenuInformacao();
 
 			break;
 		case MENU_PREPARACAO_EPOCA_INICIAR_EPOCA:
@@ -271,4 +269,62 @@ void iniciarMenuCompraEVenda() {
 	// guarda redes de uma equipa por exemplo
 	trocaJogadores(EQUIPAS[INDICE_EQUIPA_JOGADOR], EQUIPAS[equipaEscolhida], jogadorATrocar, jogadorEscolhido);
 	
+}
+
+void iniciarMenuInformacao() {
+
+	enum MENU_INFORMACAO opcao = MENU_INFORMACAO_OPCAO_NULA;
+	
+	imprimirCabecalho("INFORMACAO");
+
+	while (opcao != MENU_INFORMACAO_OPCAO_SAIR) {
+		
+		int equipaEscolhida;
+		int exit = 1;
+
+		imprimirOpcao("%i: VOLTAR\n", MENU_INFORMACAO_OPCAO_SAIR);
+		imprimirOpcao("%i: VER EQUIPAS\n", MENU_INFORMACAO_VER_OUTRAS);
+
+		scanf("%i", &opcao);
+		getchar();
+
+		switch (opcao) {
+
+		case MENU_INFORMACAO_VER_OUTRAS:
+
+			while (exit) {
+
+				imprimirInstrucao("Selecione uma equipa para ver mais informação:\n");
+				listarEquipas();
+
+				imprimirCursor();
+				scanf("%i", &equipaEscolhida);
+				getchar();
+
+				if (equipaEscolhida > 0 && equipaEscolhida < NUMERO_EQUIPAS + 1) {
+
+					equipaEscolhida = equipaEscolhida - 1;
+
+					exit = 0;
+
+				}
+				else {
+
+					printf("Opcao nao valida. Escolha de novo.\n");
+
+				}
+
+			}
+
+			imprimeEquipa(EQUIPAS[equipaEscolhida]);
+			imprimePlantel(EQUIPAS[equipaEscolhida]->plantel);
+			imprimeEstadio(EQUIPAS[equipaEscolhida]->estadio);
+
+			break;
+
+		}
+
+	}
+
+
 }
