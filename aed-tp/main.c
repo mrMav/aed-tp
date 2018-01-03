@@ -14,8 +14,6 @@
 #include "game_object_manipulation.h"
 #include "game_utils.h"
 
-// testing branching
-
 int main(void) {
 
 	setlocale(LC_ALL, "");
