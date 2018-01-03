@@ -87,7 +87,7 @@ void iniciarMenuNovoJogo() {
 	imprimirInstrucao("Escreva o seu nome:\n");
 	imprimirCursor();
 	gets(NOME_JOGADOR);
-
+	
 	imprimirInstrucao("Escolha a sua equipa:\n");
 	listarEquipas();
 
@@ -114,6 +114,8 @@ void iniciarMenuNovoJogo() {
 
 	}
 
+	strcpy(EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel->treinador->nome, NOME_JOGADOR);
+
 	imprimirInicioDoJogo();
 	iniciarMenuPreparacaoEpoca();
 
@@ -136,7 +138,7 @@ void iniciarMenuPreparacaoEpoca() {
 		case MENU_PREPARACAO_EPOCA_OPCAO_TRANSFERENCIA_JOGADORES:
 
 			if (nTransferencias < NUMERO_TRANSFERENCIAS) {
-
+				
 				iniciarMenuCompraEVenda();
 
 			}
@@ -149,7 +151,9 @@ void iniciarMenuPreparacaoEpoca() {
 			break;
 		case MENU_PREPARACAO_EPOCA_OPCAO_INFORMACAO:
 
-			printf("\nNot working yet...\n");
+			imprimeEquipa(EQUIPAS[INDICE_EQUIPA_JOGADOR]);
+			imprimePlantel(EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel);
+			imprimeEstadio(EQUIPAS[INDICE_EQUIPA_JOGADOR]->estadio);
 
 			break;
 		case MENU_PREPARACAO_EPOCA_INICIAR_EPOCA:
@@ -261,6 +265,10 @@ void iniciarMenuCompraEVenda() {
 
 	}
 	
+	// TODO: verificar se a equipa tem fundos para este jogador
+	// TODO: imprimir valor do jogador
+	// ATENCAO: com o metodo de  troca sempre possivel, é possivel retirar todos os 
+	// guarda redes de uma equipa por exemplo
 	trocaJogadores(EQUIPAS[INDICE_EQUIPA_JOGADOR], EQUIPAS[equipaEscolhida], jogadorATrocar, jogadorEscolhido);
 	
 }
