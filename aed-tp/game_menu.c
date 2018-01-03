@@ -85,14 +85,15 @@ void iniciarMenuNovoJogo() {
 
 	imprimirTitulo("Começar Novo Jogo");
 	imprimirInstrucao("Escreva o seu nome:\n");
-	
+	imprimirCursor();
 	gets(NOME_JOGADOR);
 
 	imprimirInstrucao("Escolha a sua equipa:\n");
 	listarEquipas();
 
 	while (exit) {
-		
+
+		imprimirCursor();
 		scanf("%i", &opcao);
 		getchar();
 
@@ -113,6 +114,7 @@ void iniciarMenuNovoJogo() {
 
 	}
 
+	imprimirInicioDoJogo();
 	iniciarMenuPreparacaoEpoca();
 
 }
@@ -121,10 +123,10 @@ void iniciarMenuNovoJogo() {
 void iniciarMenuPreparacaoEpoca() {
 
 	enum MENU_INICIAL opcao = MENU_INICIAL_OPCAO_NULA;
-
+	
 	while (opcao != MENU_INICIAL_OPCAO_SAIR) {
 
-		imprimirMenuPreparacaoEpoca();
+		imprimirMenuPreparacaoEpoca(nTransferencias);
 
 		scanf("%i", &opcao);
 		getchar();
@@ -133,7 +135,16 @@ void iniciarMenuPreparacaoEpoca() {
 
 		case MENU_PREPARACAO_EPOCA_OPCAO_TRANSFERENCIA_JOGADORES:
 
-			printf("\nNot working yet...\n");
+			if (nTransferencias < NUMERO_TRANSFERENCIAS) {
+
+				iniciarMenuCompraEVenda();
+
+			}
+			else {
+
+				printf("Total de transferencias feitas!\n");
+
+			}
 
 			break;
 		case MENU_PREPARACAO_EPOCA_OPCAO_INFORMACAO:
@@ -159,11 +170,97 @@ void imprimirMenuPreparacaoEpoca() {
 	imprimirTitulo("Começar a Época");
 
 	imprimirOpcao("%i: SAIR DO JOGO\n", MENU_PREPARACAO_EPOCA_OPCAO_SAIR);
-	imprimirOpcao("%i: TRANSFERENCIA DE JOGADORES\n", MENU_PREPARACAO_EPOCA_OPCAO_TRANSFERENCIA_JOGADORES);
-	imprimirOpcao("%i: INFORMACAO\n", MENU_PREPARACAO_EPOCA_OPCAO_INFORMACAO);
+	imprimirOpcao("%i: COMPRA E VENDA DE JOGADORES", MENU_PREPARACAO_EPOCA_OPCAO_TRANSFERENCIA_JOGADORES);
+	printf(" (%i/%i)\n", nTransferencias, NUMERO_TRANSFERENCIAS);
+	imprimirOpcao("%i: VER EQUIPA, JOGADORES, ETC\n", MENU_PREPARACAO_EPOCA_OPCAO_INFORMACAO);
 	imprimirOpcao("%i: INICIAR ÉPOCA\n", MENU_PREPARACAO_EPOCA_INICIAR_EPOCA);
 
 	imprimirSeparador();
 	imprimirCursor();
 
+}
+
+void iniciarMenuCompraEVenda() {
+
+	int equipaEscolhida = 0;
+	int jogadorEscolhido = 0;
+	int jogadorATrocar = 0;
+	int exit = 1;
+
+	imprimirTitulo("Compra e venda de jogadores");
+	imprimirInstrucao("Para efectuar uma transferencia deve trocar sempre um jogador por outro.\nComece por escolher a equipa a que pretende ir buscar o novo jogador:\n");
+	listarEquipas();
+	
+	while (exit) {
+
+		imprimirCursor();
+		scanf("%i", &equipaEscolhida);
+		getchar();
+
+		if (equipaEscolhida != INDICE_EQUIPA_JOGADOR + 1 && equipaEscolhida > 0 && equipaEscolhida < NUMERO_EQUIPAS + 1) {
+			
+			equipaEscolhida = equipaEscolhida - 1;
+
+			exit = 0;
+
+		} else {
+
+			printf("Opcao nao valida. Escolha de novo.\n");
+
+		}
+
+	}
+
+	imprimirInstrucao("Escolha o jogador:\n");
+	listarJogadores(EQUIPAS[equipaEscolhida]);
+
+	exit = 1;
+	while (exit) {
+
+		imprimirCursor();
+		scanf("%i", &jogadorEscolhido);
+		getchar();
+
+		if (jogadorEscolhido > 0 && jogadorEscolhido < NUMERO_JOGADORES_PLANTEL + 1) {
+			
+			jogadorEscolhido = jogadorEscolhido - 1;
+
+			exit = 0;
+
+		}
+		else {
+
+			printf("Opcao nao valida. Escolha de novo.\n");
+
+		}
+
+	}
+
+	imprimirInstrucao("Escolha o jogador da SUA equipa para TROCAR:\n");
+	listarJogadores(EQUIPAS[INDICE_EQUIPA_JOGADOR]);
+
+	exit = 1;
+	while (exit) {
+
+		imprimirCursor();
+		scanf("%i", &jogadorATrocar);
+		getchar();
+
+		if (jogadorATrocar > 0 && jogadorATrocar < NUMERO_JOGADORES_PLANTEL + 1) {
+			
+			jogadorATrocar = jogadorATrocar - 1;
+
+			exit = 0;
+
+		}
+		else {
+
+			printf("Opcao nao valida. Escolha de novo.\n");
+
+		}
+
+	}
+	
+	trocaJogadores(EQUIPAS[INDICE_EQUIPA_JOGADOR], EQUIPAS[equipaEscolhida], jogadorATrocar, jogadorEscolhido);
+	
 }

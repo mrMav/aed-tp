@@ -11,3 +11,5 @@ int INDICE_EQUIPA_JOGADOR = -1;
 
 // nome do jogador
 char *NOME_JOGADOR[100];
+
+int nTransferencias = 0;

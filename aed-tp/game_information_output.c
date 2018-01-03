@@ -179,12 +179,6 @@ void imprimirOpcao(char* string, int opcao) {
 
 };
 
-void imprimirInstrucao(char* string) {
-
-	printf("  %s", string);
-
-};
-
 void imprimirSeparador() {
 
 	printf("--------\n");
@@ -196,6 +190,13 @@ void imprimirCursor() {
 	printf("-> ");
 
 }
+
+void imprimirInstrucao(char* string) {
+
+	imprimirCursor();
+	printf("%s", string);
+
+};
 
 void imprimirInicioDoJogo() {
 
@@ -219,4 +220,22 @@ void listarEquipas() {
 
 	}
 	
+}
+
+void listarJogadores(Equipa* e) {
+
+	int i;
+	for (i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
+
+		printf("%02i | %s| GR: %f\% | DEF: %02f\% | MED: %02f\% | AV: %02f\% |\n",
+			i + 1,
+			e->plantel->jogadores[i]->nome,
+			e->plantel->jogadores[i]->atributos->gr,
+			e->plantel->jogadores[i]->atributos->df,
+			e->plantel->jogadores[i]->atributos->md,
+			e->plantel->jogadores[i]->atributos->av
+		);
+
+	}
+
 }

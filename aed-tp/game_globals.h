@@ -15,3 +15,5 @@ extern int INDICE_EQUIPA_JOGADOR;
 
 // nome do jogador
 extern char *NOME_JOGADOR[100];
+
+extern int nTransferencias;

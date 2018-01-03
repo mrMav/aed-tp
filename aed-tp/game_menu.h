@@ -9,4 +9,6 @@ void imprimirMenuInicial();
 void iniciarMenuNovoJogo();
 
 void iniciarMenuPreparacaoEpoca();
-void imprimirMenuPreparacaoEpoca();
+void imprimirMenuPreparacaoEpoca(int a);
+
+void iniciarMenuCompraEVenda();

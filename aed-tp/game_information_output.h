@@ -38,3 +38,5 @@ void imprimirCursor();
 void imprimirInicioDoJogo();
 
 void listarEquipas();
+
+void listarJogadores(Equipa* e);

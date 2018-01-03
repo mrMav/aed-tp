@@ -9,6 +9,7 @@
 
 #include "game_typedefs.h"
 #include "game_constants.h"
+#include "game_globals.h"
 
 /*
 Funcoes para manipular objectos e informacao do jogo
@@ -58,5 +59,26 @@ Equipa* obterEquipaPorNome(Equipa* EQUIPAS[], char string[]) {
 
 	// caso a equipa não seja encontrada:
 	return NULL;
+
+};
+
+/*
+Troca dois jogadores um por outro
+*/
+void trocaJogadores(Equipa* equipa1, Equipa* equipa2, int indice1, int indice2) {
+
+	// guardar jogador1 num buffer
+	Jogador* bufferJogador1 = equipa1->plantel->jogadores[indice1];
+	//printf("jogador no buffer:%s\n", bufferJogador1->nome);
+
+	// colocar jogador2 na equipa1
+	equipa1->plantel->jogadores[indice1] = equipa2->plantel->jogadores[indice2];
+	//printf("jogador no posto na equipa1:%s\n", equipa1->plantel->jogadores[indice1]->nome);
+
+	// colocar buffer na equipa2
+	equipa2->plantel->jogadores[indice2] = bufferJogador1;
+	//printf("jogador no posto na equipa2:%s\n", equipa2->plantel->jogadores[indice2]->nome);
+
+	nTransferencias++;
 
 };
