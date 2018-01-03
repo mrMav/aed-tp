@@ -14,7 +14,7 @@
 #include "game_object_manipulation.h"
 #include "game_utils.h"
 
-// testing branhcing
+// testing branching
 
 int main(void) {
 
