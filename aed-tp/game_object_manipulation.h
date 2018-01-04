@@ -20,3 +20,8 @@ Equipa* obterEquipaPorNome(Equipa* EQUIPAS[], char string[]);
 Troca dois jogadores um por outro
 */
 void trocaJogadores(Equipa* equipa1, Equipa* equipa2, int indice1, int indice2);
+
+/*
+Retorna o valor da transferencia de um jogador
+*/
+float obterValorTransferencia(Jogador* j);

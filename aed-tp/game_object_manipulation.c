@@ -82,3 +82,37 @@ void trocaJogadores(Equipa* equipa1, Equipa* equipa2, int indice1, int indice2) 
 	nTransferencias++;
 
 };
+
+/*
+Retorna o valor da transferencia de um jogador
+*/
+float obterValorTransferencia(Jogador* j) {
+
+	// a formula para o valor da transferencia é dado por:
+	// Salário * 5 * número de meses de contrato que faltam cumprir
+
+	float valor;
+
+	// calcular o numero de meses que faltam
+	// mktime devolve o tempo em ms desde 1970 (unix epoch)
+	// talvez não esteja totalmente correcto porque nao sabemos
+	// se o sistema que estamos a correr usa o unix epoch...
+
+	time_t dataContractoMs    = mktime(j->dataContracto);
+	time_t dataFimContractoMs = mktime(j->dataFimContracto);
+
+	time_t diffms = difftime(dataFimContractoMs, dataContractoMs);
+
+	struct tm *diff = gmtime(&diffms);
+	diff->tm_year -= 70; // subtrair 70 por causa do unix epoch
+
+	int mesesDeContractoEmFalta = diff->tm_year * 12 + diff->tm_mon + 1;  // ignoramos os dias
+
+	printf("%i\n", mesesDeContractoEmFalta);
+
+	// calcular valor final
+	valor = j->vencimentoMensal * 5 * mesesDeContractoEmFalta;
+
+	return valor;
+
+};
