@@ -51,8 +51,8 @@ struct tm* novaData(char string[]) {
 	dia[0] = string[8];
 	dia[1] = string[9];
 
-	data->tm_year = atoi(ano);
-	data->tm_mon = atoi(mes) - 1;  // reparem no -1
+	data->tm_year = atoi(ano) - 1900;  // reparem no - 1900;
+	data->tm_mon = atoi(mes) - 1;  // reparem no - 1
 	data->tm_mday = atoi(dia);
 
 	return data;
