@@ -11,5 +11,5 @@ void iniciarMenuNovoJogo();
 void iniciarMenuPreparacaoEpoca();
 void imprimirMenuPreparacaoEpoca();
 
-void iniciarMenuCompraEVenda();
+void iniciarMenuCompraEVenda(int *equipasSelecionadas);
 void iniciarMenuInformacao();

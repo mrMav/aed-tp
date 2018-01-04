@@ -126,6 +126,13 @@ void iniciarMenuPreparacaoEpoca() {
 
 	enum MENU_INICIAL opcao = MENU_INICIAL_OPCAO_NULA;
 	
+	int equipasSeleciondasTransferencias[NUMERO_TRANSFERENCIAS];
+	// init array
+	int i;
+	for (i = 0; i < NUMERO_TRANSFERENCIAS; i++) {
+		equipasSeleciondasTransferencias[i] = -1;
+	}
+
 	while (opcao != MENU_INICIAL_OPCAO_SAIR) {
 
 		imprimirMenuPreparacaoEpoca(nTransferencias);
@@ -139,7 +146,7 @@ void iniciarMenuPreparacaoEpoca() {
 
 			if (nTransferencias < NUMERO_TRANSFERENCIAS) {
 				
-				iniciarMenuCompraEVenda();
+				iniciarMenuCompraEVenda(equipasSeleciondasTransferencias);
 
 			}
 			else {
@@ -182,7 +189,7 @@ void imprimirMenuPreparacaoEpoca() {
 
 }
 
-void iniciarMenuCompraEVenda() {
+void iniciarMenuCompraEVenda(int *equipasSelecionadas) {
 
 	int equipaEscolhida = 0;
 	int jogadorEscolhido = 0;
@@ -199,15 +206,51 @@ void iniciarMenuCompraEVenda() {
 		scanf("%i", &equipaEscolhida);
 		getchar();
 
-		if (equipaEscolhida != INDICE_EQUIPA_JOGADOR + 1 && equipaEscolhida > 0 && equipaEscolhida < NUMERO_EQUIPAS + 1) {
-			
-			equipaEscolhida = equipaEscolhida - 1;
+		if (equipaEscolhida != INDICE_EQUIPA_JOGADOR + 1) {
 
-			exit = 0;
+			if (equipaEscolhida > 0 && equipaEscolhida < NUMERO_EQUIPAS + 1) {
+
+				int transValida = 1;
+
+				// verificar se o utilizador já não comprou a esta equipa
+				int i;
+				for (i = 0; i < NUMERO_TRANSFERENCIAS; i++) {
+
+					if (equipaEscolhida - 1 == equipasSelecionadas[i]) {
+
+						transValida = 0;
+
+					}
+
+				}
+
+				if (transValida) {
+
+					equipaEscolhida = equipaEscolhida - 1;
+
+					// guardar indice da equipa escolhida neste array
+					// este array é verificado para só ser possivel escolher um jogador de cada equipa
+					equipasSelecionadas[nTransferencias] = equipaEscolhida;
+
+					exit = 0;
+
+				}
+				else {
+
+					printf("Opção não válida! Já comprou jogadores à equipa %s.\n", EQUIPAS[equipaEscolhida-1]->nome);
+					
+				}
+				
+			}
+			else {
+
+				printf("Opção não válida! Não existe equipa número %i.\n", equipaEscolhida);
+
+			}
 
 		} else {
 
-			printf("Opcao nao valida. Escolha de novo.\n");
+			printf("Opção não válida! Não pode comprar jogadores à sua própria equipa.\n");
 
 		}
 
@@ -229,10 +272,11 @@ void iniciarMenuCompraEVenda() {
 
 			exit = 0;
 
+
 		}
 		else {
 
-			printf("Opcao nao valida. Escolha de novo.\n");
+			printf("Opcao nao valida. Não existe jogador número %i.\n", jogadorEscolhido);
 
 		}
 
@@ -262,12 +306,54 @@ void iniciarMenuCompraEVenda() {
 		}
 
 	}
-	
-	// TODO: verificar se a equipa tem fundos para este jogador
-	// TODO: imprimir valor do jogador
-	// ATENCAO: com o metodo de  troca sempre possivel, é possivel retirar todos os 
-	// guarda redes de uma equipa por exemplo
-	trocaJogadores(EQUIPAS[INDICE_EQUIPA_JOGADOR], EQUIPAS[equipaEscolhida], jogadorATrocar, jogadorEscolhido);
+
+	// ATENCAO: com este modelo é possivel trocar entre posicoes diferentes
+	// talvez fazer com que so de para trocar jogadores entre as mesmas posicoes?
+
+	// agora que temos todos os inputs do utilizador
+	// vamos calcular o valor da transferencia e pedir 
+	// confirmação ao utilizador
+		
+	float valorTransf = obterValorTransferencia(EQUIPAS[equipaEscolhida]->plantel->jogadores[jogadorEscolhido]);
+
+	printf("Valor da transferencia: %.2f\n", valorTransf);
+	printf("Os seus fundos: %.2f\n", EQUIPAS[INDICE_EQUIPA_JOGADOR]->fundos);
+
+	if (EQUIPAS[INDICE_EQUIPA_JOGADOR]->fundos >= valorTransf) {
+
+		printf("Realizar transferencia?\n0.NÃO\n1.SIM\n");
+
+		int exit = 1, opcao = -1;
+
+		while (exit) {
+
+			imprimirCursor();
+			scanf("%i", &opcao);
+			getchar();
+
+			switch (opcao) {
+
+			case 1:
+
+				trocaJogadores(EQUIPAS[INDICE_EQUIPA_JOGADOR], EQUIPAS[equipaEscolhida], jogadorATrocar, jogadorEscolhido, valorTransf);
+				
+				imprimirCabecalho("PARABÉNS!");
+				printf("%s faz agora parte da sua equipa!\n", EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel->jogadores[jogadorATrocar]->nome);
+
+				exit = 0;
+
+				break;
+
+			}
+
+		}
+
+	}
+	else {
+
+		printf("Não possui os fundos necessários para efectuar esta transferencia.\nTransferencia cancelada.\n");
+
+	}
 	
 }
 

@@ -64,8 +64,9 @@ Equipa* obterEquipaPorNome(Equipa* EQUIPAS[], char string[]) {
 
 /*
 Troca dois jogadores um por outro
+Equipa 1 é a equipa que paga
 */
-void trocaJogadores(Equipa* equipa1, Equipa* equipa2, int indice1, int indice2) {
+void trocaJogadores(Equipa* equipa1, Equipa* equipa2, int indice1, int indice2, float valorTransf) {
 
 	// guardar jogador1 num buffer
 	Jogador* bufferJogador1 = equipa1->plantel->jogadores[indice1];
@@ -78,6 +79,12 @@ void trocaJogadores(Equipa* equipa1, Equipa* equipa2, int indice1, int indice2) 
 	// colocar buffer na equipa2
 	equipa2->plantel->jogadores[indice2] = bufferJogador1;
 	//printf("jogador no posto na equipa2:%s\n", equipa2->plantel->jogadores[indice2]->nome);
+
+	//actualizar o vencimento do jogador transferido
+	equipa1->plantel->jogadores[indice1]->vencimentoMensal *= 1.5;
+	
+	// subtrair aos fundos da equipa a compra
+	equipa1->fundos -= valorTransf;
 
 	nTransferencias++;
 
@@ -107,9 +114,7 @@ float obterValorTransferencia(Jogador* j) {
 	diff->tm_year -= 70; // subtrair 70 por causa do unix epoch
 
 	int mesesDeContractoEmFalta = diff->tm_year * 12 + diff->tm_mon + 1;  // ignoramos os dias
-
-	printf("%i\n", mesesDeContractoEmFalta);
-
+	
 	// calcular valor final
 	valor = j->vencimentoMensal * 5 * mesesDeContractoEmFalta;
 

@@ -24,13 +24,16 @@ int main(void) {
 
 	// seed para numeros aleatorios
 	srand(time(NULL));   // should only be called once
-
+	
+	// carrega todos os dados necessarios
 	carregarEquipas();
 	carregarPlanteis();
 	
 	// comeca o loop infinito do jogo
 	iniciarJogo();
 
+	// funcao de fecho do jogo
+	// (saving, memory clean up, etc...)
 	sairJogo();
 
 	return 0;

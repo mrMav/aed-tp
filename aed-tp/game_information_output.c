@@ -187,7 +187,7 @@ void imprimirSeparador() {
 
 void imprimirCursor() {
 
-	printf("-> ");
+	printf("\n-> ");
 
 }
 
@@ -216,7 +216,7 @@ void listarEquipas() {
 	int i;
 	for (i = 0; i < NUMERO_EQUIPAS; i++) {
 
-		printf("%02i | %s\n", i + 1, EQUIPAS[i]->nome);
+		printf("%02i | %s | Fundos: %.2f€\n", i + 1, EQUIPAS[i]->nome, EQUIPAS[i]->fundos);
 
 	}
 	
