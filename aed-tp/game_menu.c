@@ -316,8 +316,8 @@ void iniciarMenuCompraEVenda(int *equipasSelecionadas) {
 		
 	float valorTransf = obterValorTransferencia(EQUIPAS[equipaEscolhida]->plantel->jogadores[jogadorEscolhido]);
 
-	printf("Valor da transferencia: %.2f\n", valorTransf);
-	printf("Os seus fundos: %.2f\n", EQUIPAS[INDICE_EQUIPA_JOGADOR]->fundos);
+	printf("Valor da transferencia: %.2f%s\n", valorTransf, SIMBOLO_EURO);
+	printf("Os seus fundos: %.2f%s\n", EQUIPAS[INDICE_EQUIPA_JOGADOR]->fundos, SIMBOLO_EURO);
 
 	if (EQUIPAS[INDICE_EQUIPA_JOGADOR]->fundos >= valorTransf) {
 

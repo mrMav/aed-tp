@@ -20,7 +20,8 @@ int main(void) {
 	// ATENCAO: definir a regiao pode fazer com que as funcoes
 	// atof() ou strtof() não funcionem devido ao separador das decimas
 	// ser diferente de idioma a idioma
-	setlocale(LC_ALL, "pt_PT");
+	// neste caso, os nossos atributos usam virgulas, por isso está ok
+	setlocale(LC_ALL, "pt-PT");
 
 	// seed para numeros aleatorios
 	srand(time(NULL));   // should only be called once

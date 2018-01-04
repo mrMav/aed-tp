@@ -4,6 +4,8 @@
 #define NUMERO_EQUIPAS 18
 #define NUMERO_TRANSFERENCIAS 3
 
+#define SIMBOLO_EURO "Euro"
+
 // Menu constants
 
 enum MENU_INICIAL {
