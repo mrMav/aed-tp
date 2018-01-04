@@ -52,8 +52,14 @@ struct tm* novaData(char string[]) {
 	dia[1] = string[9];
 
 	data->tm_year = atoi(ano) - 1900;  // reparem no - 1900;
-	data->tm_mon = atoi(mes) - 1;  // reparem no - 1
+	data->tm_mon = atoi(mes) - 1;      // reparem no - 1
 	data->tm_mday = atoi(dia);
+
+	// inicializar resto dos componentes do struct
+	data->tm_hour = 0;
+	data->tm_min = 0;
+	data->tm_sec = 0;
+	data->tm_isdst = -1;
 
 	return data;
 
