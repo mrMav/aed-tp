@@ -12,6 +12,7 @@
 #include "game_constants.h"
 #include "game_object_creation.h"
 #include "game_object_manipulation.h"
+#include "game_information_output.h"
 #include "game_globals.h"
 
 /*
@@ -19,7 +20,7 @@
 	Data load
 
 */
-void carregarEQUIPAS() {
+void carregarEquipas() {
 
 	char nomeFicheiro[] = "clubes.txt";
 
@@ -240,7 +241,7 @@ void carregarPlanteis() {
 					
 					//adicionar jogador a plantel da sua equipa:
 					int sucess = adicionarJogadorAPlantel(obterEquipaPorNome(EQUIPAS, clube)->plantel, jogador);
-
+					
 					nJogadores += sucess;
 					jogador = NULL;					
 					tabs = 0;

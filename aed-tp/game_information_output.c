@@ -205,7 +205,7 @@ void imprimirInicioDoJogo() {
 	printf("--------\n");
 	printf("Novo treinador do %s começa hoje a treinar a equipa!\nO jogador %s mostra-se confiante relativamente a %s.\n",
 		EQUIPAS[INDICE_EQUIPA_JOGADOR]->nome,		
-		EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel->jogadores[jogadorAleatorio],
+		EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel->jogadores[jogadorAleatorio]->nome,
 		NOME_JOGADOR
 	);
 
@@ -236,7 +236,7 @@ void listarJogadores(Equipa* e) {
 			printf(" ");
 		}
 
-		printf("| GR: %.2f\% | DEF: %.2f\% | MED: %.2f\% | AV: %.2f\% | \n",
+		printf("| GR: %f | DEF: %f | MED: %f | AV: %f | \n",
 			e->plantel->jogadores[i]->atributos->gr,
 			e->plantel->jogadores[i]->atributos->df,
 			e->plantel->jogadores[i]->atributos->md,

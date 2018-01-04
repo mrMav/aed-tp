@@ -8,6 +8,6 @@ Data load
 
 */
 
-void carregarEQUIPAS();
+void carregarEquipas();
 
 void carregarPlanteis();
