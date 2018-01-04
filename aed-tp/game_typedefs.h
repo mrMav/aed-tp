@@ -75,3 +75,22 @@ typedef struct {
 	Plantel* plantel;
 
 } Equipa;
+
+typedef struct {
+
+	Equipa *vencedor;
+	Equipa *derrotado;
+
+	int golosVencedor;
+	int golosDerrotado;
+
+} ResultadosJogo;
+
+typedef struct {
+
+	Equipa *equipaA;
+	Equipa *equipaB;
+
+	ResultadosJogo *resultados;
+
+} Jogo;
