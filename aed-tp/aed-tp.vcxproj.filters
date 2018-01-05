@@ -73,7 +73,10 @@
     <Text Include="clubes.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="planteis2.txt">
+    <Text Include="jornadas.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="planteis.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

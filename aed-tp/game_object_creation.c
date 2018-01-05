@@ -193,3 +193,21 @@ Resultado* novoResultado() {
 	return r;
 
 };
+
+/*
+Novo jogo(confronto)
+*/
+Jogo* novoJogo(char eA, char eB, ResultadosJogo * rj) {
+
+	Jogo *j = malloc(sizeof(Jogo));
+
+	j->equipaA = eA;
+	j->equipaB = eB;
+	
+	j->realizado = 0;
+	j->resultados = NULL;
+
+	return j;
+
+
+};

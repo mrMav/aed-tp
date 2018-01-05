@@ -88,8 +88,10 @@ typedef struct {
 
 typedef struct {
 
-	Equipa *equipaA;
-	Equipa *equipaB;
+	char equipaA;
+	char equipaB;
+
+	int realizado;
 
 	ResultadosJogo *resultados;
 

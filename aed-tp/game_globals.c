@@ -12,4 +12,8 @@ int INDICE_EQUIPA_JOGADOR = -1;
 // nome do jogador
 char *NOME_JOGADOR[100];
 
+// estrutura de dados de jornada
+Jogo *JORNADAS[(NUMERO_EQUIPAS - 1) * 2][NUMERO_EQUIPAS / 2];
+
+// numero de transferencias reslizadas pelo jogador
 int nTransferencias = 0;

@@ -11,3 +11,5 @@ Data load
 void carregarEquipas();
 
 void carregarPlanteis();
+
+void carregarJornadas();

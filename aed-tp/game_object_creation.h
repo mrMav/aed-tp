@@ -49,4 +49,9 @@ Cria e retorna um Jogador.
 Jogador* novoJogador(char n[], int num, float vM, struct tm* dC, struct tm* dF, int aC, char p[], Atributos *a);
 Jogador* novoJogadorVazio();
 
+/*
+Novo jogo(confronto)
+*/
+Jogo* novoJogo(char eA, char eB, ResultadosJogo * rj);
+
 // TODO: Criar funcoes para libertar memoria
