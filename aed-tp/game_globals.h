@@ -16,4 +16,8 @@ extern int INDICE_EQUIPA_JOGADOR;
 // nome do jogador
 extern char *NOME_JOGADOR[100];
 
+// estrutura de dados de jornada
+extern Jogo *JORNADAS[(NUMERO_EQUIPAS - 1) * 2][NUMERO_EQUIPAS / 2];
+
+// numero de transferencias reslizadas pelo jogador
 extern int nTransferencias;

@@ -125,7 +125,7 @@ void carregarEquipas() {
 
 void carregarPlanteis() {
 
-	char nomeFicheiro[] = "planteis2.txt";
+	char nomeFicheiro[] = "planteis.txt";
 
 	FILE *f = fopen(nomeFicheiro, "r");
 
@@ -260,6 +260,65 @@ void carregarPlanteis() {
 		}
 
 		//printf("Numero total de jogadores carregados: %i\n", nJogadores);
+
+		fclose(f);
+
+	}
+
+}
+
+void carregarJornadas() {
+
+	char nomeFicheiro[] = "jornadas.txt";
+
+	FILE *f = fopen(nomeFicheiro, "r");
+
+	int i = 0, c, tab = 0, line = 0;
+
+	char string[4]; // buffer
+
+	if (f == NULL) {
+
+		printf("\nErro ao abrir ficheiro %s\n", nomeFicheiro);
+
+	}
+	else {
+
+		while ((c = fgetc(f)) != EOF) {
+
+			if (c != '\t' && c != '\n') {
+
+				// collect all chars until a tab is found
+				string[i] = c;
+				i++;
+
+			}
+			else {
+
+				// when found, store a terminator in the end
+				string[i] = '\0';
+
+				if (c == '\t') {
+
+					tab++;
+
+				}
+				else if (c == '\n') {
+
+					line++;
+					tab = 0;
+
+				}
+
+				// linhas representam jornadas
+				JORNADAS[line][tab] = 
+
+				// reset
+				i = 0;
+
+			}
+
+		}
 
 		fclose(f);
 

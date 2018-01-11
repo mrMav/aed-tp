@@ -414,3 +414,38 @@ void iniciarMenuInformacao() {
 
 
 }
+
+void iniciarMenuSorteio() {
+	enum MENU_SORTEIO opcao = MENU_SORTEIO_OPCAO_NULA;
+
+	printf("AQUI FICA A TABELA DO RESULTADO DO SORTEIO");
+	while (opcao != MENU_SORTEIO_OPCAO_SAIR) {
+		imprimirTabelaSorteios();
+
+		switch (opcao) {
+		case MENU_SORTEIO_OPCAO_CONTINUAR:
+			iniciarMenuDecorrerEpoca();
+			break;
+		case MENU_SORTEIO_OPCAO_SAIR:
+			sairJogo();
+			break;
+		default:
+			printf("OPÇÃO INVÁLIDA.");
+			break;
+		}
+	}
+}
+
+void imprimirTabelaSorteios() {
+	imprimirTitulo("Sorteio dos Jogos");
+
+	imprimirOpcao("%i: SAIR DO JOGO\n", MENU_SORTEIO_OPCAO_SAIR);
+	imprimirOpcao("%i: CONTINUAR\n", MENU_SORTEIO_OPCAO_CONTINUAR);
+
+	imprimirSeparador();
+	imprimirCursor();
+
+}
+
+iniciarMenuDecorrerEpoca() {
+}
