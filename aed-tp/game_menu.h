@@ -13,3 +13,5 @@ void imprimirMenuPreparacaoEpoca();
 
 void iniciarMenuCompraEVenda(int *equipasSelecionadas);
 void iniciarMenuInformacao();
+
+void imprimirTabelaSorteios();

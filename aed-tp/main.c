@@ -35,8 +35,6 @@ apontar para uma nova variável do tipo Jogador*. O que é feito ao primeiro apont
 */
 
 
-// teste jorge
-
 int main(void) {
 	
 	// ATENCAO: definir a regiao pode fazer com que as funcoes
