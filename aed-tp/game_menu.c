@@ -483,16 +483,14 @@ void imprimirMenuDecorrerEpoca() {
 void iniciarMenuPreparacaoJogo() {
 	enum MENU_PREPARACAO_JOGO opcao = MENU_PREPARACAO_JOGO_OPCAO_NULA;
 
-	printf("AQUI FICA A TABELA DO RESULTADO DO SORTEIO");
 	while (opcao != MENU_SORTEIO_OPCAO_SAIR) {
-		imprimirTabelaSorteios();
 
 		switch (opcao) {
-		case MENU_SORTEIO_OPCAO_CONTINUAR:
-			iniciarMenuDecorrerEpoca();
+		case MENU_PREPARACAO_JOGO_OPCAO_TATICA:
+			//tatica aqui
 			break;
-		case MENU_SORTEIO_OPCAO_SAIR:
-			sairJogo();
+		case MENU_PREPARACAO_JOGO_OPCAO_VOLTAR:
+			//voltar atrás
 			break;
 		default:
 			printf("OPÇÃO INVÁLIDA.");
