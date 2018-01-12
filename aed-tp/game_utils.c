@@ -63,4 +63,27 @@ struct tm* novaData(char string[]) {
 
 	return data;
 
-};
+}
+
+int VerificaTatica(char Tatica[]) {
+	int Verifica_Tatica = 0;
+	char ndefesas[2]="\0";
+	char nmedios[2] = "\0";
+	char navancados[2] = "\0";
+	ndefesas[0] = Tatica[0];
+	nmedios[0] = Tatica[2];
+	navancados[0] = Tatica[4];
+	if (strlen(Tatica) != 5) {
+		printf("Tática Inválida");
+	}
+	else {
+		if (atoi(ndefesas) + atoi(nmedios) + atoi(navancados) != 10) {
+			printf("Tática Inválida");
+		}
+		else {
+			int Verifica_Tatica = 1;
+			printf("Tatica Validada");
+		}
+	}
+	return Verifica_Tatica;
+}

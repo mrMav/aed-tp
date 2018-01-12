@@ -33,6 +33,8 @@ int main(void) {
 	// seed para numeros aleatorios
 	srand(time(NULL));   // should only be called once
 	
+
+
 	// carrega todos os dados necessarios
 	carregarEquipas();
 	carregarPlanteis();
