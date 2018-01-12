@@ -516,5 +516,40 @@ void imprimirMenuPreparacaoJogo() {
 
 	imprimirSeparador();
 	imprimirCursor();
+}
 
+void iniciarMenuIntervaloJogo() {
+	enum MENU_INTERVALO_JOGO opcao = MENU_INTERVALO_JOGO_OPCAO_NULA;
+
+	while (opcao != MENU_INTERVALO_JOGO_OPCAO_JOGAR_2PARTE) {
+		imprimirMenuIntervaloJogo();
+		scanf("%i", &opcao);
+		getchar();
+
+		switch (opcao) {
+		case MENU_INTERVALO_JOGO_OPCAO_ALTERAR_TATICA:
+			//MENU TATICA
+			break;
+		case MENU_INTERVALO_JOGO_OPCAO_SUBSTITUICOES:
+			//SUBSTITUICOES
+			break;
+		case MENU_INTERVALO_JOGO_OPCAO_JOGAR_2PARTE:
+			//JOGAR 2º PARTE
+			break;
+		default:
+			printf("OPÇÃO INVÁLIDA.");
+			break;
+		}
+	}
+
+}
+void imprimirMenuIntervaloJogo() {
+	imprimirTitulo("Intervalo");
+
+	imprimirOpcao("%i: ALTERAR TÁTICA\n", MENU_INTERVALO_JOGO_OPCAO_ALTERAR_TATICA);
+	imprimirOpcao("%i: SUBSTITUICOES\n", MENU_INTERVALO_JOGO_OPCAO_SUBSTITUICOES);
+	imprimirOpcao("%i: JOGAR 2º PARTE\n", MENU_INTERVALO_JOGO_OPCAO_JOGAR_2PARTE);
+
+	imprimirSeparador();
+	imprimirCursor();
 }
