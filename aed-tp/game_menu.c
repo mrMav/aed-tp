@@ -439,13 +439,66 @@ void iniciarMenuSorteio() {
 void imprimirTabelaSorteios() {
 	imprimirTitulo("Sorteio dos Jogos");
 
-	imprimirOpcao("%i: SAIR DO JOGO\n", MENU_SORTEIO_OPCAO_SAIR);
 	imprimirOpcao("%i: CONTINUAR\n", MENU_SORTEIO_OPCAO_CONTINUAR);
+	imprimirOpcao("%i: SAIR DO JOGO\n", MENU_SORTEIO_OPCAO_SAIR);
 
 	imprimirSeparador();
 	imprimirCursor();
-
 }
 
-iniciarMenuDecorrerEpoca() {
+void iniciarMenuDecorrerEpoca() {
+	enum MENU_DECORRER_EPOCA opcao = MENU_DECORRER_EPOCA_OPCAO_NULA;
+
+	while (opcao != MENU_DECORRER_EPOCA_OPCAO_SAIR) {
+		imprimirMenuDecorrerEpoca();
+
+		switch (opcao) {
+		case MENU_DECORRER_EPOCA_OPCAO_VER_EQUIPA:
+			iniciarMenuInformacao();
+			break;
+		case MENU_DECORRER_EPOCA_OPCAO_PROXIMA_JORNADA:
+			iniciarMenuPreparacaoJogo();
+			break;
+
+		case MENU_DECORRER_EPOCA_OPCAO_SAIR:
+			sairJogo();
+			break;
+		default:
+			printf("OPÇÃO INVÁLIDA.");
+			break;
+		}
+	}
+}
+void imprimirMenuDecorrerEpoca() {
+	imprimirTitulo("Decorrer da Época");
+	
+	imprimirOpcao("%i: VER EQUIPAS E ESTATÍSTICAS\n", MENU_DECORRER_EPOCA_OPCAO_VER_EQUIPA);
+	imprimirOpcao("%i: PRÓXIMA JORNADA\n", MENU_DECORRER_EPOCA_OPCAO_PROXIMA_JORNADA);
+	imprimirOpcao("%i: SAIR DO JOGO\n", MENU_DECORRER_EPOCA_OPCAO_SAIR);
+
+	imprimirSeparador();
+	imprimirCursor();
+}
+
+void iniciarMenuPreparacaoJogo() {
+	enum MENU_PREPARACAO_JOGO opcao = MENU_PREPARACAO_JOGO_OPCAO_NULA;
+
+	while (opcao != MENU_SORTEIO_OPCAO_SAIR) {
+
+		switch (opcao) {
+		case MENU_PREPARACAO_JOGO_OPCAO_TATICA:
+			//tatica aqui
+			break;
+		case MENU_PREPARACAO_JOGO_OPCAO_VOLTAR:
+			//voltar atrás
+			break;
+		default:
+			printf("OPÇÃO INVÁLIDA.");
+			break;
+		}
+	}
+
+}
+void imprimirMenuPreparacaoJogo() {
+
 }
