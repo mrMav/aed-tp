@@ -489,16 +489,23 @@ void iniciarMenuPreparacaoJogo() {
 		switch (opcao) {
 		case MENU_PREPARACAO_JOGO_OPCAO_TATICA:
 			printf("ESCOLHA DE TATICA:");
-			int checkTatica;
+			int checkTatica = 0;
 			char Tatica[6]; 
-			do {
-				printf("Inserir Tática (formato x-x-x):");
+			while (checkTatica == 0){
+				printf("Inserir Tática (formato x-x-x):\n");
 				scanf("%s", Tatica);
 				checkTatica = VerificaTatica(Tatica);
-			} while (checkTatica = 0);
+			}
 
-			printf("Escolher 1 Guarda-Redes:");
-			listarJogadores(EQUIPAS[INDICE_EQUIPA_JOGADOR]);
+						printf("Escolher 1 Guarda-Redes:\n");
+
+						printf("Escolher %c Defesas:\n", Tatica[0]);
+
+						printf("Escolher %c Médios:\n", Tatica[2]);
+
+						printf("Escolher %c Avançados:\n", Tatica[4]);
+			
+			
 
 			break;
 		case MENU_PREPARACAO_JOGO_OPCAO_VOLTAR:

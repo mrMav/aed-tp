@@ -77,15 +77,15 @@ int VerificaTatica(char Tatica[]) {
 	nmedios[0] = Tatica[2];
 	navancados[0] = Tatica[4];
 	if (strlen(Tatica) != 5) {
-		printf("Tática Inválida");
+		printf("Tática Inválida\n");
 	}
 	else {
 		if (atoi(ndefesas) + atoi(nmedios) + atoi(navancados) != 10) {
-			printf("Tática Inválida");
+			printf("Tática Inválida\n");
 		}
 		else {
-			int Verifica_Tatica = 1;
-			printf("Tatica Validada");
+			Verifica_Tatica = 1;
+			printf("Tatica Validada\n");
 		}
 	}
 	return Verifica_Tatica;
