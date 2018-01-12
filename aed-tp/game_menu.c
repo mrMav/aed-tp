@@ -47,11 +47,6 @@ void iniciarMenuInicial() {
 
 		switch (opcao) {
 
-		case MENU_INICIAL_OPCAO_CONTINUAR:
-
-			printf("\nNot working yet...\n");
-
-			break;
 		case MENU_INICIAL_OPCAO_NOVO_JOGO:
 
 			iniciarMenuNovoJogo();
