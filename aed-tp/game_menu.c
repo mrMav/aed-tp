@@ -431,7 +431,6 @@ void iniciarMenuSorteio() {
 		}
 	}
 }
-
 void imprimirTabelaSorteios() {
 	imprimirTitulo("Sorteio dos Jogos");
 
@@ -526,5 +525,79 @@ void imprimirMenuPreparacaoJogo() {
 
 	imprimirSeparador();
 	imprimirCursor();
+}
 
+void iniciarMenuIntervaloJogo() {
+	enum MENU_INTERVALO_JOGO opcao = MENU_INTERVALO_JOGO_OPCAO_NULA;
+
+	while (opcao != MENU_INTERVALO_JOGO_OPCAO_JOGAR_2PARTE) {
+		imprimirMenuIntervaloJogo();
+		scanf("%i", &opcao);
+		getchar();
+
+		switch (opcao) {
+		case MENU_INTERVALO_JOGO_OPCAO_ALTERAR_TATICA:
+			//MENU TATICA
+			break;
+		case MENU_INTERVALO_JOGO_OPCAO_SUBSTITUICOES:
+			//SUBSTITUICOES
+			break;
+		case MENU_INTERVALO_JOGO_OPCAO_JOGAR_2PARTE:
+			//JOGAR 2º PARTE
+			break;
+		default:
+			printf("OPÇÃO INVÁLIDA.");
+			break;
+		}
+	}
+
+}
+void imprimirMenuIntervaloJogo() {
+	imprimirTitulo("Intervalo");
+
+	imprimirOpcao("%i: ALTERAR TÁTICA\n", MENU_INTERVALO_JOGO_OPCAO_ALTERAR_TATICA);
+	imprimirOpcao("%i: SUBSTITUICOES\n", MENU_INTERVALO_JOGO_OPCAO_SUBSTITUICOES);
+	imprimirOpcao("%i: JOGAR 2º PARTE\n", MENU_INTERVALO_JOGO_OPCAO_JOGAR_2PARTE);
+
+	imprimirSeparador();
+	imprimirCursor();
+}
+
+void iniciarMenuFinalJogo() {
+	enum MENU_FINAL_JOGO opcao = MENU_FINAL_JOGO_OPCAO_NULA;
+
+	printf("AQUI FICA O RESULTADO FINAL DO JOGO");
+	while (opcao != MENU_FINAL_JOGO_OPCAO_CONTINUAR) {
+		scanf("%i", &opcao);
+		getchar();
+
+		switch (opcao) {
+		case MENU_FINAL_JOGO_OPCAO_CONTINUAR:
+			iniciarMenuResumoJornada();
+			break;
+		default:
+			printf("OPÇÃO INVÁLIDA.");
+			break;
+		}
+	}
+}
+
+void iniciarMenuResumoJornada() {
+	enum MENU_RESUMO_JORNADA opcao = MENU_RESUMO_JORNADA_OPCAO_NULA;
+
+	printf("RESULTADOS DOS JOGOS");
+	printf("TABELA DE CLASSIFICAÇÃO");
+	while (opcao != MENU_RESUMO_JORNADA_OPCAO_CONTINUAR) {
+		scanf("%i", &opcao);
+		getchar();
+
+		switch (opcao) {
+		case MENU_RESUMO_JORNADA_OPCAO_CONTINUAR:
+			//CONTINUAR
+			break;
+		default:
+			printf("OPÇÃO INVÁLIDA.");
+			break;
+		}
+	}
 }

@@ -22,3 +22,10 @@ void imprimirMenuDecorrerEpoca();
 
 void iniciarMenuPreparacaoJogo();
 void imprimirMenuPreparacaoJogo();
+
+void iniciarMenuIntervaloJogo();
+void imprimirMenuIntervaloJogo();
+
+void iniciarMenuFinalJogo();
+
+void iniciarMenuResumoJornada();
