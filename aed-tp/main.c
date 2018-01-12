@@ -17,20 +17,7 @@
 
 /*
 
-ATENCAO:
-
-Acho que quando estou a carregar a informação de ficheiros, estou a usar o dobro da memoria necessária.
-Acho isto porque quando declaro um array de um certo tipo, vamos supor Jogador*, esse array já é uma lista
-de apontadores para variáveis do tipo Jogador*.
-
-Agora vamos ver o que eu faço ao carregar os jogadores:
-EQUIPAS[x]->plantel->jogadores[y] = novoJogador();  //novo jogador retorn Jogador*
-(não é exactamemte esta linha de código, mas é a lógica aplicada)
-
-O que é que isto nos diz? Que este elemento y do array, que já aponta para uma variavel do tipo Jogador*, vai
-apontar para uma nova variável do tipo Jogador*. O que é feito ao primeiro apontador original no elemento do array?
-
-É necessário rever isto.
+Se escolher equipa 18 diz que não está disponível
 
 */
 
