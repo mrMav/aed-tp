@@ -65,6 +65,9 @@ struct tm* novaData(char string[]) {
 
 }
 
+/*
+Função VerificaTatica Retorna 1 se for válida 0 se inválida
+*/
 int VerificaTatica(char Tatica[]) {
 	int Verifica_Tatica = 0;
 	char ndefesas[2]="\0";

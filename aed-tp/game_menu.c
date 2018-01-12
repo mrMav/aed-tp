@@ -493,7 +493,15 @@ void iniciarMenuPreparacaoJogo() {
 
 		switch (opcao) {
 		case MENU_PREPARACAO_JOGO_OPCAO_TATICA:
-			//tatica aqui
+			printf("ESCOLHA DE TATICA:");
+			int checkTatica;
+			char Tatica[6];
+			do {
+				printf("Inserir Tática (formato x-x-x):");
+				scanf("%s", Tatica);
+				checkTatica = VerificaTatica(Tatica);
+			} while (checkTatica = 0);
+
 			break;
 		case MENU_PREPARACAO_JOGO_OPCAO_VOLTAR:
 			//voltar atrás
