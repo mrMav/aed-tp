@@ -15,3 +15,5 @@ float randomFloat();
 int randomInt(int, int);
 
 struct tm* novaData(char string[]);
+
+int VerificaTatica(char Tatica[]);
