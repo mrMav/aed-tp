@@ -431,7 +431,6 @@ void iniciarMenuSorteio() {
 		}
 	}
 }
-
 void imprimirTabelaSorteios() {
 	imprimirTitulo("Sorteio dos Jogos");
 
@@ -552,4 +551,43 @@ void imprimirMenuIntervaloJogo() {
 
 	imprimirSeparador();
 	imprimirCursor();
+}
+
+void iniciarMenuFinalJogo() {
+	enum MENU_FINAL_JOGO opcao = MENU_FINAL_JOGO_OPCAO_NULA;
+
+	printf("AQUI FICA O RESULTADO FINAL DO JOGO");
+	while (opcao != MENU_FINAL_JOGO_OPCAO_CONTINUAR) {
+		scanf("%i", &opcao);
+		getchar();
+
+		switch (opcao) {
+		case MENU_FINAL_JOGO_OPCAO_CONTINUAR:
+			iniciarMenuResumoJornada();
+			break;
+		default:
+			printf("OPÇÃO INVÁLIDA.");
+			break;
+		}
+	}
+}
+
+void iniciarMenuResumoJornada() {
+	enum MENU_RESUMO_JORNADA opcao = MENU_RESUMO_JORNADA_OPCAO_NULA;
+
+	printf("RESULTADOS DOS JOGOS");
+	printf("TABELA DE CLASSIFICAÇÃO");
+	while (opcao != MENU_RESUMO_JORNADA_OPCAO_CONTINUAR) {
+		scanf("%i", &opcao);
+		getchar();
+
+		switch (opcao) {
+		case MENU_RESUMO_JORNADA_OPCAO_CONTINUAR:
+			//CONTINUAR
+			break;
+		default:
+			printf("OPÇÃO INVÁLIDA.");
+			break;
+		}
+	}
 }
