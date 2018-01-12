@@ -70,7 +70,6 @@ void imprimirMenuInicial() {
 	imprimirCabecalho(" F-TASTIC ");
 
 	imprimirOpcao("%i: SAIR DO JOGO\n", MENU_INICIAL_OPCAO_SAIR);
-	imprimirOpcao("%i: CONTINUAR\n", MENU_INICIAL_OPCAO_CONTINUAR);
 	imprimirOpcao("%i: NOVO JOGO\n", MENU_INICIAL_OPCAO_NOVO_JOGO);
 
 	imprimirSeparador();
