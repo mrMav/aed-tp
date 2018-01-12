@@ -91,7 +91,7 @@ void iniciarMenuNovoJogo() {
 		scanf("%i", &opcao);
 		getchar();
 
-		if (opcao > 0 && opcao < NUMERO_EQUIPAS) {
+		if (opcao > 0 && opcao <= NUMERO_EQUIPAS) {
 
 			INDICE_EQUIPA_JOGADOR = opcao - 1;
 
