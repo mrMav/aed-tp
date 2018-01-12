@@ -421,6 +421,8 @@ void iniciarMenuSorteio() {
 	printf("AQUI FICA A TABELA DO RESULTADO DO SORTEIO");
 	while (opcao != MENU_SORTEIO_OPCAO_SAIR) {
 		imprimirTabelaSorteios();
+		scanf("%i", &opcao);
+		getchar();
 
 		switch (opcao) {
 		case MENU_SORTEIO_OPCAO_CONTINUAR:
@@ -451,6 +453,8 @@ void iniciarMenuDecorrerEpoca() {
 
 	while (opcao != MENU_DECORRER_EPOCA_OPCAO_SAIR) {
 		imprimirMenuDecorrerEpoca();
+		scanf("%i", &opcao);
+		getchar();
 
 		switch (opcao) {
 		case MENU_DECORRER_EPOCA_OPCAO_VER_EQUIPA:
@@ -483,7 +487,10 @@ void imprimirMenuDecorrerEpoca() {
 void iniciarMenuPreparacaoJogo() {
 	enum MENU_PREPARACAO_JOGO opcao = MENU_PREPARACAO_JOGO_OPCAO_NULA;
 
-	while (opcao != MENU_SORTEIO_OPCAO_SAIR) {
+	while (opcao != MENU_PREPARACAO_JOGO_OPCAO_VOLTAR) {
+		imprimirMenuPreparacaoJogo();
+		scanf("%i", &opcao);
+		getchar();
 
 		switch (opcao) {
 		case MENU_PREPARACAO_JOGO_OPCAO_TATICA:
@@ -500,5 +507,12 @@ void iniciarMenuPreparacaoJogo() {
 
 }
 void imprimirMenuPreparacaoJogo() {
+	imprimirTitulo("Preparação para o Jogo");
+
+	imprimirOpcao("%i: ESCOLHER TÁTICA\n", MENU_PREPARACAO_JOGO_OPCAO_TATICA);
+	imprimirOpcao("%i: VOLTAR\n", MENU_PREPARACAO_JOGO_OPCAO_VOLTAR);
+
+	imprimirSeparador();
+	imprimirCursor();
 
 }
