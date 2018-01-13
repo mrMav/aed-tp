@@ -503,6 +503,7 @@ void imprimirMenuDecorrerEpoca() {
 }
 
 void iniciarMenuPreparacaoJogo() {
+
 	enum MENU_PREPARACAO_JOGO opcao = MENU_PREPARACAO_JOGO_OPCAO_NULA;
 
 	while (opcao != MENU_PREPARACAO_JOGO_OPCAO_VOLTAR) {
@@ -622,10 +623,7 @@ void imprimirMenuPreparacaoJogo() {
 	system("cls");
 
 	imprimirTitulo("Preparação para o Jogo");
-
-	//char buffer[100];
-	//snprintf(buffer, sizeof(buffer), "%s vs %s", );
-
+	
 	imprimirOpcao("%i: Escolher tática\n", MENU_PREPARACAO_JOGO_OPCAO_TATICA);
 	imprimirOpcao("%i: Voltar\n", MENU_PREPARACAO_JOGO_OPCAO_VOLTAR);
 
