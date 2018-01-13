@@ -41,8 +41,8 @@ void imprimeJogador(Jogador* j) {
 
 	printf("Numero: %i\n", j->numero);
 	printf("Vencimento: %.2f\n", j->vencimentoMensal);
-	printf("Data de inicio do contracto: %i/%i/%i\n", j->dataContracto->tm_mday, j->dataContracto->tm_mon + 1, j->dataContracto->tm_year);
-	printf("Data de finm do contracto: %i/%i/%i\n", j->dataFimContracto->tm_mday, j->dataFimContracto->tm_mon + 1, j->dataFimContracto->tm_year);
+	printf("Data de inicio do contrato: %i/%i/%i\n", j->dataContracto->tm_mday, j->dataContracto->tm_mon + 1, j->dataContracto->tm_year);
+	printf("Data de fim do contrato: %i/%i/%i\n", j->dataFimContracto->tm_mday, j->dataFimContracto->tm_mon + 1, j->dataFimContracto->tm_year);
 	printf("Anos de contracto: %i\n", j->anosContracto);
 	printf("Posicao:%s\n", j->posicao);
 	printf("Atributos:\n");
@@ -201,7 +201,7 @@ void imprimirInstrucao(char* string) {
 void imprimirInicioDoJogo() {
 
 	int jogadorAleatorio = randomInt(0, NUMERO_JOGADORES_PLANTEL - 1);
-	
+	system("cls");
 	printf("--------\n");
 	printf("Novo treinador do %s começa hoje a treinar a equipa!\nO jogador %s mostra-se confiante relativamente a %s.\n",
 		EQUIPAS[INDICE_EQUIPA_JOGADOR]->nome,		
