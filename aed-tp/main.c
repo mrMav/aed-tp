@@ -35,6 +35,8 @@ int main(void) {
 	// inicializar dados:
 	atribuirLetrasSorteio();
 	
+	fazerOnzeAleatorio(EQUIPAS[0]);
+
 	// comeca o loop infinito do jogo
 	iniciarJogo();
 

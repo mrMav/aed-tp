@@ -10,6 +10,8 @@
 #include "game_typedefs.h"
 #include "game_constants.h"
 #include "game_globals.h"
+#include "game_utils.h"
+#include "game_information_output.h"
 
 /*
 Funcoes para manipular objectos e informacao do jogo
@@ -155,7 +157,7 @@ void atribuirLetrasSorteio() {
 	char alfabeto[] = "ABCDEFGHIJKLMNOPQR";
 
 	// baralhar
-	for (int i = 0; i < strlen(alfabeto); i++) {
+	for (int i = 0; i < (int)strlen(alfabeto); i++) {
 
 		int rnd = randomInt(0, strlen(alfabeto) - 1);
 
@@ -218,3 +220,166 @@ void resetEstadoJogo(Equipa* e) {
 	}
 
 };
+
+/*
+Retorna o jogo em que o jogador participa, na jornada actual
+*/
+Jogo* obterJogoJogadorNaJornada(int nJornada) {
+
+	// vamos correr todos os jogos da jornada
+	for (int i = 0; i < (sizeof(JORNADAS[0]) / sizeof(JORNADAS[0][0])); i++) {
+
+		if (JORNADAS[nJornada][i]->equipaA == EQUIPAS[INDICE_EQUIPA_JOGADOR] ||
+			JORNADAS[nJornada][i]->equipaB == EQUIPAS[INDICE_EQUIPA_JOGADOR]) {
+
+			return JORNADAS[nJornada][i];
+
+		}
+
+	}
+
+	// if it comes to this, we are in deep shit
+	return NULL;
+
+}
+
+/*
+Obter array com jogadores de uma certa posição
+*/
+void obterJogadoresComPosição(Jogador* jogadores[], Equipa* equipa, char posicao[]) {
+	
+	int count = 0;
+
+	for (int i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
+
+		if (strstr(equipa->plantel->jogadores[i]->posicao, posicao) != NULL) {  // strstr procura uma substring noutra
+
+			jogadores[count] = equipa->plantel->jogadores[i];
+			count++;
+
+		}
+
+	}
+
+	jogadores[count] = NULL;
+
+};
+
+/*
+Obter jogador aleatorio de array
+*/
+Jogador* obterJogadorAleatorioDeArray(Jogador* jogadores[]) {
+
+	int count = 0;
+
+	while (jogadores[count] != NULL) {
+
+		count++;
+
+	}
+
+	return jogadores[randomInt(0, count - 1)];
+
+};
+
+/*
+Baralha uma array de jogares
+*/
+void baralharArrayJogadores(Jogador* jogadores[]) {
+
+	int count = 0;
+
+	while (jogadores[count] != NULL) {
+
+		count++;
+
+	}
+
+	for (int i = 0; i < count; i++) {
+
+		int rnd = randomInt(0, count - 1);
+
+		Jogador* tmp = jogadores[i];
+		
+		jogadores[i] = jogadores[rnd];
+		jogadores[rnd] = tmp;
+
+	}
+
+};
+
+/*
+Organiza aleatoriamente o 11 da equipa do argumento
+*/
+void fazerOnzeAleatorio(Equipa* equipa) {
+
+	// antes de mais, fazer reset a tudo
+	for (int i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
+
+		equipa->plantel->jogadores[i]->estadoEmJogo[0] = 0;
+		equipa->plantel->jogadores[i]->estadoEmJogo[1] = 0;
+
+	}
+
+	// agora, escolher uma estratégia
+	char *taticas[5];
+	taticas[0] = "3-4-3";
+	taticas[1] = "4-4-2";
+	taticas[2] = "4-3-3";
+	taticas[3] = "4-5-1";
+	taticas[4] = "5-3-2";
+
+	char tatica[] = taticas[randomInt(0, 4)];
+
+	// criar buffer para pesquisa de jogadores
+	Jogador* bufferDeJogadores[20];
+	obterJogadoresComPosição(bufferDeJogadores, equipa, "GR");
+
+	// posicao 0 é o GR principal... vá, não vamos deixar ninguém em desvantagem
+	bufferDeJogadores[0]->estadoEmJogo[0] = POSICAO_GR;
+
+	// escolher defesas
+	Jogador* bufferDeJogadores[20];
+	obterJogadoresComPosição(bufferDeJogadores, equipa, "DEF");
+	baralharArrayJogadores(bufferDeJogadores);
+
+	for (int i = 0; i < (int)(tatica[0] - '0'); i++) {
+
+		bufferDeJogadores[i]->estadoEmJogo[0] = POSICAO_DEF;
+
+	}
+
+	// escolher medios
+	Jogador* bufferDeJogadores[20];
+	obterJogadoresComPosição(bufferDeJogadores, equipa, "MED");
+	baralharArrayJogadores(bufferDeJogadores);
+
+	for (int i = 0; i < (int)(tatica[0] - '0'); i++) {
+
+		bufferDeJogadores[i]->estadoEmJogo[0] = POSICAO_MED;
+
+	}
+	
+	// escolher avancados
+	Jogador* bufferDeJogadores[20];
+	obterJogadoresComPosição(bufferDeJogadores, equipa, "AV");
+	baralharArrayJogadores(bufferDeJogadores);
+
+	for (int i = 0; i < (int)(tatica[0] - '0'); i++) {
+
+		bufferDeJogadores[i]->estadoEmJogo[0] = POSICAO_AV;
+
+	}
+
+	imprimirOnzeDefinido(equipa);
+
+};
+
+/*
+Realiza o jogo do argumento
+*/
+void realizarJogo(Jogo* jogo) {
+
+	
+
+}

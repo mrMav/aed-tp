@@ -399,10 +399,16 @@ void listarJogadoresEscolhidosAJogo() {
 
 	imprimirTitulo("O seu 11:");
 
+	imprimirOnzeDefinido(EQUIPAS[INDICE_EQUIPA_JOGADOR]);
+
+}
+
+void imprimirOnzeDefinido(Equipa* equipa) {
+
 	printf("Guarda-Redes:\n");
 	for (int i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
 
-		Jogador* j = EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel->jogadores[i];
+		Jogador* j = equipa->plantel->jogadores[i];
 
 		if (j->estadoEmJogo[0] == POSICAO_GR) {
 
@@ -415,7 +421,7 @@ void listarJogadoresEscolhidosAJogo() {
 	printf("Defesas:\n");
 	for (int i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
 
-		Jogador* j = EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel->jogadores[i];
+		Jogador* j = equipa->plantel->jogadores[i];
 
 		if (j->estadoEmJogo[0] == POSICAO_DEF) {
 
@@ -428,7 +434,7 @@ void listarJogadoresEscolhidosAJogo() {
 	printf("Médios:\n");
 	for (int i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
 
-		Jogador* j = EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel->jogadores[i];
+		Jogador* j = equipa->plantel->jogadores[i];
 
 		if (j->estadoEmJogo[0] == POSICAO_MED) {
 
@@ -441,7 +447,7 @@ void listarJogadoresEscolhidosAJogo() {
 	printf("Avançados:\n");
 	for (int i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
 
-		Jogador* j = EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel->jogadores[i];
+		Jogador* j = equipa->plantel->jogadores[i];
 
 		if (j->estadoEmJogo[0] == POSICAO_AV) {
 
@@ -451,4 +457,4 @@ void listarJogadoresEscolhidosAJogo() {
 
 	}
 
-}
+};
