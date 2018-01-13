@@ -43,6 +43,7 @@
     <Text Include="clubes.txt" />
     <Text Include="jornadas.txt" />
     <Text Include="planteis.txt" />
+    <Text Include="title2.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

@@ -93,9 +93,9 @@ void carregarEquipas() {
 
 					bufferEstadio = novoEstadio(estadio, atoi(lotacao), atof(despesasEstadio));
 					bufferEquipa = novaEquipa(clube, bufferEstadio, atoi(nsocios), novoPlantelVazio(), novoResultado(), atof(fundos));
-					
+
 					bufferEquipa->plantel->treinador = novoTreinador(treinador);
-					
+
 					EQUIPAS[j] = bufferEquipa;
 					j++;
 
@@ -227,7 +227,7 @@ void carregarPlanteis() {
 						atof(atribMED),
 						atof(atribAV)
 					);
-					
+
 					jogador = novoJogador(
 						nome,
 						atoi(numero),
@@ -238,12 +238,12 @@ void carregarPlanteis() {
 						posicao,
 						atrib
 					);
-					
+
 					//adicionar jogador a plantel da sua equipa:
 					int sucess = adicionarJogadorAPlantel(obterEquipaPorNome(EQUIPAS, clube)->plantel, jogador);
-					
+
 					nJogadores += sucess;
-					jogador = NULL;					
+					jogador = NULL;
 					tabs = 0;
 
 				}
@@ -312,7 +312,7 @@ void carregarJornadas() {
 					tab = 0;
 
 				}
-				
+
 				// reset
 				i = 0;
 
@@ -323,5 +323,42 @@ void carregarJornadas() {
 		fclose(f);
 
 	}
+
+}
+
+void carregarTitulo() {
+
+	char nomeFicheiro[] = "title2.txt";
+
+	FILE *f = fopen(nomeFicheiro, "r");
+
+	int i = 0, c;
+
+	char string[2048]; // buffer
+
+	if (f == NULL) {
+
+		printf("\nErro ao abrir ficheiro %s\n", nomeFicheiro);
+
+	}
+	else {
+
+		while ((c = fgetc(f)) != EOF) {
+
+			// collect all chars until a tab is found
+			string[i] = c;
+			i++;
+
+
+		}
+
+		string[i] = '\n';
+		string[i+1] = '\0';
+
+	}
+
+	fclose(f);
+
+	strcpy(titleArt, string);
 
 }

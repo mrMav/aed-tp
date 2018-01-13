@@ -9,6 +9,7 @@
 
 #include "game_typedefs.h"
 #include "game_constants.h"
+#include "game_information_output.h"
 
 /*
 Retorna float entre 0 e 1
@@ -77,16 +78,32 @@ int VerificaTatica(char Tatica[]) {
 	nmedios[0] = Tatica[2];
 	navancados[0] = Tatica[4];
 	if (strlen(Tatica) != 5) {
-		printf("Tática Inválida\n");
+		printf("Tática inválida\n");
 	}
 	else {
 		if (atoi(ndefesas) + atoi(nmedios) + atoi(navancados) != 10) {
-			printf("Tática Inválida\n");
+			printf("Tática inválida\n");
 		}
 		else {
 			Verifica_Tatica = 1;
-			printf("Tatica Validada\n");
+			printf("Tatica validada.\n");
 		}
 	}
 	return Verifica_Tatica;
+}
+
+void iniciarPrimirParaContinuar() {
+
+	int exit = -1;
+
+	imprimirInstrucao("01: Continuar...\n");
+		
+	while (exit != 1) {
+
+		imprimirCursor();
+
+		scanf("%i", &exit);
+		
+	}
+
 }

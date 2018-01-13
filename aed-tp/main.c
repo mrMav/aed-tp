@@ -30,6 +30,7 @@ int main(void) {
 	carregarEquipas();
 	carregarPlanteis();
 	carregarJornadas();
+	carregarTitulo();
 	
 	// inicializar dados:
 	atribuirLetrasSorteio();

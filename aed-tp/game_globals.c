@@ -17,3 +17,14 @@ Jogo *JORNADAS[(NUMERO_EQUIPAS - 1) * 2][NUMERO_EQUIPAS / 2];
 
 // numero de transferencias reslizadas pelo jogador
 int nTransferencias = 0;
+
+// jornada actual
+int nJornada = 0;
+
+// epoca iniciada
+int epocaIniciada = 0;
+
+// arte do titulo
+char titleArt[2048];
+
+

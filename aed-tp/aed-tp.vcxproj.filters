@@ -79,5 +79,8 @@
     <Text Include="planteis.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="title2.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

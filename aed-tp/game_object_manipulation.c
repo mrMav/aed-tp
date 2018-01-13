@@ -175,3 +175,46 @@ void atribuirLetrasSorteio() {
 	}
 
 }
+
+Jogador* escolherJogador(Equipa* e) {
+
+	int exit = 1, option;
+	
+	imprimirInstrucao("Escolha o jogador:\n\n");
+
+	while (exit) {
+
+		imprimirCursor();
+		scanf("%i", &option);
+		getchar();
+
+		if (option > 0 && option < NUMERO_JOGADORES_PLANTEL + 1) {
+
+			option = option - 1;
+
+			exit = 0;
+
+
+		}
+		else {
+
+			printf("Opcao não válida. Não existe jogador número %i.\n", option);
+
+		}
+
+	}
+
+	return e->plantel->jogadores[option];
+
+}
+
+void resetEstadoJogo(Equipa* e) {
+
+	for (int i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
+
+		EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel->jogadores[i]->estadoEmJogo[0] = 0;
+		EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel->jogadores[i]->estadoEmJogo[1] = 0;
+
+	}
+
+};

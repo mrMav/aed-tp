@@ -125,6 +125,25 @@ void imprimeJogador(Jogador* j) {
 	imprimirSeparador();
 };
 
+void imprimeJogadorFormaDeLista(Jogador* j) {
+
+	int espacoReservadoParaNomeDoJogador = 30;
+
+	printf("%s | %s", j->posicao, j->nome);
+
+	int i;
+	for (i = strlen(j->nome); i < espacoReservadoParaNomeDoJogador; i++) {
+		printf(" ");
+	}
+
+	printf("| GR: %.2f | DEF: %.2f | MED: %.2f | AV: %.2f | \n",
+		j->atributos->gr,
+		j->atributos->df,
+		j->atributos->md,
+		j->atributos->av
+	);
+};
+
 /*
 Imprime a informação do treinador no argumento
 */
@@ -242,19 +261,32 @@ void listarJogadores(Equipa* e) {
 	int i;
 	for (i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
 
-		printf("%02i | %s | %s", i + 1, e->plantel->jogadores[i]->posicao, e->plantel->jogadores[i]->nome);
+		printf("%02i |", i + 1);
 
-		int j;
-		for (j = strlen(e->plantel->jogadores[i]->nome); j < espacoReservadoParaNomeDoJogador; j++) {
-			printf(" ");
+		imprimeJogadorFormaDeLista(e->plantel->jogadores[i]);
+
+	}
+
+}
+
+void listarJogadoresAindaNaoEscolhidosParaJogo(int parteDoJogo) {
+
+	int espacoReservadoParaNomeDoJogador = 30;
+
+	Equipa* e = EQUIPAS[INDICE_EQUIPA_JOGADOR];
+
+	int i;
+	for (i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
+
+		Jogador* j = e->plantel->jogadores[i];
+
+		if (j->estadoEmJogo[parteDoJogo] == 0) {
+
+			printf("%02i | ", i + 1);
+
+			imprimeJogadorFormaDeLista(e->plantel->jogadores[i]);
+
 		}
-
-		printf("| GR: %f | DEF: %f | MED: %f | AV: %f | \n",
-			e->plantel->jogadores[i]->atributos->gr,
-			e->plantel->jogadores[i]->atributos->df,
-			e->plantel->jogadores[i]->atributos->md,
-			e->plantel->jogadores[i]->atributos->av
-		);
 
 	}
 
@@ -299,41 +331,124 @@ void imprimirJogo(Jogo* j) {
 
 void imprimirJornada(int n) {
 
-	char buffer[30];
-	int reservaEspaçoNomeEquipa = 20;
+	if (epocaIniciada) {
 
-	// guarda a string formatada no buffer
-	snprintf(buffer, sizeof(buffer), "JORNADA %02i", n+1);
+		char buffer[30];
+		int reservaEspaçoNomeEquipa = 20;
 
-	imprimirTitulo(buffer);
-	printf("\n");
-	
-	// imprimir a tabela com os jogos da jornada
-	for (int i = 0; i < (sizeof(JORNADAS[0]) / sizeof(JORNADAS[0][0])); i++) {  // aquela coisa feia é uma forma de saber o tamanho do array, neste caso, 9
+		// guarda a string formatada no buffer
+		snprintf(buffer, sizeof(buffer), "JORNADA %02i", n + 1);
 
-		Equipa* a = obterEquipaPorLetraSorteio(EQUIPAS, JORNADAS[n][i]->equipaA);
-		Equipa* b = obterEquipaPorLetraSorteio(EQUIPAS, JORNADAS[n][i]->equipaB);
+		imprimirTitulo(buffer);
+		printf("\n");
 
-		for (int i = 0; i < reservaEspaçoNomeEquipa - strlen(a->nome); i++) {
+		// imprimir a tabela com os jogos da jornada
+		for (int i = 0; i < (sizeof(JORNADAS[0]) / sizeof(JORNADAS[0][0])); i++) {  // aquela coisa feia é uma forma de saber o tamanho do array, neste caso, 9
 
-			printf(" ");
+			Equipa* a = obterEquipaPorLetraSorteio(EQUIPAS, JORNADAS[n][i]->equipaA);
+			Equipa* b = obterEquipaPorLetraSorteio(EQUIPAS, JORNADAS[n][i]->equipaB);
+
+			for (int i = 0; i < reservaEspaçoNomeEquipa - strlen(a->nome); i++) {
+
+				printf(" ");
+
+			}
+
+			printf("%s vs %s\n", a->nome, b->nome);
 
 		}
 
-		printf("%s vs %s\n", a->nome, b->nome);
+	}
+	else {
+
+		printf("Ainda não iniciou a época!\n");
 
 	}
+
+	iniciarPrimirParaContinuar();
+
 }
 
 void imprimirEpoca() {
 
-	imprimirCabecalho("Calendario da Epoca");
-	printf("\n");
+	if (epocaIniciada) {
 
-	for (int i = 0; i < (sizeof(JORNADAS) / sizeof(JORNADAS[0])); i++) {
+		imprimirCabecalho("Calendário da época");
+		printf("\n");
 
-		imprimirJornada(i);
+		for (int i = 0; i < (sizeof(JORNADAS) / sizeof(JORNADAS[0])); i++) {
+
+			imprimirJornada(i);
+
+		}
+
+	}
+	else {
+
+		printf("Ainda não iniciou a época!\n");
+
+	}
+	
+	iniciarPrimirParaContinuar();
+
+};
+
+void listarJogadoresEscolhidosAJogo() {
+
+	system("cls");
+
+	imprimirTitulo("O seu 11:");
+
+	printf("Guarda-Redes:\n");
+	for (int i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
+
+		Jogador* j = EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel->jogadores[i];
+
+		if (j->estadoEmJogo[0] == POSICAO_GR) {
+
+			imprimeJogadorFormaDeLista(j);
+
+		}
 
 	}
 
-};
+	printf("Defesas:\n");
+	for (int i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
+
+		Jogador* j = EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel->jogadores[i];
+
+		if (j->estadoEmJogo[0] == POSICAO_DEF) {
+
+			imprimeJogadorFormaDeLista(j);
+
+		}
+
+	}
+
+	printf("Médios:\n");
+	for (int i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
+
+		Jogador* j = EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel->jogadores[i];
+
+		if (j->estadoEmJogo[0] == POSICAO_MED) {
+
+			imprimeJogadorFormaDeLista(j);
+
+		}
+
+	}
+
+	printf("Avançados:\n");
+	for (int i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
+
+		Jogador* j = EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel->jogadores[i];
+
+		if (j->estadoEmJogo[0] == POSICAO_AV) {
+
+			imprimeJogadorFormaDeLista(j);
+
+		}
+
+	}
+
+}

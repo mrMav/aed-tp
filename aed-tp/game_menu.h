@@ -29,3 +29,5 @@ void imprimirMenuIntervaloJogo();
 void iniciarMenuFinalJogo();
 
 void iniciarMenuResumoJornada();
+
+void iniciarMenuEscolhaDeTatica();

@@ -13,3 +13,5 @@ void carregarEquipas();
 void carregarPlanteis();
 
 void carregarJornadas();
+
+void carregarTitulo();

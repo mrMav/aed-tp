@@ -40,6 +40,8 @@ void listarEquipas();
 
 void listarJogadores(Equipa* e);
 
+void listarJogadoresAindaNaoEscolhidosParaJogo(int parteDoJogo);
+
 void imprimirJogo(Jogo* j);
 
 void imprimirResultadosJogo(ResultadosJogo* rj);
@@ -47,3 +49,5 @@ void imprimirResultadosJogo(ResultadosJogo* rj);
 void imprimirJornada(int n);
 
 void imprimirEpoca();
+
+void listarJogadoresEscolhidosAJogo();

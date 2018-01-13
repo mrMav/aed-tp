@@ -16,7 +16,7 @@ int adicionarJogadorAPlantel(Plantel* plantel, Jogador* jogador);
 
 Equipa* obterEquipaPorNome(Equipa* EQUIPAS[], char string[]);
 
-Equipa* obterEquipaPorLetraSorteio(Equipa* EQUIPAS[], char string[]);
+Equipa* obterEquipaPorLetraSorteio(Equipa* EQUIPAS[], char letra);
 
 /*
 Troca dois jogadores um por outro
@@ -32,3 +32,13 @@ float obterValorTransferencia(Jogador* j);
 Atribuir letra aleatoria a equipas
 */
 void atribuirLetrasSorteio();
+
+/*
+Lista jogadores de uma equipa e devolve jogador escolhido
+*/
+Jogador* escolherJogador(Equipa* e);
+
+/*
+Reset do estado de jogo dos jogadores da equipa
+*/
+void resetEstadoJogo(Equipa* e);
