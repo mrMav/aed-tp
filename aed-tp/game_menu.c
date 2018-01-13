@@ -62,6 +62,8 @@ void iniciarMenuInicial() {
 
 void imprimirMenuInicial() {
 
+	system("cls");
+
 	imprimirCabecalho(" F-TASTIC ");
 
 	imprimirOpcao("%i: SAIR DO JOGO\n", MENU_INICIAL_OPCAO_SAIR);
@@ -74,6 +76,8 @@ void imprimirMenuInicial() {
 
 void iniciarMenuNovoJogo() {
 
+	system("cls");
+
 	int opcao = 0;
 	int exit = 1;
 
@@ -81,6 +85,8 @@ void iniciarMenuNovoJogo() {
 	imprimirInstrucao("Escreva o seu nome:\n");
 	imprimirCursor();
 	gets(NOME_JOGADOR);
+	
+	system("cls");
 	
 	imprimirInstrucao("Escolha a sua equipa:\n\n");
 	listarEquipas();
@@ -169,7 +175,13 @@ void iniciarMenuPreparacaoEpoca() {
 
 void imprimirMenuPreparacaoEpoca() {
 
-	imprimirTitulo("Começar a Época");
+	system("cls");
+
+	char buffer[60];
+	// guarda a string formatada no buffer
+	snprintf(buffer, sizeof(buffer), "Preparação para a Época - %s - %s", EQUIPAS[INDICE_EQUIPA_JOGADOR]->nome, EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel->treinador->nome);
+
+	imprimirTitulo(buffer);
 
 	imprimirOpcao("%i: SAIR DO JOGO\n", MENU_PREPARACAO_EPOCA_OPCAO_SAIR);
 	imprimirOpcao("%i: COMPRA E VENDA DE JOGADORES", MENU_PREPARACAO_EPOCA_OPCAO_TRANSFERENCIA_JOGADORES);
@@ -183,6 +195,8 @@ void imprimirMenuPreparacaoEpoca() {
 }
 
 void iniciarMenuCompraEVenda(int *equipasSelecionadas) {
+
+	system("cls");
 
 	int equipaEscolhida = 0;
 	int jogadorEscolhido = 0;
@@ -411,7 +425,6 @@ void iniciarMenuInformacao() {
 void iniciarMenuSorteio() {
 	enum MENU_SORTEIO opcao = MENU_SORTEIO_OPCAO_NULA;
 
-	printf("AQUI FICA A TABELA DO RESULTADO DO SORTEIO");
 	while (opcao != MENU_SORTEIO_OPCAO_SAIR) {
 		imprimirTabelaSorteios();
 		scanf("%i", &opcao);
@@ -432,7 +445,14 @@ void iniciarMenuSorteio() {
 }
 
 void imprimirTabelaSorteios() {
+
+	system("cls");
+
 	imprimirTitulo("Sorteio dos Jogos");
+
+	imprimirEpoca();
+
+	printf("\n\n");
 
 	imprimirOpcao("%i: CONTINUAR\n", MENU_SORTEIO_OPCAO_CONTINUAR);
 	imprimirOpcao("%i: SAIR DO JOGO\n", MENU_SORTEIO_OPCAO_SAIR);
