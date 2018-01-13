@@ -16,6 +16,8 @@ int adicionarJogadorAPlantel(Plantel* plantel, Jogador* jogador);
 
 Equipa* obterEquipaPorNome(Equipa* EQUIPAS[], char string[]);
 
+Equipa* obterEquipaPorLetraSorteio(Equipa* EQUIPAS[], char string[]);
+
 /*
 Troca dois jogadores um por outro
 */

@@ -11,6 +11,7 @@
 #include "game_constants.h"
 #include "game_utils.h"
 #include "game_globals.h"
+#include "game_object_manipulation.h"
 
 /*
 
@@ -22,8 +23,6 @@ void imprimirTitulo(char* string) {
 
 	int length = strlen(string);
 	int i;
-
-	system("cls");
 
 	for (i = 0; i < length + 4; i++) {
 
@@ -44,9 +43,7 @@ void imprimirTitulo(char* string) {
 };
 
 void imprimirCabecalho(char* string) {
-
-	system("cls");
-
+	
 	int length = strlen(string);
 	int i;
 
@@ -207,10 +204,10 @@ void imprimeResultados(Resultado* r) {
 void imprimirInicioDoJogo() {
 
 	int jogadorAleatorio = randomInt(0, NUMERO_JOGADORES_PLANTEL - 1);
-	
+
 	imprimirSeparador();
 	printf("Novo treinador do %s começa hoje a treinar a equipa!\nO jogador %s mostra-se confiante relativamente a %s.\n",
-		EQUIPAS[INDICE_EQUIPA_JOGADOR]->nome,		
+		EQUIPAS[INDICE_EQUIPA_JOGADOR]->nome,
 		EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel->jogadores[jogadorAleatorio]->nome,
 		NOME_JOGADOR
 	);
@@ -220,7 +217,7 @@ void imprimirInicioDoJogo() {
 void listarEquipas() {
 
 	int espacoReservadoParaNomeDaEquipa = 30;
-	
+
 	int i;
 	for (i = 0; i < NUMERO_EQUIPAS; i++) {
 
@@ -235,7 +232,7 @@ void listarEquipas() {
 
 
 	}
-	
+
 }
 
 void listarJogadores(Equipa* e) {
@@ -244,7 +241,7 @@ void listarJogadores(Equipa* e) {
 
 	int i;
 	for (i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
-		
+
 		printf("%02i | %s | %s", i + 1, e->plantel->jogadores[i]->posicao, e->plantel->jogadores[i]->nome);
 
 		int j;
@@ -258,7 +255,7 @@ void listarJogadores(Equipa* e) {
 			e->plantel->jogadores[i]->atributos->md,
 			e->plantel->jogadores[i]->atributos->av
 		);
-		
+
 	}
 
 }
@@ -280,7 +277,7 @@ void imprimirResultadosJogo(ResultadosJogo* rj) {
 
 	}
 
-	
+
 };
 
 void imprimirJogo(Jogo* j) {
@@ -302,6 +299,41 @@ void imprimirJogo(Jogo* j) {
 
 void imprimirJornada(int n) {
 
-	
+	char buffer[30];
+	int reservaEspaçoNomeEquipa = 20;
 
+	// guarda a string formatada no buffer
+	snprintf(buffer, sizeof(buffer), "JORNADA %02i", n+1);
+
+	imprimirTitulo(buffer);
+	printf("\n");
+	
+	// imprimir a tabela com os jogos da jornada
+	for (int i = 0; i < (sizeof(JORNADAS[0]) / sizeof(JORNADAS[0][0])); i++) {  // aquela coisa feia é uma forma de saber o tamanho do array, neste caso, 9
+
+		Equipa* a = obterEquipaPorLetraSorteio(EQUIPAS, JORNADAS[n][i]->equipaA);
+		Equipa* b = obterEquipaPorLetraSorteio(EQUIPAS, JORNADAS[n][i]->equipaB);
+
+		for (int i = 0; i < reservaEspaçoNomeEquipa - strlen(a->nome); i++) {
+
+			printf(" ");
+
+		}
+
+		printf("%s vs %s\n", a->nome, b->nome);
+
+	}
 }
+
+void imprimirEpoca() {
+
+	imprimirCabecalho("Calendario da Epoca");
+	printf("\n");
+
+	for (int i = 0; i < (sizeof(JORNADAS) / sizeof(JORNADAS[0])); i++) {
+
+		imprimirJornada(i);
+
+	}
+
+};

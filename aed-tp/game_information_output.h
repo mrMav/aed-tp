@@ -45,3 +45,5 @@ void imprimirJogo(Jogo* j);
 void imprimirResultadosJogo(ResultadosJogo* rj);
 
 void imprimirJornada(int n);
+
+void imprimirEpoca();

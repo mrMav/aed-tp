@@ -298,6 +298,9 @@ void carregarJornadas() {
 				// when found, store a terminator in the end
 				string[i] = '\0';
 
+				// linhas representam jornadas
+				JORNADAS[line][tab] = novoJogo(string[0], string[2]);
+
 				if (c == '\t') {
 
 					tab++;
@@ -309,12 +312,7 @@ void carregarJornadas() {
 					tab = 0;
 
 				}
-
-				// linhas representam jornadas
-				JORNADAS[line][tab] = novoJogo(string[0], string[2]);
-
-				imprimirJogo(JORNADAS[line][tab]);
-
+				
 				// reset
 				i = 0;
 

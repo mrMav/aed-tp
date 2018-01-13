@@ -34,6 +34,8 @@ int main(void) {
 	// inicializar dados:
 	atribuirLetrasSorteio();
 
+	imprimirEpoca();
+
 	// comeca o loop infinito do jogo
 	iniciarJogo();
 

@@ -64,6 +64,29 @@ Equipa* obterEquipaPorNome(Equipa* EQUIPAS[], char string[]) {
 };
 
 /*
+Retorna a equipa por letra do sorteio.
+NULL caso não seja encontrada
+*/
+Equipa* obterEquipaPorLetraSorteio(Equipa* EQUIPAS[], char letra) {
+
+	int i;
+
+	for (i = 0; i < NUMERO_EQUIPAS; i++) {
+
+		if (letra == EQUIPAS[i]->letraSorteio) {
+
+			return EQUIPAS[i];
+
+		}
+
+	}
+
+	// caso a equipa não seja encontrada:
+	return NULL;
+
+};
+
+/*
 Troca dois jogadores um por outro
 Equipa 1 é a equipa que paga
 */
@@ -83,7 +106,7 @@ void trocaJogadores(Equipa* equipa1, Equipa* equipa2, int indice1, int indice2, 
 
 	//actualizar o vencimento do jogador transferido
 	equipa1->plantel->jogadores[indice1]->vencimentoMensal *= 1.5;
-	
+
 	// subtrair aos fundos da equipa a compra
 	equipa1->fundos -= valorTransf;
 
@@ -109,7 +132,7 @@ float obterValorTransferencia(Jogador* j) {
 	// talvez não esteja totalmente correcto porque nao sabemos
 	// se o sistema que estamos a correr usa o unix epoch...
 
-	time_t dataContractoMs    = mktime(j->dataContracto);
+	time_t dataContractoMs = mktime(j->dataContracto);
 	time_t dataFimContractoMs = mktime(j->dataFimContracto);
 
 	time_t diffms = difftime(dataFimContractoMs, dataContractoMs);
@@ -118,7 +141,7 @@ float obterValorTransferencia(Jogador* j) {
 	diff->tm_year -= 70; // subtrair 70 por causa do unix epoch
 
 	int mesesDeContractoEmFalta = diff->tm_year * 12 + diff->tm_mon + 1;  // ignoramos os dias
-	
+
 	// calcular valor final
 	valor = j->vencimentoMensal * 5 * mesesDeContractoEmFalta;
 
@@ -126,11 +149,11 @@ float obterValorTransferencia(Jogador* j) {
 
 };
 
-void atribuirLetrasSorteio(){
+void atribuirLetrasSorteio() {
 
 	// letras necessárias
 	char alfabeto[] = "ABCDEFGHIJKLMNOPQR";
-	
+
 	// baralhar
 	for (int i = 0; i < strlen(alfabeto); i++) {
 
