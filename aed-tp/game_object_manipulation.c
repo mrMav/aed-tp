@@ -111,7 +111,7 @@ void trocaJogadores(Equipa* equipa1, Equipa* equipa2, int indice1, int indice2, 
 	equipa1->fundos -= valorTransf;
 
 	// adicionar aos fundos da equipa que vende
-	equipa1->fundos += valorTransf;
+	equipa2->fundos += valorTransf;
 
 	nTransferencias++;
 
