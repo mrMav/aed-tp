@@ -28,6 +28,7 @@ typedef struct {
 	struct tm* dataFimContracto;
 	int anosContracto;
 	char posicao[3];
+	int estadoEmJogo[2];
 	Atributos* atributos;
 
 } Jogador;
@@ -73,6 +74,7 @@ typedef struct {
 	float fundos;
 	Resultado* resultados;
 	Plantel* plantel;
+	char letraSorteio;
 
 } Equipa;
 

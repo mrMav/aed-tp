@@ -311,7 +311,9 @@ void carregarJornadas() {
 				}
 
 				// linhas representam jornadas
-				JORNADAS[line][tab] = 
+				JORNADAS[line][tab] = novoJogo(string[0], string[2]);
+
+				imprimirJogo(JORNADAS[line][tab]);
 
 				// reset
 				i = 0;

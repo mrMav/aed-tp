@@ -82,7 +82,7 @@ void iniciarMenuNovoJogo() {
 	imprimirCursor();
 	gets(NOME_JOGADOR);
 	
-	imprimirInstrucao("Escolha a sua equipa:\n");
+	imprimirInstrucao("Escolha a sua equipa:\n\n");
 	listarEquipas();
 
 	while (exit) {
@@ -114,7 +114,6 @@ void iniciarMenuNovoJogo() {
 	iniciarMenuPreparacaoEpoca();
 
 }
-
 
 void iniciarMenuPreparacaoEpoca() {
 
@@ -157,7 +156,7 @@ void iniciarMenuPreparacaoEpoca() {
 			break;
 		case MENU_PREPARACAO_EPOCA_INICIAR_EPOCA:
 
-			printf("\nNot working yet...\n");
+			iniciarMenuSorteio();
 
 			break;
 		}
@@ -431,6 +430,7 @@ void iniciarMenuSorteio() {
 		}
 	}
 }
+
 void imprimirTabelaSorteios() {
 	imprimirTitulo("Sorteio dos Jogos");
 
@@ -466,6 +466,7 @@ void iniciarMenuDecorrerEpoca() {
 		}
 	}
 }
+
 void imprimirMenuDecorrerEpoca() {
 	imprimirTitulo("Decorrer da Época");
 	
@@ -517,6 +518,7 @@ void iniciarMenuPreparacaoJogo() {
 	}
 
 }
+
 void imprimirMenuPreparacaoJogo() {
 	imprimirTitulo("Preparação para o Jogo");
 
@@ -552,6 +554,7 @@ void iniciarMenuIntervaloJogo() {
 	}
 
 }
+
 void imprimirMenuIntervaloJogo() {
 	imprimirTitulo("Intervalo");
 

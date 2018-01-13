@@ -8,6 +8,17 @@
 Funcoes para representar objectos no ecra:
 
 */
+void imprimirCabecalho(char* string);
+
+void imprimirOpcao(char* string, int opcao);
+
+void imprimirInstrucao(char* string);
+
+void imprimirTitulo(char* string);
+
+void imprimirSeparador();
+
+void imprimirCursor();
 
 void imprimeJogador(Jogador* j);
 
@@ -23,20 +34,14 @@ void imprimeEstadio(Estadio* e);
 
 void imprimeResultados(Resultado* r);
 
-void imprimirCabecalho(char* string);
-
-void imprimirOpcao(char* string, int opcao);
-
-void imprimirInstrucao(char* string);
-
-void imprimirTitulo(char* string);
-
-void imprimirSeparador();
-
-void imprimirCursor();
-
 void imprimirInicioDoJogo();
 
 void listarEquipas();
 
 void listarJogadores(Equipa* e);
+
+void imprimirJogo(Jogo* j);
+
+void imprimirResultadosJogo(ResultadosJogo* rj);
+
+void imprimirJornada(int n);

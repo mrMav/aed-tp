@@ -52,6 +52,6 @@ Jogador* novoJogadorVazio();
 /*
 Novo jogo(confronto)
 */
-Jogo* novoJogo(char eA, char eB, ResultadosJogo * rj);
+Jogo* novoJogo(char eA, char eB);
 
 // TODO: Criar funcoes para libertar memoria

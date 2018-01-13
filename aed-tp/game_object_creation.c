@@ -197,7 +197,7 @@ Resultado* novoResultado() {
 /*
 Novo jogo(confronto)
 */
-Jogo* novoJogo(char eA, char eB, ResultadosJogo * rj) {
+Jogo* novoJogo(char eA, char eB) {
 
 	Jogo *j = malloc(sizeof(Jogo));
 
@@ -205,7 +205,7 @@ Jogo* novoJogo(char eA, char eB, ResultadosJogo * rj) {
 	j->equipaB = eB;
 	
 	j->realizado = 0;
-	j->resultados = NULL;
+	j->resultados = malloc(sizeof(ResultadosJogo));
 
 	return j;
 

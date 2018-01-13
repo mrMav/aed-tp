@@ -125,3 +125,30 @@ float obterValorTransferencia(Jogador* j) {
 	return valor;
 
 };
+
+void atribuirLetrasSorteio(){
+
+	// letras necessárias
+	char alfabeto[] = "ABCDEFGHIJKLMNOPQR";
+	
+	// baralhar
+	for (int i = 0; i < strlen(alfabeto); i++) {
+
+		int rnd = randomInt(0, strlen(alfabeto) - 1);
+
+		char tmp = alfabeto[i];
+
+		alfabeto[i] = alfabeto[rnd];
+		alfabeto[rnd] = tmp;
+
+	}
+
+	// alfabeto está agora baralhado
+	// vamos atribuir uma letra a cada equipa
+	for (int j = 0; j < NUMERO_EQUIPAS; j++) {
+
+		EQUIPAS[j]->letraSorteio = alfabeto[j];
+
+	}
+
+}
