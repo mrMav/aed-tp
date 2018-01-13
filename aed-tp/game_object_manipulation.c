@@ -229,8 +229,8 @@ Jogo* obterJogoJogadorNaJornada(int nJornada) {
 	// vamos correr todos os jogos da jornada
 	for (int i = 0; i < (sizeof(JORNADAS[0]) / sizeof(JORNADAS[0][0])); i++) {
 
-		if (JORNADAS[nJornada][i]->equipaA == EQUIPAS[INDICE_EQUIPA_JOGADOR] ||
-			JORNADAS[nJornada][i]->equipaB == EQUIPAS[INDICE_EQUIPA_JOGADOR]) {
+		if (JORNADAS[nJornada][i]->equipaA == EQUIPAS[INDICE_EQUIPA_JOGADOR]->letraSorteio ||
+			JORNADAS[nJornada][i]->equipaB == EQUIPAS[INDICE_EQUIPA_JOGADOR]->letraSorteio) {
 
 			return JORNADAS[nJornada][i];
 
@@ -329,7 +329,8 @@ void fazerOnzeAleatorio(Equipa* equipa) {
 	taticas[3] = "4-5-1";
 	taticas[4] = "5-3-2";
 
-	char tatica[] = taticas[randomInt(0, 4)];
+	char tatica[5];
+	strcpy(tatica, taticas[randomInt(0, 4)]);
 
 	// criar buffer para pesquisa de jogadores
 	Jogador* bufferDeJogadores[20];
@@ -339,35 +340,35 @@ void fazerOnzeAleatorio(Equipa* equipa) {
 	bufferDeJogadores[0]->estadoEmJogo[0] = POSICAO_GR;
 
 	// escolher defesas
-	Jogador* bufferDeJogadores[20];
-	obterJogadoresComPosição(bufferDeJogadores, equipa, "DEF");
-	baralharArrayJogadores(bufferDeJogadores);
+	Jogador* bufferDeJogadoresDEF[20];
+	obterJogadoresComPosição(bufferDeJogadoresDEF, equipa, "DEF");
+	baralharArrayJogadores(bufferDeJogadoresDEF);
 
 	for (int i = 0; i < (int)(tatica[0] - '0'); i++) {
 
-		bufferDeJogadores[i]->estadoEmJogo[0] = POSICAO_DEF;
+		bufferDeJogadoresDEF[i]->estadoEmJogo[0] = POSICAO_DEF;
 
 	}
 
 	// escolher medios
-	Jogador* bufferDeJogadores[20];
-	obterJogadoresComPosição(bufferDeJogadores, equipa, "MED");
-	baralharArrayJogadores(bufferDeJogadores);
+	Jogador* bufferDeJogadoresMED[20];
+	obterJogadoresComPosição(bufferDeJogadoresMED, equipa, "MED");
+	baralharArrayJogadores(bufferDeJogadoresMED);
 
-	for (int i = 0; i < (int)(tatica[0] - '0'); i++) {
+	for (int i = 0; i < (int)(tatica[2] - '0'); i++) {
 
-		bufferDeJogadores[i]->estadoEmJogo[0] = POSICAO_MED;
+		bufferDeJogadoresMED[i]->estadoEmJogo[0] = POSICAO_MED;
 
 	}
 	
 	// escolher avancados
-	Jogador* bufferDeJogadores[20];
-	obterJogadoresComPosição(bufferDeJogadores, equipa, "AV");
-	baralharArrayJogadores(bufferDeJogadores);
+	Jogador* bufferDeJogadoresAV[20];
+	obterJogadoresComPosição(bufferDeJogadoresAV, equipa, "AV");
+	baralharArrayJogadores(bufferDeJogadoresAV);
 
-	for (int i = 0; i < (int)(tatica[0] - '0'); i++) {
+	for (int i = 0; i < (int)(tatica[4] - '0'); i++) {
 
-		bufferDeJogadores[i]->estadoEmJogo[0] = POSICAO_AV;
+		bufferDeJogadoresAV[i]->estadoEmJogo[0] = POSICAO_AV;
 
 	}
 

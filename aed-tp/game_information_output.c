@@ -393,16 +393,6 @@ void imprimirEpoca() {
 
 };
 
-void listarJogadoresEscolhidosAJogo() {
-
-	system("cls");
-
-	imprimirTitulo("O seu 11:");
-
-	imprimirOnzeDefinido(EQUIPAS[INDICE_EQUIPA_JOGADOR]);
-
-}
-
 void imprimirOnzeDefinido(Equipa* equipa) {
 
 	printf("Guarda-Redes:\n");
@@ -458,3 +448,13 @@ void imprimirOnzeDefinido(Equipa* equipa) {
 	}
 
 };
+
+void listarJogadoresEscolhidosAJogo() {
+
+	system("cls");
+
+	imprimirTitulo("O seu 11:");
+
+	imprimirOnzeDefinido(EQUIPAS[INDICE_EQUIPA_JOGADOR]);
+
+}
