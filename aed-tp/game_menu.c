@@ -73,7 +73,7 @@ void imprimirMenuInicial() {
 }
 
 void iniciarMenuNovoJogo() {
-	system("cls");
+
 	int opcao = 0;
 	int exit = 1;
 
@@ -82,7 +82,7 @@ void iniciarMenuNovoJogo() {
 	imprimirCursor();
 	gets(NOME_JOGADOR);
 	
-	imprimirInstrucao("Escolha a sua equipa:\n");
+	imprimirInstrucao("Escolha a sua equipa:\n\n");
 	listarEquipas();
 
 	while (exit) {
@@ -111,18 +111,15 @@ void iniciarMenuNovoJogo() {
 	strcpy(EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel->treinador->nome, NOME_JOGADOR);
 
 	imprimirInicioDoJogo();
-	
 	iniciarMenuPreparacaoEpoca();
-	
+
 }
 
-
 void iniciarMenuPreparacaoEpoca() {
-	
+
 	enum MENU_INICIAL opcao = MENU_INICIAL_OPCAO_NULA;
 	
 	int equipasSeleciondasTransferencias[NUMERO_TRANSFERENCIAS];
-	
 	// init array
 	int i;
 	for (i = 0; i < NUMERO_TRANSFERENCIAS; i++) {
@@ -130,7 +127,7 @@ void iniciarMenuPreparacaoEpoca() {
 	}
 
 	while (opcao != MENU_INICIAL_OPCAO_SAIR) {
-		
+
 		imprimirMenuPreparacaoEpoca(nTransferencias);
 
 		scanf("%i", &opcao);
@@ -139,7 +136,7 @@ void iniciarMenuPreparacaoEpoca() {
 		switch (opcao) {
 
 		case MENU_PREPARACAO_EPOCA_OPCAO_TRANSFERENCIA_JOGADORES:
-			
+
 			if (nTransferencias < NUMERO_TRANSFERENCIAS) {
 				
 				iniciarMenuCompraEVenda(equipasSeleciondasTransferencias);
@@ -153,14 +150,14 @@ void iniciarMenuPreparacaoEpoca() {
 
 			break;
 		case MENU_PREPARACAO_EPOCA_OPCAO_INFORMACAO:
-			
+
 			iniciarMenuInformacao();
-			
+
 			break;
 		case MENU_PREPARACAO_EPOCA_INICIAR_EPOCA:
-			
-			printf("\nNot working yet...\n");
-			
+
+			iniciarMenuSorteio();
+
 			break;
 		}
 
@@ -433,6 +430,7 @@ void iniciarMenuSorteio() {
 		}
 	}
 }
+
 void imprimirTabelaSorteios() {
 	imprimirTitulo("Sorteio dos Jogos");
 
@@ -468,6 +466,7 @@ void iniciarMenuDecorrerEpoca() {
 		}
 	}
 }
+
 void imprimirMenuDecorrerEpoca() {
 	imprimirTitulo("Decorrer da Época");
 	
@@ -519,6 +518,7 @@ void iniciarMenuPreparacaoJogo() {
 	}
 
 }
+
 void imprimirMenuPreparacaoJogo() {
 	imprimirTitulo("Preparação para o Jogo");
 
@@ -554,6 +554,7 @@ void iniciarMenuIntervaloJogo() {
 	}
 
 }
+
 void imprimirMenuIntervaloJogo() {
 	imprimirTitulo("Intervalo");
 

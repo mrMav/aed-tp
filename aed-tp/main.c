@@ -15,13 +15,6 @@
 #include "game_object_manipulation.h"
 #include "game_utils.h"
 
-/*
-
-Se escolher equipa 18 diz que não está disponível
-
-*/
-
-
 int main(void) {
 	
 	// ATENCAO: definir a regiao pode fazer com que as funcoes
@@ -29,16 +22,18 @@ int main(void) {
 	// ser diferente de idioma a idioma
 	// neste caso, os nossos atributos usam virgulas, por isso está ok
 	setlocale(LC_ALL, "pt-PT");
-
+	
 	// seed para numeros aleatorios
 	srand(time(NULL));   // should only be called once
 	
-
-
 	// carrega todos os dados necessarios
 	carregarEquipas();
 	carregarPlanteis();
+	carregarJornadas();
 	
+	// inicializar dados:
+	atribuirLetrasSorteio();
+
 	// comeca o loop infinito do jogo
 	iniciarJogo();
 

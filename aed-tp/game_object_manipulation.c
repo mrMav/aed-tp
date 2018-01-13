@@ -42,6 +42,7 @@ int adicionarJogadorAPlantel(Plantel* plantel, Jogador* jogador) {
 
 /*
 Retorna a equipa por nome.
+NULL caso não seja encontrada
 */
 Equipa* obterEquipaPorNome(Equipa* EQUIPAS[], char string[]) {
 
@@ -86,6 +87,9 @@ void trocaJogadores(Equipa* equipa1, Equipa* equipa2, int indice1, int indice2, 
 	// subtrair aos fundos da equipa a compra
 	equipa1->fundos -= valorTransf;
 
+	// adicionar aos fundos da equipa que vende
+	equipa1->fundos += valorTransf;
+
 	nTransferencias++;
 
 };
@@ -121,3 +125,30 @@ float obterValorTransferencia(Jogador* j) {
 	return valor;
 
 };
+
+void atribuirLetrasSorteio(){
+
+	// letras necessárias
+	char alfabeto[] = "ABCDEFGHIJKLMNOPQR";
+	
+	// baralhar
+	for (int i = 0; i < strlen(alfabeto); i++) {
+
+		int rnd = randomInt(0, strlen(alfabeto) - 1);
+
+		char tmp = alfabeto[i];
+
+		alfabeto[i] = alfabeto[rnd];
+		alfabeto[rnd] = tmp;
+
+	}
+
+	// alfabeto está agora baralhado
+	// vamos atribuir uma letra a cada equipa
+	for (int j = 0; j < NUMERO_EQUIPAS; j++) {
+
+		EQUIPAS[j]->letraSorteio = alfabeto[j];
+
+	}
+
+}
