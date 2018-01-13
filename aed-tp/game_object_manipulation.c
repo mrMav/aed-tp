@@ -42,6 +42,7 @@ int adicionarJogadorAPlantel(Plantel* plantel, Jogador* jogador) {
 
 /*
 Retorna a equipa por nome.
+NULL caso não seja encontrada
 */
 Equipa* obterEquipaPorNome(Equipa* EQUIPAS[], char string[]) {
 
@@ -85,6 +86,9 @@ void trocaJogadores(Equipa* equipa1, Equipa* equipa2, int indice1, int indice2, 
 	
 	// subtrair aos fundos da equipa a compra
 	equipa1->fundos -= valorTransf;
+
+	// adicionar aos fundos da equipa que vende
+	equipa1->fundos += valorTransf;
 
 	nTransferencias++;
 

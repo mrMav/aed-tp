@@ -15,13 +15,6 @@
 #include "game_object_manipulation.h"
 #include "game_utils.h"
 
-/*
-
-Se escolher equipa 18 diz que não está disponível
-
-*/
-
-
 int main(void) {
 	
 	// ATENCAO: definir a regiao pode fazer com que as funcoes
@@ -33,8 +26,6 @@ int main(void) {
 	// seed para numeros aleatorios
 	srand(time(NULL));   // should only be called once
 	
-
-
 	// carrega todos os dados necessarios
 	carregarEquipas();
 	carregarPlanteis();
