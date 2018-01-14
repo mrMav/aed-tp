@@ -216,6 +216,7 @@ void imprimeResultados(Resultado* r) {
 	printf("Golos Marcados: %i\n", r->golosMarcados);
 	printf("Golos Sofridos: %i\n", r->golosSofridos);
 	printf("Jogos Realizados: %i\n", r->jogosRealizados);
+	printf("Pontos: %i\n", r->pontos);
 
 	imprimirSeparador();
 };
@@ -502,3 +503,16 @@ void imprimirAnteJogo(Jogo* jogo) {
 	printf("\n");
 
 }
+
+void imprimeTabelaClassificativa() {
+
+	imprimirSeparador();
+
+	for (int i = 0; i < NUMERO_EQUIPAS; i++) {
+
+		printf("%02i - Pontos:%02i %s\n", i+1, tabelaClassificacoes[i]->resultados->pontos, tabelaClassificacoes[i]->nome);
+
+	}
+
+	imprimirSeparador();
+};

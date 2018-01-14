@@ -97,6 +97,7 @@ void carregarEquipas() {
 					bufferEquipa->plantel->treinador = novoTreinador(treinador);
 
 					EQUIPAS[j] = bufferEquipa;
+					tabelaClassificacoes[j] = bufferEquipa;
 					j++;
 
 					bufferEstadio = NULL;

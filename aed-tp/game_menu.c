@@ -406,6 +406,7 @@ void iniciarMenuInformacao() {
 		imprimirOpcao("%i: Ver equipas\n", MENU_INFORMACAO_VER_EQUIPAS);
 		imprimirOpcao("%i: Ver jornada\n", MENU_INFORMACAO_VER_JORNADA);
 		imprimirOpcao("%i: Ver sorteio\n", MENU_INFORMACAO_VER_SORTEIO);
+		imprimirOpcao("%i: Ver tabela classificações\n", MENU_INFORMACAO_VER_TABELA);
 		imprimirOpcao("%i: Voltar\n", MENU_INFORMACAO_OPCAO_SAIR);
 
 		imprimirCursor();
@@ -447,6 +448,7 @@ void iniciarMenuInformacao() {
 			imprimeEquipa(EQUIPAS[equipaEscolhida]);
 			imprimePlantel(EQUIPAS[equipaEscolhida]->plantel);
 			imprimeEstadio(EQUIPAS[equipaEscolhida]->estadio);
+			imprimeResultados(EQUIPAS[equipaEscolhida]->resultados);
 
 			iniciarPrimirParaContinuar();
 
@@ -466,6 +468,14 @@ void iniciarMenuInformacao() {
 			imprimirTabelaSorteios();
 
 			break;
+
+		case MENU_INFORMACAO_VER_TABELA:
+
+			imprimeTabelaClassificativa();
+			iniciarPrimirParaContinuar();
+
+			break;
+
 
 		}
 
@@ -855,12 +865,23 @@ void iniciarMenuJogo() {
 
 		Jogo* jogo = JORNADAS[nJornada][i];
 
-		realizarJogoCPU(jogo);
+		if (jogo->realizado == 0) {
+
+			realizarJogoCPU(jogo);
+
+		}
+
 
 	}
 
+
 	// após todos os jogos realizados, avançar na época
 	avancarEpoca();
+
+	system("cls");
+	imprimirTitulo("Tabela classificações");
+	imprimeTabelaClassificativa();
+	iniciarPrimirParaContinuar();
 	
 
 }
