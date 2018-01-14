@@ -27,7 +27,7 @@ void iniciarJogo() {
 
 void sairJogo() {
 
-	printf("\nObrigado por jogares FUTASTIC\n Volta sempre....\n");
+	printf("\nObrigado por jogares FUTASTIC\nVolta sempre....\n");
 
 	Sleep(3000);
 
@@ -803,9 +803,7 @@ void iniciarMenuJogo() {
 	fazerOnzeAleatorio(oponente);
 
 	while (1) {
-
 		
-
 		imprimirAnteJogo(jogo);
 		imprimirMenuAnteJogo();
 
@@ -845,6 +843,12 @@ void iniciarMenuJogo() {
 	em que o jogador não participa
 
 	*/
+	if (equipaJogador->fundos <= 0.0) {
+
+		imprimirGameOver();
+
+	}
+
 	realizarJogoDoJogador(jogo);
 
 	// correr todos os jogos da jornada nao realizados

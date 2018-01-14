@@ -482,8 +482,6 @@ void realizarParteDeJogo(Jogo* jogo, int parte) {
 	// adicionar o factor casa
 	// a equipaA joga sempre em casa
 	float factorCasa = randomFloat() * 0.2;
-	// factor posicao
-	float factorPosicaoA = 0.008 * pow(((double)obterPossicaoEquipa(equipaA) - 11.0), 2) + 1.0;	
 	poderesEquipaA[0] += factorCasa;
 	poderesEquipaA[1] += factorCasa;
 
@@ -494,12 +492,12 @@ void realizarParteDeJogo(Jogo* jogo, int parte) {
 	if (nJornada >= 2) {
 
 		// factor posicao
-		float factorPosicaoA = 0.008 * pow(((double)obterPossicaoEquipa(equipaA) - 11.0), 2) + 1.0;
+		float factorPosicaoA = 0.008 * pow(((double)obterPosicaoEquipa(equipaA) - 11.0), 2) + 1.0;
 		poderesEquipaA[0] += factorPosicaoA;
 		poderesEquipaA[1] += factorPosicaoA;
 
 		// factor posicao
-		float factorPosicaoB = 0.008 * pow(((double)obterPossicaoEquipa(equipaB) - 11.0), 2) + 1.0;
+		float factorPosicaoB = 0.008 * pow(((double)obterPosicaoEquipa(equipaB) - 11.0), 2) + 1.0;
 		poderesEquipaB[0] += factorPosicaoB;
 		poderesEquipaB[1] += factorPosicaoB;
 
@@ -817,9 +815,19 @@ void avancarEpoca() {
 		
 	}
 
+	// acaba aqui o jogo...
+	// o utilizador deve iniciar de novo o jogo
+	// se pretende jogar outra vez :s
+	if (nJornada >= 35) {
+
+		imprimirFinalDoJogo();
+
+	}
+
+
 }
 
-int obterPossicaoEquipa(Equipa *e) {
+int obterPosicaoEquipa(Equipa *e) {
 
 	for (int i = 0; i < NUMERO_EQUIPAS; i++) {
 

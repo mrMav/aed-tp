@@ -86,3 +86,5 @@ void realizarJogoDoJogador(Jogo* jogo);
 void realizarJogoCPU(Jogo* jogo);
 
 void avancarEpoca();
+
+int obterPosicaoEquipa(Equipa *e);
