@@ -33,3 +33,5 @@ void iniciarMenuEscolhaDeTatica();
 
 void iniciarMenuJogo();
 void imprimirMenuAnteJogo();
+
+void imprimirCreditos();

@@ -27,7 +27,7 @@ void iniciarJogo() {
 
 void sairJogo() {
 
-	printf("\nObrigado por jogares FUTASTIC\nVolta sempre....\n");
+	printf("\nObrigado por jogares FU-TASTIC\nVolta sempre....\n");
 
 	Sleep(3000);
 
@@ -54,7 +54,15 @@ void iniciarMenuInicial() {
 			iniciarMenuNovoJogo();
 
 			break;
+
+		case MENU_INICIAL_OPCAO_CREDITOS:
+
+			imprimirCreditos();
+
+			break;
+
 		}
+
 
 	}
 
@@ -69,6 +77,7 @@ void imprimirMenuInicial() {
 	printf(titleArt);
 
 	imprimirOpcao("%i: Novo jogo\n", MENU_INICIAL_OPCAO_NOVO_JOGO);
+	imprimirOpcao("%i: Créditos\n", MENU_INICIAL_OPCAO_CREDITOS);
 	imprimirOpcao("%i: Sair do jogo\n", MENU_INICIAL_OPCAO_SAIR);
 
 	imprimirSeparador();
@@ -918,5 +927,23 @@ void imprimirMenuAnteJogo() {
 
 	imprimirSeparador();
 	imprimirCursor();
+
+};
+
+void imprimirCreditos() {
+
+	system("cls");
+
+	imprimirCabecalho("Créditos:");
+
+	printf("\nApós umas 2000 ou 2500 linhas de código, 90 commits \ne muitas horas a tentar perceber como funciona o futebol, surge o :\n\n");
+
+	imprimirTitulo("FU-TASTIC!!");
+
+	printf("\n15705 Jorge Noro\n");
+	printf("14864 Jp Valente\n");
+	printf("14840 Francisco Santos\n");
+	
+	iniciarPrimirParaContinuar();
 
 };
