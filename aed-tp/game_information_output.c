@@ -294,18 +294,18 @@ void listarJogadoresAindaNaoEscolhidosParaJogo(int parteDoJogo) {
 
 void imprimirResultadosJogo(ResultadosJogo* rj) {
 
-	if (rj->golosVencedor != rj->golosDerrotado) {
+	if (rj->golosEquipaA != rj->golosEquipaB) {
 
 		printf("Equipa vencedora: %s(%c)\n", rj->vencedor->nome, rj->vencedor->letraSorteio);
 		printf("Equipa derrotada: %s(%c)\n", rj->derrotado->nome, rj->derrotado->letraSorteio);
-		printf("Resultado: %i-%i", rj->golosVencedor, rj->golosDerrotado);
+		printf("Resultado: %i-%i", rj->golosEquipaA, rj->golosEquipaB);
 
 	}
 	else {
 
 		printf("Empate.");
 		printf("%s(%c) - %s(%c)", rj->vencedor->nome, rj->vencedor->letraSorteio, rj->derrotado->nome, rj->derrotado->letraSorteio);
-		printf("Resultado: %i-%i", rj->golosVencedor, rj->golosDerrotado);
+		printf("Resultado: %i-%i", rj->golosEquipaA, rj->golosEquipaB);
 
 	}
 

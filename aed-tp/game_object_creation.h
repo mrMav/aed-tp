@@ -50,6 +50,11 @@ Jogador* novoJogador(char n[], int num, float vM, struct tm* dC, struct tm* dF, 
 Jogador* novoJogadorVazio();
 
 /*
+Novo resultados jogo
+*/
+ResultadosJogo* novoResultadosJogo();
+
+/*
 Novo jogo(confronto)
 */
 Jogo* novoJogo(char eA, char eB);

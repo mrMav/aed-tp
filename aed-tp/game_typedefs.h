@@ -83,8 +83,20 @@ typedef struct {
 	Equipa *vencedor;
 	Equipa *derrotado;
 
-	int golosVencedor;
-	int golosDerrotado;
+	int golosEquipaA;
+	int golosEquipaB;
+
+	float poderDefesaEquipaAPrimeiraParte;
+	float poderDefesaEquipaBPrimeiraParte;
+
+	float poderAtaqueEquipaAPrimeiraParte;
+	float poderAtaqueEquipaBPrimeiraParte;
+
+	float poderDefesaEquipaASegundaParte;
+	float poderDefesaEquipaBSegundaParte;
+
+	float poderAtaqueEquipaASegundaParte;
+	float poderAtaqueEquipaBSegundaParte;
 
 } ResultadosJogo;
 

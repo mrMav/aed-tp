@@ -35,7 +35,15 @@ int main(void) {
 	// inicializar dados:
 	atribuirLetrasSorteio();
 	
-	// imprimirAnteJogo(JORNADAS[0][0]);
+	//Jogo* jogo = JORNADAS[0][0];
+
+	//imprimirAnteJogo(jogo);
+	//fazerOnzeAleatorio(obterEquipaPorLetraSorteio(EQUIPAS, jogo->equipaA));
+	//fazerOnzeAleatorio(obterEquipaPorLetraSorteio(EQUIPAS, jogo->equipaB));
+	//realizarJogo(jogo);
+
+	//imprimirSeparador();
+
 
 	// comeca o loop infinito do jogo
 	iniciarJogo();

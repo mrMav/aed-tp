@@ -12,6 +12,7 @@
 #include "game_globals.h"
 #include "game_utils.h"
 #include "game_information_output.h"
+#include "game_object_creation.h"
 
 /*
 Funcoes para manipular objectos e informacao do jogo
@@ -181,7 +182,7 @@ void atribuirLetrasSorteio() {
 Jogador* escolherJogador(Equipa* e) {
 
 	int exit = 1, option;
-	
+
 	imprimirInstrucao("Escolha o jogador:\n\n");
 
 	while (exit) {
@@ -214,8 +215,8 @@ void resetEstadoJogo(Equipa* e) {
 
 	for (int i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
 
-		EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel->jogadores[i]->estadoEmJogo[0] = 0;
-		EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel->jogadores[i]->estadoEmJogo[1] = 0;
+		e->plantel->jogadores[i]->estadoEmJogo[0] = 0;
+		e->plantel->jogadores[i]->estadoEmJogo[1] = 0;
 
 	}
 
@@ -247,7 +248,7 @@ Jogo* obterJogoJogadorNaJornada(int nJornada) {
 Obter array com jogadores de uma certa posição
 */
 void obterJogadoresComPosição(Jogador* jogadores[], Equipa* equipa, char posicao[]) {
-	
+
 	int count = 0;
 
 	for (int i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
@@ -300,7 +301,7 @@ void baralharArrayJogadores(Jogador* jogadores[]) {
 		int rnd = randomInt(0, count - 1);
 
 		Jogador* tmp = jogadores[i];
-		
+
 		jogadores[i] = jogadores[rnd];
 		jogadores[rnd] = tmp;
 
@@ -354,7 +355,7 @@ void fazerOnzeAleatorio(Equipa* equipa) {
 		bufferDeJogadoresMED[i]->estadoEmJogo[0] = POSICAO_MED;
 
 	}
-	
+
 	// escolher avancados
 	Jogador* bufferDeJogadoresAV[20];
 	obterJogadoresComPosição(bufferDeJogadoresAV, equipa, "AV");
@@ -367,14 +368,271 @@ void fazerOnzeAleatorio(Equipa* equipa) {
 	}
 
 	// imprimirOnzeDefinido(equipa);
-	
+
 };
 
 /*
-Realiza o jogo do argumento
+Calcula o poder de defesa de uma equipa
 */
-void realizarJogo(Jogo* jogo) {
+void obterPoderesDeOnze(Equipa* equipa, int parteDoJogo, float poderes[]) {
 
+	float poderDefesa = 0.0;
+	float poderAtaque = 0.0;
+	float contribuicaoDef = 0.0;
+	float contribuicaoAta = 0.0;
+
+	// somar contribuicao guarda redes
+	for (int i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
+
+		Jogador* j = equipa->plantel->jogadores[i];
+
+		if (j->estadoEmJogo[parteDoJogo] == POSICAO_GR) {
+
+			contribuicaoDef += j->atributos->gr;
+			contribuicaoAta += j->atributos->av;
+
+		}
+
+	}
+
+	poderDefesa += contribuicaoDef * CONTRIBUICOES_POSICOES[POSICAO_GR][0];
+	poderAtaque += contribuicaoAta * CONTRIBUICOES_POSICOES[POSICAO_GR][1];
+	contribuicaoDef = 0.0;
+	contribuicaoAta = 0.0;
+
+	// somar contribuicao defesas
+	for (int i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
+
+		Jogador* j = equipa->plantel->jogadores[i];
+
+		if (j->estadoEmJogo[parteDoJogo] == POSICAO_DEF) {
+
+			contribuicaoDef += j->atributos->df;
+			contribuicaoAta += j->atributos->av;
+
+		}
+
+	}
+
+	poderDefesa += contribuicaoDef * CONTRIBUICOES_POSICOES[POSICAO_DEF][0];
+	poderAtaque += contribuicaoAta * CONTRIBUICOES_POSICOES[POSICAO_DEF][1];
+	contribuicaoDef = 0.0;
+	contribuicaoAta = 0.0;
+
+	// somar contribuicao medios
+	for (int i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
+
+		Jogador* j = equipa->plantel->jogadores[i];
+
+		if (j->estadoEmJogo[parteDoJogo] == POSICAO_MED) {
+
+			contribuicaoDef += j->atributos->md;
+			contribuicaoAta += j->atributos->md;
+
+		}
+
+	}
+
+	poderDefesa += contribuicaoDef * CONTRIBUICOES_POSICOES[POSICAO_MED][0];
+	poderAtaque += contribuicaoAta * CONTRIBUICOES_POSICOES[POSICAO_MED][1];
+	contribuicaoDef = 0.0;
+	contribuicaoAta = 0.0;
+
+	// somar contribuicao avancados
+	for (int i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
+
+		Jogador* j = equipa->plantel->jogadores[i];
+
+		if (j->estadoEmJogo[parteDoJogo] == POSICAO_AV) {
+
+			contribuicaoDef += j->atributos->df;
+			contribuicaoAta += j->atributos->av;
+
+		}
+
+	}
+
+	poderDefesa += contribuicaoDef * CONTRIBUICOES_POSICOES[POSICAO_AV][0];
+	poderAtaque += contribuicaoAta * CONTRIBUICOES_POSICOES[POSICAO_AV][1];
+	contribuicaoDef = 0.0;
+	contribuicaoAta = 0.0;
+
+
+	poderes[0] = poderDefesa;
+	poderes[1] = poderAtaque;
+
+}
+
+
+/*
+Realiza o parte do jogo do argumento
+*/
+void realizarParteDeJogo(Jogo* jogo, int parte) {
+
+	Equipa *equipaA = obterEquipaPorLetraSorteio(EQUIPAS, jogo->equipaA);
+	Equipa *equipaB = obterEquipaPorLetraSorteio(EQUIPAS, jogo->equipaB);
+	/*
+	0 é o poder de defesa
+	1 é o poder de ataque
+	*/
+	float poderesEquipaA[2] = { 0.0, 0.0 };
+	obterPoderesDeOnze(equipaA, parte, poderesEquipaA);
+
+	// adicionar o factor casa
+	// a equipaA joga sempre em casa
+	float factorCasa = randomFloat() * 0.2;
+	poderesEquipaA[0] += factorCasa;
+	poderesEquipaA[1] += factorCasa;
+
+	// FALTA ADICIONAR O FACTOR POSICAO!
+
+	float poderesEquipaB[2];
+	obterPoderesDeOnze(equipaB, parte, poderesEquipaB);
+
+	/*
+	Calcular os golos.
+	Os golos são a diferença entre poderes de ataque e defesa
+	*/
+
+
+	int golosA = poderesEquipaA[1] - poderesEquipaB[0];
+	int golosB = poderesEquipaB[1] - poderesEquipaA[0];
+
+	printf("Equipa A:\n");
+	printf("%.2f\n", poderesEquipaA[0]);
+	printf("%.2f\n", poderesEquipaA[1]);
+	printf("%i\n", golosA);
+
+	printf("Equipa B:\n");
+	printf("%.2f\n", poderesEquipaB[0]);
+	printf("%.2f\n", poderesEquipaB[1]);
+	printf("%i\n", golosB);
+
+	jogo->resultados->golosEquipaA += golosA >= 0 ? golosA : 0;
+	jogo->resultados->golosEquipaB += golosB >= 0 ? golosB : 0;
+
+	if (parte == 0) {
+
+		jogo->resultados->poderDefesaEquipaAPrimeiraParte = poderesEquipaA[0];
+		jogo->resultados->poderAtaqueEquipaAPrimeiraParte = poderesEquipaA[1];
+
+		jogo->resultados->poderDefesaEquipaBPrimeiraParte = poderesEquipaB[0];
+		jogo->resultados->poderAtaqueEquipaBPrimeiraParte = poderesEquipaB[1];
+
+	}
+	else if (parte == 2) {
+
+		jogo->resultados->poderDefesaEquipaASegundaParte = poderesEquipaA[0];
+		jogo->resultados->poderAtaqueEquipaASegundaParte = poderesEquipaA[1];
+
+		jogo->resultados->poderDefesaEquipaBSegundaParte = poderesEquipaB[0];
+		jogo->resultados->poderAtaqueEquipaBSegundaParte = poderesEquipaB[1];
+
+	}
+
+}
+
+/*
+Realiza o jogo do jogaodr no argumento
+*/
+void realizarJogoDoJogador(Jogo* jogo) {
+
+	Equipa *equipaA = obterEquipaPorLetraSorteio(EQUIPAS, jogo->equipaA);
+	Equipa *equipaB = obterEquipaPorLetraSorteio(EQUIPAS, jogo->equipaB);
+
+	int parteDoJogo = 0;
+
+	realizarParteDeJogo(jogo, parteDoJogo);
+
+	printf("Resultados 1ª parte:\n\n");
+
+	printf("%s: %i\n",
+		equipaA->nome,
+		jogo->resultados->golosEquipaA
+	);
+
+	printf("%s: %i\n",
+		equipaB->nome,
+		jogo->resultados->golosEquipaB
+	);
+
+	iniciarPrimirParaContinuar();
+
+	int mudarTaticaOuNao = -1;
+	int exit = 1;
+
+	printf("\nPretende alterar a sua tática?\n");
+	printf("\n1.Não\n2.Sim\n");
+	while (exit) {
+
+		imprimirCursor();
+
+		scanf("%i", &mudarTaticaOuNao);
+
+		switch (mudarTaticaOuNao) {
+		case 1:
+			exit = 0;
+			break;
+		case 2:
+			exit = 0;
+			break;
+		}
+
+	}
+
+	if (mudarTaticaOuNao == 2) {
+
+		iniciarMenuEscolhaDeTatica();
+
+	}
 	
+	parteDoJogo = 1;
 
+	realizarParteDeJogo(jogo, parteDoJogo);
+
+	printf("Resultados finais do encontro:\n\n");
+
+	printf("%s: %i\n",
+		equipaA->nome,
+		jogo->resultados->golosEquipaA
+	);
+
+	printf("%s: %i\n",
+		equipaB->nome,
+		jogo->resultados->golosEquipaB
+	);
+
+	iniciarPrimirParaContinuar();
+
+	jogo->realizado = 1;
+
+}
+
+/*
+Realiza o jogo CPU no argumento
+*/
+void realizarJogoCPU(Jogo* jogo) {
+
+	Equipa *equipaA = obterEquipaPorLetraSorteio(EQUIPAS, jogo->equipaA);
+	Equipa *equipaB = obterEquipaPorLetraSorteio(EQUIPAS, jogo->equipaB);
+
+	int parteDoJogo = 0;
+
+	realizarParteDeJogo(jogo, parteDoJogo);
+
+	parteDoJogo = 1;
+
+	realizarParteDeJogo(jogo, parteDoJogo);
+
+	jogo->realizado = 1;
+
+}
+
+void avancarEpoca() {
+
+	// era bom fazer reset da epoca quando esta acaba...
+
+	nJornada++;
+
+	// TODO: subtrair fundos às equipas!
 }

@@ -34,3 +34,9 @@ extern int epocaIniciada;
 
 // arte do titulo
 extern char titleArt[1024];
+
+// array com as contribuições das posições
+extern float CONTRIBUICOES_POSICOES[5][2];
+
+// array da tabela de classificações
+extern Equipa* tabelaClassificações[NUMERO_EQUIPAS];

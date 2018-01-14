@@ -195,6 +195,37 @@ Resultado* novoResultado() {
 };
 
 /*
+Novo resultados jogo
+*/
+ResultadosJogo* novoResultadosJogo() {
+
+	ResultadosJogo *rj = malloc(sizeof(ResultadosJogo));
+
+	rj->derrotado = NULL;
+	rj->vencedor  = NULL;
+
+	rj->golosEquipaA = 0;
+	rj->golosEquipaB = 0;
+
+	rj->poderAtaqueEquipaAPrimeiraParte = 0.0;
+	rj->poderAtaqueEquipaBPrimeiraParte = 0.0;
+
+	rj->poderDefesaEquipaAPrimeiraParte = 0.0;
+	rj->poderDefesaEquipaBPrimeiraParte = 0.0;
+
+	rj->poderAtaqueEquipaASegundaParte = 0.0;
+	rj->poderAtaqueEquipaBSegundaParte = 0.0;
+
+	rj->poderDefesaEquipaASegundaParte = 0.0;
+	rj->poderDefesaEquipaBSegundaParte = 0.0;
+
+
+	return rj;
+
+
+};
+
+/*
 Novo jogo(confronto)
 */
 Jogo* novoJogo(char eA, char eB) {
@@ -205,7 +236,7 @@ Jogo* novoJogo(char eA, char eB) {
 	j->equipaB = eB;
 	
 	j->realizado = 0;
-	j->resultados = malloc(sizeof(ResultadosJogo));
+	j->resultados = novoResultadosJogo();
 
 	return j;
 

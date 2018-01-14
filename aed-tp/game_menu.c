@@ -508,28 +508,31 @@ void imprimirMenuDecorrerEpoca() {
 
 void iniciarMenuPreparacaoJogo() {
 
-	enum MENU_PREPARACAO_JOGO opcao = MENU_PREPARACAO_JOGO_OPCAO_NULA;
+	//enum MENU_PREPARACAO_JOGO opcao = MENU_PREPARACAO_JOGO_OPCAO_NULA;
 
-	while (opcao != MENU_PREPARACAO_JOGO_OPCAO_VOLTAR) {
-		imprimirMenuPreparacaoJogo();
-		scanf("%i", &opcao);
-		getchar();
+	//while (opcao != MENU_PREPARACAO_JOGO_OPCAO_VOLTAR) {
+	//	imprimirMenuPreparacaoJogo();
+	//	scanf("%i", &opcao);
+	//	getchar();
 
-		switch (opcao) {
-		case MENU_PREPARACAO_JOGO_OPCAO_TATICA:
+	//	switch (opcao) {
+	//	case MENU_PREPARACAO_JOGO_OPCAO_TATICA:
 
-			iniciarMenuEscolhaDeTatica();
-			iniciarMenuJogo();
+	//		iniciarMenuEscolhaDeTatica();
+	//		iniciarMenuJogo();
 
-			break;
-		case MENU_PREPARACAO_JOGO_OPCAO_VOLTAR:
-			//voltar atrás
-			break;
-		default:
-			printf("Opção inválida.");
-			break;
-		}
-	}
+	//		break;
+	//	case MENU_PREPARACAO_JOGO_OPCAO_VOLTAR:
+	//		//voltar atrás
+	//		break;
+	//	default:
+	//		printf("Opção inválida.");
+	//		break;
+	//	}
+	//}
+
+	iniciarMenuEscolhaDeTatica();
+	iniciarMenuJogo();
 
 }
 
@@ -542,7 +545,7 @@ void iniciarMenuEscolhaDeTatica() {
 	int rndOrNot = -1;
 	int exit = 1;
 
-	printf("\n Manter o seu onze actual, escolher aleatóriamente, ou fazer 11 manualmente?\n");
+	printf("\nManter o seu onze actual, escolher aleatóriamente ou fazer 11 manualmente?\n");
 	printf("\n0.Manter\n1.Aleatóriamente\n2.Manualmente\n");
 	while (exit) {
 
@@ -569,12 +572,12 @@ void iniciarMenuEscolhaDeTatica() {
 		return;
 
 	}
-	else if (rndOrNot == 1) {
+	if (rndOrNot == 1) {
 
 		fazerOnzeAleatorio(equipaJogador);
 
 	}
-	else if(rndOrNot == 2){
+	if(rndOrNot == 2){
 
 		// permite ao jogador fazer o seu onze
 
@@ -795,13 +798,38 @@ void iniciarMenuJogo() {
 			iniciarPrimirParaContinuar();
 
 			break;
-		case MENU_INICIAR_JOGO_OPCAO_JOGAR_PARTIDA:
+
+		}
+
+		if (opcao == MENU_INICIAR_JOGO_OPCAO_JOGAR_PARTIDA) {
 
 			break;
 
 		}
 
 	}
+
+	/*
+	Começa aqui o jogo do jogador
+
+	Após esta função terminar, é preciso realizar todos os outros jogos da jornada
+	em que o jogador não participa
+
+	*/
+	realizarJogoDoJogador(jogo);
+
+	// correr todos os jogos da jornada nao realizados
+	for (int i = 0; i < sizeof(JORNADAS[0]) / sizeof(JORNADAS[0][0]); i++) {
+
+		Jogo* jogo = JORNADAS[nJornada][i];
+
+		realizarJogoCPU(jogo);
+
+	}
+
+	// após todos os jogos realizados, avançar na época
+	avancarEpoca();
+	
 
 }
 

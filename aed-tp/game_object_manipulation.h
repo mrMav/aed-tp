@@ -49,11 +49,6 @@ Retorna o jogo em que o jogador participa, na jornada actual
 Jogo* obterJogoJogadorNaJornada(int nJornada);
 
 /*
-Realiza o jogo do argumento
-*/
-void realizarJogo(Jogo* jogo);
-
-/*
 Organiza aleatoriamente o 11 da equipa do argumento
 */
 void fazerOnzeAleatorio(Equipa* equipa);
@@ -72,3 +67,22 @@ Jogador* obterJogadorAleatorioDeArray(Jogador* jogadores[]);
 Baralha uma array de jogares
 */
 void baralharArrayJogadores(Jogador* jogadores[]);
+
+/*
+Calcula os poderes de uma equipa
+*/
+void obterPoderesDeOnze(Equipa* equipa, int parteDoJogo, float poderes[]);
+
+/*
+Realiza o jogo do argumento
+*/
+void realizarParteDeJogo(Jogo* jogo, int parte);
+
+/*
+Realiza o jogo do argumento
+*/
+void realizarJogoDoJogador(Jogo* jogo);
+
+void realizarJogoCPU(Jogo* jogo);
+
+void avancarEpoca();
