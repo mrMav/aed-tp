@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 #include "game_typedefs.h"
 #include "game_constants.h"
@@ -481,13 +482,28 @@ void realizarParteDeJogo(Jogo* jogo, int parte) {
 	// adicionar o factor casa
 	// a equipaA joga sempre em casa
 	float factorCasa = randomFloat() * 0.2;
+	// factor posicao
+	float factorPosicaoA = 0.008 * pow(((double)obterPossicaoEquipa(equipaA) - 11.0), 2) + 1.0;	
 	poderesEquipaA[0] += factorCasa;
 	poderesEquipaA[1] += factorCasa;
 
-	// FALTA ADICIONAR O FACTOR POSICAO!
-
 	float poderesEquipaB[2];
 	obterPoderesDeOnze(equipaB, parte, poderesEquipaB);
+	
+	// se já há posicoes
+	if (nJornada >= 2) {
+
+		// factor posicao
+		float factorPosicaoA = 0.008 * pow(((double)obterPossicaoEquipa(equipaA) - 11.0), 2) + 1.0;
+		poderesEquipaA[0] += factorPosicaoA;
+		poderesEquipaA[1] += factorPosicaoA;
+
+		// factor posicao
+		float factorPosicaoB = 0.008 * pow(((double)obterPossicaoEquipa(equipaB) - 11.0), 2) + 1.0;
+		poderesEquipaB[0] += factorPosicaoB;
+		poderesEquipaB[1] += factorPosicaoB;
+
+	}
 
 	/*
 	Calcular os golos.
@@ -799,6 +815,17 @@ void avancarEpoca() {
 
 		subtrairDespesasClubes();
 		
+	}
+
+}
+
+int obterPossicaoEquipa(Equipa *e) {
+
+	for (int i = 0; i < NUMERO_EQUIPAS; i++) {
+
+		if (tabelaClassificacoes[i] == e)
+			return i;
+
 	}
 
 }
