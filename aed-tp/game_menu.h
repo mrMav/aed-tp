@@ -14,7 +14,6 @@ void imprimirMenuPreparacaoEpoca();
 void iniciarMenuCompraEVenda(int *equipasSelecionadas);
 void iniciarMenuInformacao();
 
-void iniciarMenuSorteio();
 void imprimirTabelaSorteios();
 
 void iniciarMenuDecorrerEpoca();
@@ -31,3 +30,6 @@ void iniciarMenuFinalJogo();
 void iniciarMenuResumoJornada();
 
 void iniciarMenuEscolhaDeTatica();
+
+void iniciarMenuJogo();
+void imprimirMenuAnteJogo();

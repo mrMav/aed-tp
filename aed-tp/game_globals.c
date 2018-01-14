@@ -6,6 +6,9 @@
 // array para guardar todas as EQUIPAS
 Equipa *EQUIPAS[NUMERO_EQUIPAS];
 
+// referencia da equipa escolhida pelo jogador
+Equipa *equipaJogador;
+
 // indice da equipa escolhida pelo jogador
 int INDICE_EQUIPA_JOGADOR = -1;
 

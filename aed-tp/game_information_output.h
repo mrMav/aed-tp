@@ -53,3 +53,5 @@ void imprimirEpoca();
 void listarJogadoresEscolhidosAJogo();
 
 void imprimirOnzeDefinido(Equipa* equipa);
+
+void imprimirAnteJogo(Jogo* jogo);

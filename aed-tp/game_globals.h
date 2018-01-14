@@ -9,7 +9,10 @@
 // https://stackoverflow.com/a/27796066
 
 // array para guardar todas as EQUIPAS
-extern Equipa *EQUIPAS[NUMERO_EQUIPAS];  
+extern Equipa *EQUIPAS[NUMERO_EQUIPAS]; 
+
+// referencia da equipa escolhida pelo jogador
+extern Equipa *equipaJogador;
 
 // indice da equipa escolhida pelo jogador
 extern int INDICE_EQUIPA_JOGADOR;

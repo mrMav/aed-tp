@@ -313,13 +313,7 @@ Organiza aleatoriamente o 11 da equipa do argumento
 */
 void fazerOnzeAleatorio(Equipa* equipa) {
 
-	// antes de mais, fazer reset a tudo
-	for (int i = 0; i < NUMERO_JOGADORES_PLANTEL; i++) {
-
-		equipa->plantel->jogadores[i]->estadoEmJogo[0] = 0;
-		equipa->plantel->jogadores[i]->estadoEmJogo[1] = 0;
-
-	}
+	resetEstadoJogo(equipa);
 
 	// agora, escolher uma estratégia
 	char *taticas[5];
@@ -329,7 +323,7 @@ void fazerOnzeAleatorio(Equipa* equipa) {
 	taticas[3] = "4-5-1";
 	taticas[4] = "5-3-2";
 
-	char tatica[5];
+	char tatica[6];
 	strcpy(tatica, taticas[randomInt(0, 4)]);
 
 	// criar buffer para pesquisa de jogadores
@@ -372,8 +366,8 @@ void fazerOnzeAleatorio(Equipa* equipa) {
 
 	}
 
-	imprimirOnzeDefinido(equipa);
-
+	// imprimirOnzeDefinido(equipa);
+	
 };
 
 /*

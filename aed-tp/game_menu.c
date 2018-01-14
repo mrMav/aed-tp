@@ -101,6 +101,10 @@ void iniciarMenuNovoJogo() {
 
 			INDICE_EQUIPA_JOGADOR = opcao - 1;
 
+			// vou guardar também uma referencia à equipa
+			equipaJogador = EQUIPAS[INDICE_EQUIPA_JOGADOR];
+			fazerOnzeAleatorio(equipaJogador);
+
 			exit = 0;
 
 		}
@@ -163,7 +167,7 @@ void iniciarMenuPreparacaoEpoca() {
 		case MENU_PREPARACAO_EPOCA_INICIAR_EPOCA:
 			// INICIAR a época!
 			epocaIniciada = 1;
-
+			fazerOnzeAleatorio(equipaJogador);
 			iniciarMenuDecorrerEpoca();
 
 			break;
@@ -367,7 +371,7 @@ void iniciarMenuCompraEVenda(int *equipasSelecionadas) {
 
 		printf("Não possui os fundos necessários para efectuar esta transferência.\nTransferência foi cancelada.\n");
 		iniciarPrimirParaContinuar();
-		
+
 
 	}
 
@@ -515,6 +519,7 @@ void iniciarMenuPreparacaoJogo() {
 		case MENU_PREPARACAO_JOGO_OPCAO_TATICA:
 
 			iniciarMenuEscolhaDeTatica();
+			iniciarMenuJogo();
 
 			break;
 		case MENU_PREPARACAO_JOGO_OPCAO_VOLTAR:
@@ -534,87 +539,125 @@ void iniciarMenuEscolhaDeTatica() {
 
 	imprimirTitulo("Escolha de tática");
 
-	int checkTatica = 0;
-	char Tatica[6];
-	int opcao;
-	Jogador* j;
-	char buffer[50];
+	int rndOrNot = -1;
+	int exit = 1;
 
-	while (checkTatica == 0) {
+	printf("\n Manter o seu onze actual, escolher aleatóriamente, ou fazer 11 manualmente?\n");
+	printf("\n0.Manter\n1.Aleatóriamente\n2.Manualmente\n");
+	while (exit) {
 
-		imprimirInstrucao("Inserir tática (formato x-x-x):\n");
 		imprimirCursor();
-		scanf("%s", Tatica);
 
-		checkTatica = VerificaTatica(Tatica);
+		scanf("%i", &rndOrNot);
 
+		switch (rndOrNot) {
+		case 0:
+			exit = 0;
+			break;
+		case 1:
+			exit = 0;
+			break;
+		case 2:
+			exit = 0;
+			break;
+
+		}
 	}
 
-	/*
+	if (rndOrNot == 0) {
 
-	Cada jogador tem uma array[2] chamado estado de jogo.
-	Esse array guarda as posições em que os jogadores estão a jogar.
-	Abaixo é pedido ao jogador para colocar jogadores nas posições
-	que escolheu acima.
+		return;
 
-	As opções válidas são:
-	1 - Guarda-Redes
-	2 - Desefa
-	3 - Médio
-	4 - Avançado
+	}
+	else if (rndOrNot == 1) {
 
-	O array é de duas dimensões, pois cada array[0] é usado na primeira
-	parte, e array[1] é usado na segunda parte do confronto.
+		fazerOnzeAleatorio(equipaJogador);
 
-	*/
+	}
+	else if(rndOrNot == 2){
 
-	// ESCOLHER UMA NOVA TÁTICA, FAZ RESET À ANTERIOR
-	resetEstadoJogo(EQUIPAS[INDICE_EQUIPA_JOGADOR]);
+		// permite ao jogador fazer o seu onze
 
-	//escolher gr
-	imprimirInstrucao("Escolher 1 Guarda-Redes:\n\n");
+		int checkTatica = 0;
+		char Tatica[6];
+		int opcao;
+		Jogador* j;
+		char buffer[50];
 
-	listarJogadoresAindaNaoEscolhidosParaJogo(0);  // zero é a primeira parte  
-	j = escolherJogador(EQUIPAS[INDICE_EQUIPA_JOGADOR]);
-	// marcar este jogador como guarda redes:
-	j->estadoEmJogo[0] = POSICAO_GR;
+		while (checkTatica == 0) {
 
-	// escolher defesas
-	snprintf(buffer, sizeof(buffer), "Escolher %c Defesas:\n\n", Tatica[0]);
-	imprimirInstrucao(buffer);
-	listarJogadoresAindaNaoEscolhidosParaJogo(0);  // zero é a primeira parte
-	int n = Tatica[0] - '0';
-	for (int i = 0; i < n; i++) {
+			imprimirInstrucao("Inserir tática (formato x-x-x):\n");
+			imprimirCursor();
+			scanf("%s", Tatica);
 
+			checkTatica = VerificaTatica(Tatica);
+
+		}
+
+		/*
+
+		Cada jogador tem uma array[2] chamado estado de jogo.
+		Esse array guarda as posições em que os jogadores estão a jogar.
+		Abaixo é pedido ao jogador para colocar jogadores nas posições
+		que escolheu acima.
+
+		As opções válidas são:
+		1 - Guarda-Redes
+		2 - Desefa
+		3 - Médio
+		4 - Avançado
+
+		O array é de duas dimensões, pois cada array[0] é usado na primeira
+		parte, e array[1] é usado na segunda parte do confronto.
+
+		*/
+
+		// ESCOLHER UMA NOVA TÁTICA, FAZ RESET À ANTERIOR
+		resetEstadoJogo(equipaJogador);
+
+		//escolher gr
+		imprimirInstrucao("Escolher 1 Guarda-Redes:\n\n");
+
+		listarJogadoresAindaNaoEscolhidosParaJogo(0);  // zero é a primeira parte  
 		j = escolherJogador(EQUIPAS[INDICE_EQUIPA_JOGADOR]);
-		j->estadoEmJogo[0] = POSICAO_DEF;
+		// marcar este jogador como guarda redes:
+		j->estadoEmJogo[0] = POSICAO_GR;
+
+		// escolher defesas
+		snprintf(buffer, sizeof(buffer), "Escolher %c Defesas:\n\n", Tatica[0]);
+		imprimirInstrucao(buffer);
+		listarJogadoresAindaNaoEscolhidosParaJogo(0);  // zero é a primeira parte
+		int n = Tatica[0] - '0';
+		for (int i = 0; i < n; i++) {
+
+			j = escolherJogador(EQUIPAS[INDICE_EQUIPA_JOGADOR]);
+			j->estadoEmJogo[0] = POSICAO_DEF;
+
+		}
+
+		snprintf(buffer, sizeof(buffer), "Escolher %c Médios:\n\n", Tatica[2]);
+		imprimirInstrucao(buffer);
+		listarJogadoresAindaNaoEscolhidosParaJogo(0);  // zero é a primeira parte
+		n = Tatica[2] - '0';
+		for (int i = 0; i < n; i++) {
+
+			j = escolherJogador(EQUIPAS[INDICE_EQUIPA_JOGADOR]);
+			j->estadoEmJogo[0] = POSICAO_MED;
+
+		}
+
+		snprintf(buffer, sizeof(buffer), "Escolher %c Avançados:\n\n", Tatica[4]);
+		imprimirInstrucao(buffer);
+		listarJogadoresAindaNaoEscolhidosParaJogo(0);  // zero é a primeira parte
+		n = Tatica[4] - '0';
+		for (int i = 0; i < n; i++) {
+
+			j = escolherJogador(EQUIPAS[INDICE_EQUIPA_JOGADOR]);
+			j->estadoEmJogo[0] = POSICAO_AV;
+
+		}
 
 	}
-
-	snprintf(buffer, sizeof(buffer), "Escolher %c Médios:\n\n", Tatica[2]);
-	imprimirInstrucao(buffer);
-	listarJogadoresAindaNaoEscolhidosParaJogo(0);  // zero é a primeira parte
-	n = Tatica[2] - '0';
-	for (int i = 0; i < n; i++) {
-
-		j = escolherJogador(EQUIPAS[INDICE_EQUIPA_JOGADOR]);
-		j->estadoEmJogo[0] = POSICAO_MED;
-
-	}
-
-	snprintf(buffer, sizeof(buffer), "Escolher %c Avançados:\n\n", Tatica[4]);
-	imprimirInstrucao(buffer);
-	listarJogadoresAindaNaoEscolhidosParaJogo(0);  // zero é a primeira parte
-	n = Tatica[4] - '0';
-	for (int i = 0; i < n; i++) {
-
-		j = escolherJogador(EQUIPAS[INDICE_EQUIPA_JOGADOR]);
-		j->estadoEmJogo[0] = POSICAO_AV;
-
-	}
-
-	listarJogadoresEscolhidosAJogo();
-	iniciarPrimirParaContinuar();
 
 }
 
@@ -623,7 +666,7 @@ void imprimirMenuPreparacaoJogo() {
 	system("cls");
 
 	imprimirTitulo("Preparação para o Jogo");
-	
+
 	imprimirOpcao("%i: Escolher tática\n", MENU_PREPARACAO_JOGO_OPCAO_TATICA);
 	imprimirOpcao("%i: Voltar\n", MENU_PREPARACAO_JOGO_OPCAO_VOLTAR);
 
@@ -706,3 +749,71 @@ void iniciarMenuResumoJornada() {
 		}
 	}
 }
+
+void iniciarMenuJogo() {
+
+	enum MENU_INICIAR_JOGO opcao = MENU_INICIAR_JOGO_OPCAO_NULA;
+
+	// obter o jogo do jogador correspondente a esta jornada
+	Jogo* jogo = obterJogoJogadorNaJornada(nJornada);
+
+	// obter referencia à equipa do jogador e à oponente
+	Equipa *oponente;
+
+	// basicamente vou ver qual das equipas do jogo é a oponente ao jogador
+	// estou a comparar as letras do sorteio
+	if (jogo->equipaA == equipaJogador->letraSorteio)
+		oponente = obterEquipaPorLetraSorteio(EQUIPAS, jogo->equipaB);
+	else
+		oponente = obterEquipaPorLetraSorteio(EQUIPAS, jogo->equipaA);
+
+	// agora o oponente vai escolher um onze
+	fazerOnzeAleatorio(oponente);
+
+	while (1) {
+
+		system("cls");
+
+		imprimirAnteJogo(jogo);
+		imprimirMenuAnteJogo();
+
+		scanf("%i", &opcao);
+		getchar();
+
+		switch (opcao) {
+		case MENU_INICIAR_JOGO_OPCAO_VER_MEU_ONZE:
+
+			system("cls");
+			imprimirOnzeDefinido(equipaJogador);
+			iniciarPrimirParaContinuar();
+
+			break;
+		case MENU_INICIAR_JOGO_OPCAO_VER_ONZE_OPONENTE:
+
+			system("cls");
+			imprimirOnzeDefinido(oponente);
+			iniciarPrimirParaContinuar();
+
+			break;
+		case MENU_INICIAR_JOGO_OPCAO_JOGAR_PARTIDA:
+
+			break;
+
+		}
+
+	}
+
+}
+
+void imprimirMenuAnteJogo() {
+	
+	printf("\n\n");
+
+	imprimirOpcao("%i: Ver o meu onze\n", MENU_INICIAR_JOGO_OPCAO_VER_MEU_ONZE);
+	imprimirOpcao("%i: Ver o onze oponente\n", MENU_INICIAR_JOGO_OPCAO_VER_ONZE_OPONENTE);
+	imprimirOpcao("%i: Jogar a 1ª parte\n", MENU_INICIAR_JOGO_OPCAO_JOGAR_PARTIDA);
+
+	imprimirSeparador();
+	imprimirCursor();
+
+};

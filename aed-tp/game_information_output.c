@@ -458,3 +458,47 @@ void listarJogadoresEscolhidosAJogo() {
 	imprimirOnzeDefinido(EQUIPAS[INDICE_EQUIPA_JOGADOR]);
 
 }
+
+void imprimirAnteJogo(Jogo* jogo) {
+
+	Equipa* a = obterEquipaPorLetraSorteio(EQUIPAS, jogo->equipaA);
+	Equipa* b = obterEquipaPorLetraSorteio(EQUIPAS, jogo->equipaB);
+
+	int lineLength = 100;
+
+	char strTeams[100];
+	char strCoachs[100];
+	char strStadium[100];
+	
+	snprintf(strTeams, sizeof(strTeams), "%s vs %s\n", a->nome, b->nome);
+	snprintf(strCoachs, sizeof(strCoachs), "%s  |  %s\n", a->plantel->treinador->nome, b->plantel->treinador->nome);
+	snprintf(strStadium, sizeof(strStadium), "%s\n", a->estadio->nome);
+	
+	// padding
+	for (int i = 0; i < (lineLength - strlen(strTeams)) / 2; i++) {
+
+		printf(" ");
+
+	}
+	printf(strTeams);
+	printf("\n");
+
+	// padding
+	for (int i = 0; i < (lineLength - strlen(strCoachs)) / 2; i++) {
+
+		printf(" ");
+
+	}
+	printf(strCoachs);
+	printf("\n");
+
+	// padding
+	for (int i = 0; i < (lineLength - strlen(strStadium)) / 2; i++) {
+
+		printf(" ");
+
+	}
+	printf(strStadium);
+	printf("\n");
+
+}
