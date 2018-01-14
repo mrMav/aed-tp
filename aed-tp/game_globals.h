@@ -39,4 +39,4 @@ extern char titleArt[1024];
 extern float CONTRIBUICOES_POSICOES[5][2];
 
 // array da tabela de classificações
-extern Equipa* tabelaClassificações[NUMERO_EQUIPAS];
+extern Equipa* tabelaClassificacoes[NUMERO_EQUIPAS];

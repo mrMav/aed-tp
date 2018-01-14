@@ -41,4 +41,4 @@ float CONTRIBUICOES_POSICOES[5][2] =
 };
 
 // array da tabela de classificações
-Equipa* tabelaClassificações[NUMERO_EQUIPAS];
+Equipa* tabelaClassificacoes[NUMERO_EQUIPAS];

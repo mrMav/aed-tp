@@ -606,6 +606,54 @@ void realizarJogoDoJogador(Jogo* jogo) {
 
 	jogo->realizado = 1;
 
+	// quem ganhou?
+	// actalizar stats e assim
+	if (jogo->resultados->golosEquipaA > jogo->resultados->golosEquipaB) {
+
+		// ganha equipa A
+
+		jogo->resultados->vencedor  = equipaA;
+		jogo->resultados->derrotado = equipaB;
+
+		equipaA->resultados->vitorias++;
+		equipaB->resultados->derrotas++;
+
+		equipaA->resultados->pontos += 3;
+
+	}
+	else if (jogo->resultados->golosEquipaB > jogo->resultados->golosEquipaA) {
+
+		// ganha equipa B
+
+		jogo->resultados->vencedor = equipaB;
+		jogo->resultados->derrotado = equipaA;
+
+		equipaA->resultados->derrotas++;
+		equipaB->resultados->vitorias++;
+
+		equipaB->resultados->pontos += 3;
+
+	}
+	else {
+
+		jogo->resultados->vencedor = NULL;
+		jogo->resultados->derrotado = NULL;
+		jogo->resultados->empate = 1;
+
+		equipaA->resultados->empates++;
+		equipaB->resultados->empates++;
+
+		equipaA->resultados->pontos += 1;
+		equipaB->resultados->pontos += 1;
+
+	}
+
+	equipaA->resultados->golosMarcados += jogo->resultados->golosEquipaA;
+	equipaB->resultados->golosMarcados += jogo->resultados->golosEquipaB;
+
+	equipaA->resultados->golosSofridos += jogo->resultados->golosEquipaB;
+	equipaB->resultados->golosSofridos += jogo->resultados->golosEquipaA;
+
 }
 
 /*
@@ -626,6 +674,116 @@ void realizarJogoCPU(Jogo* jogo) {
 
 	jogo->realizado = 1;
 
+	// ISTO PODIA ESTAR NUMA FUNÇÃO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! :(
+	// quem ganhou?
+	// actalizar stats e assim
+	if (jogo->resultados->golosEquipaA > jogo->resultados->golosEquipaB) {
+
+		// ganha equipa A
+
+		jogo->resultados->vencedor = equipaA;
+		jogo->resultados->derrotado = equipaB;
+
+		equipaA->resultados->vitorias++;
+		equipaB->resultados->derrotas++;
+
+		equipaA->resultados->pontos += 3;
+
+	}
+	else if (jogo->resultados->golosEquipaB > jogo->resultados->golosEquipaA) {
+
+		// ganha equipa B
+
+		jogo->resultados->vencedor = equipaB;
+		jogo->resultados->derrotado = equipaA;
+
+		equipaA->resultados->derrotas++;
+		equipaB->resultados->vitorias++;
+
+		equipaB->resultados->pontos += 3;
+
+	}
+	else {
+
+		jogo->resultados->vencedor = NULL;
+		jogo->resultados->derrotado = NULL;
+		jogo->resultados->empate = 1;
+
+		equipaA->resultados->empates++;
+		equipaB->resultados->empates++;
+
+		equipaA->resultados->pontos += 1;
+		equipaB->resultados->pontos += 1;
+
+	}
+
+	equipaA->resultados->golosMarcados += jogo->resultados->golosEquipaA;
+	equipaB->resultados->golosMarcados += jogo->resultados->golosEquipaB;
+
+	equipaA->resultados->golosSofridos += jogo->resultados->golosEquipaB;
+	equipaB->resultados->golosSofridos += jogo->resultados->golosEquipaA;
+
+}
+
+/*
+compara duas equipas pelos seus pontos
+https://stackoverflow.com/a/23689916
+*/
+int comparaPontosEquipas(const void *v1, const void *v2)
+{
+
+	Equipa *ptr_to_left_struct = *(Equipa**)v1;
+	Equipa *ptr_to_right_struct = *(Equipa**)v2;
+
+	if (ptr_to_left_struct->resultados->pontos > ptr_to_right_struct->resultados->pontos)
+		return -1;
+	else if (ptr_to_left_struct->resultados->pontos < ptr_to_right_struct->resultados->pontos)
+		return 1;
+	else
+		return 0;
+}
+
+/*
+Ordena por pontos a tabela classificativa
+*/
+void ordenarTabelaClassificativa() {
+
+	qsort(tabelaClassificacoes, NUMERO_EQUIPAS, sizeof(int), comparaPontosEquipas);
+
+}
+
+void subtrairDespesasClubes() {
+	
+	for (int i = 0; i < NUMERO_EQUIPAS; i++) {
+
+		Equipa *e = EQUIPAS[i];
+
+		float total = 0.0;
+
+		// subtrair despesas do estadio
+		total += e->estadio->despesaMensal;
+
+		// subtrair salarios
+		for (int j = 0; j < NUMERO_JOGADORES_PLANTEL; j++) {
+
+			total += e->plantel->jogadores[j]->vencimentoMensal;
+		}
+
+		// notificar
+		if (e == equipaJogador) {
+
+			system("cls");
+
+			imprimirTitulo("Hora das contas!");
+			printf("Iram ser retirados dos fundos da equipa %.2f euros!\nIsto mantém os seus jogadores contentes e o seu estadio em condições.\n", total);
+			iniciarPrimirParaContinuar();
+
+		}
+
+		e->fundos -= total;
+		
+	}
+
 }
 
 void avancarEpoca() {
@@ -634,5 +792,13 @@ void avancarEpoca() {
 
 	nJornada++;
 
-	// TODO: subtrair fundos às equipas!
+	ordenarTabelaClassificativa();
+
+	// subtrair despesas de 4 em 4 jornadas
+	if (nJornada % 4 == 0) {
+
+		subtrairDespesasClubes();
+		
+	}
+
 }

@@ -189,6 +189,7 @@ Resultado* novoResultado() {
 	r->derrotas = 0;
 	r->golosMarcados = 0;
 	r->golosSofridos = 0;
+	r->pontos = 0;
 
 	return r;
 
@@ -203,6 +204,8 @@ ResultadosJogo* novoResultadosJogo() {
 
 	rj->derrotado = NULL;
 	rj->vencedor  = NULL;
+
+	rj->empate = 0;
 
 	rj->golosEquipaA = 0;
 	rj->golosEquipaB = 0;

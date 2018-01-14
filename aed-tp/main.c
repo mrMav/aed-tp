@@ -44,6 +44,7 @@ int main(void) {
 
 	//imprimirSeparador();
 
+	ordenarTabelaClassificativa();
 
 	// comeca o loop infinito do jogo
 	iniciarJogo();

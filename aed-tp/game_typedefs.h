@@ -55,6 +55,7 @@ typedef struct {
 	int derrotas;
 	int golosMarcados;
 	int golosSofridos;
+	int pontos;
 
 } Resultado;
 
@@ -82,6 +83,8 @@ typedef struct {
 
 	Equipa *vencedor;
 	Equipa *derrotado;
+
+	int empate;
 
 	int golosEquipaA;
 	int golosEquipaB;
