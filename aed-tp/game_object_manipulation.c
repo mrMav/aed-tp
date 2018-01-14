@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 #include "game_typedefs.h"
 #include "game_constants.h"
@@ -484,29 +485,41 @@ void realizarParteDeJogo(Jogo* jogo, int parte) {
 	poderesEquipaA[0] += factorCasa;
 	poderesEquipaA[1] += factorCasa;
 
-	// FALTA ADICIONAR O FACTOR POSICAO!
-
 	float poderesEquipaB[2];
 	obterPoderesDeOnze(equipaB, parte, poderesEquipaB);
+	
+	// se já há posicoes
+	if (nJornada >= 2) {
+
+		// factor posicao
+		float factorPosicaoA = 0.008 * pow(((double)obterPosicaoEquipa(equipaA) - 11.0), 2) + 1.0;
+		poderesEquipaA[0] += factorPosicaoA;
+		poderesEquipaA[1] += factorPosicaoA;
+
+		// factor posicao
+		float factorPosicaoB = 0.008 * pow(((double)obterPosicaoEquipa(equipaB) - 11.0), 2) + 1.0;
+		poderesEquipaB[0] += factorPosicaoB;
+		poderesEquipaB[1] += factorPosicaoB;
+
+	}
 
 	/*
 	Calcular os golos.
 	Os golos são a diferença entre poderes de ataque e defesa
 	*/
-
-
+	
 	int golosA = poderesEquipaA[1] - poderesEquipaB[0];
 	int golosB = poderesEquipaB[1] - poderesEquipaA[0];
 
-	printf("Equipa A:\n");
-	printf("%.2f\n", poderesEquipaA[0]/2);
-	printf("%.2f\n", poderesEquipaA[1]/2);
-	printf("%i\n", golosA);
+	//printf("Equipa A:\n");
+	//printf("%.2f\n", poderesEquipaA[0]);
+	//printf("%.2f\n", poderesEquipaA[1]);
+	//printf("%i\n", golosA);
 
-	printf("Equipa B:\n");
-	printf("%.2f\n", poderesEquipaB[0]);
-	printf("%.2f\n", poderesEquipaB[1]);
-	printf("%i\n", golosB);
+	//printf("Equipa B:\n");
+	//printf("%.2f\n", poderesEquipaB[0]);
+	//printf("%.2f\n", poderesEquipaB[1]);
+	//printf("%i\n", golosB);
 
 	jogo->resultados->golosEquipaA += golosA >= 0 ? golosA : 0;
 	jogo->resultados->golosEquipaB += golosB >= 0 ? golosB : 0;
@@ -522,10 +535,10 @@ void realizarParteDeJogo(Jogo* jogo, int parte) {
 	}
 	else if (parte == 2) {
 
-		jogo->resultados->poderDefesaEquipaASegundaParte = poderesEquipaA[0]/2;
+		jogo->resultados->poderDefesaEquipaASegundaParte = poderesEquipaA[0];
 		jogo->resultados->poderAtaqueEquipaASegundaParte = poderesEquipaA[1];
 
-		jogo->resultados->poderDefesaEquipaBSegundaParte = poderesEquipaB[0]/2;
+		jogo->resultados->poderDefesaEquipaBSegundaParte = poderesEquipaB[0];
 		jogo->resultados->poderAtaqueEquipaBSegundaParte = poderesEquipaB[1];
 
 	}
@@ -799,6 +812,27 @@ void avancarEpoca() {
 
 		subtrairDespesasClubes();
 		
+	}
+
+	// acaba aqui o jogo...
+	// o utilizador deve iniciar de novo o jogo
+	// se pretende jogar outra vez :s
+	if (nJornada >= 35) {
+
+		imprimirFinalDoJogo();
+
+	}
+
+
+}
+
+int obterPosicaoEquipa(Equipa *e) {
+
+	for (int i = 0; i < NUMERO_EQUIPAS; i++) {
+
+		if (tabelaClassificacoes[i] == e)
+			return i;
+
 	}
 
 }

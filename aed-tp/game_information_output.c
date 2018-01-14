@@ -516,3 +516,27 @@ void imprimeTabelaClassificativa() {
 
 	imprimirSeparador();
 };
+
+void imprimirGameOver() {
+
+	imprimirTitulo("GAME OVER!");
+
+	printf("\nA sua equipa ficou sem fundos...\n");
+
+	iniciarPrimirParaContinuar();
+
+	sairJogo();
+
+}
+
+void imprimirFinalDoJogo() {
+
+	imprimirTitulo("ACABOU A ÉPOCA!");
+
+	printf("\nParabéns! Conseguiu o %i lugar!\n", obterPosicaoEquipa(equipaJogador));
+
+	iniciarPrimirParaContinuar();
+
+	sairJogo();
+
+};
