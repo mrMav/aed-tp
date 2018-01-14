@@ -125,6 +125,7 @@ void iniciarMenuNovoJogo() {
 	strcpy(EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel->treinador->nome, NOME_JOGADOR);
 
 	imprimirInicioDoJogo();
+
 	iniciarMenuPreparacaoEpoca();
 
 }
@@ -276,6 +277,8 @@ void iniciarMenuCompraEVenda(int *equipasSelecionadas) {
 
 	}
 
+	system("cls");
+
 	imprimirInstrucao("Escolha o jogador:\n\n");
 	listarJogadores(EQUIPAS[equipaEscolhida]);
 
@@ -356,7 +359,8 @@ void iniciarMenuCompraEVenda(int *equipasSelecionadas) {
 
 			switch (opcao) {
 			case 0:
-				// FALTA INSERIR AQUI QUALQUER COISA PARA VOLTAR AO MenuPreparacaoEpoca() SEM ACRESCENTAR AO NUMERO DAS TRANSFERÊNCIAS
+				system("cls");
+				iniciarMenuPreparacaoEpoca();
 
 				break;
 
@@ -489,7 +493,6 @@ void iniciarMenuDecorrerEpoca() {
 		case MENU_DECORRER_EPOCA_OPCAO_PROXIMA_JORNADA:
 			iniciarMenuPreparacaoJogo();
 			break;
-
 		case MENU_DECORRER_EPOCA_OPCAO_SAIR:
 			sairJogo();
 			break;
@@ -707,6 +710,9 @@ void iniciarMenuIntervaloJogo() {
 		case MENU_INTERVALO_JOGO_OPCAO_JOGAR_2PARTE:
 			//JOGAR 2º PARTE
 			break;
+		case MENU_INTERVALO_JOGO_OPCAO_SAIR:
+			//SAIR
+			break;
 		default:
 			printf("Opção inválida.");
 			break;
@@ -788,7 +794,7 @@ void iniciarMenuJogo() {
 
 	while (1) {
 
-		system("cls");
+		
 
 		imprimirAnteJogo(jogo);
 		imprimirMenuAnteJogo();
