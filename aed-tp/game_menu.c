@@ -799,6 +799,7 @@ void iniciarMenuJogo() {
 
 	enum MENU_INICIAR_JOGO opcao = MENU_INICIAR_JOGO_OPCAO_NULA;
 
+	system("cls");
 	// obter o jogo do jogador correspondente a esta jornada
 	Jogo* jogo = obterJogoJogadorNaJornada(nJornada);
 
