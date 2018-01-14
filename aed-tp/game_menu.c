@@ -865,18 +865,34 @@ void iniciarMenuJogo() {
 
 	realizarJogoDoJogador(jogo);
 
+	int bilhetesVendidos = randomInt(equipaJogador->estadio->lugares * 0.75, equipaJogador->estadio->lugares);
+	float fundosBilheteira = bilhetesVendidos * 20.0;
+
+	system("cls");
+	imprimirCabecalho("Fundos adicionados!");
+	printf("\nNeste jogo vendeu %i bilhetes. Ganhou %.2f euros com a bilheteira!\n\n", bilhetesVendidos, fundosBilheteira);
+	equipaJogador->fundos += fundosBilheteira;
+
+	iniciarPrimirParaContinuar();
+
 	// correr todos os jogos da jornada nao realizados
 	for (int i = 0; i < sizeof(JORNADAS[0]) / sizeof(JORNADAS[0][0]); i++) {
 
 		Jogo* jogo = JORNADAS[nJornada][i];
 
+		Equipa* a = obterEquipaPorLetraSorteio(EQUIPAS, jogo->equipaA);
+
 		if (jogo->realizado == 0) {
 
 			realizarJogoCPU(jogo);
 
+			int bilhetesVendidos = randomInt(a->estadio->lugares * 0.75, a->estadio->lugares);
+			float fundosBilheteira = bilhetesVendidos * 20.0;
+
+			a->fundos += fundosBilheteira;
+
 		}
-
-
+		
 	}
 
 
