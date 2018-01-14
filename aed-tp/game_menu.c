@@ -27,14 +27,16 @@ void iniciarJogo() {
 
 void sairJogo() {
 
-	printf("\nA sair do jogo....\n");
+	printf("\nObrigado por jogares FUTASTIC\n Volta sempre....\n");
 
-	Sleep(1000);
+	Sleep(3000);
 
 	exit(0);
 }
 
 void iniciarMenuInicial() {
+
+	system("cls");
 
 	enum MENU_INICIAL opcao = MENU_INICIAL_OPCAO_NULA;
 
@@ -66,8 +68,8 @@ void imprimirMenuInicial() {
 
 	printf(titleArt);
 
-	imprimirOpcao("%i: Sair do jogo\n", MENU_INICIAL_OPCAO_SAIR);
 	imprimirOpcao("%i: Novo jogo\n", MENU_INICIAL_OPCAO_NOVO_JOGO);
+	imprimirOpcao("%i: Sair do jogo\n", MENU_INICIAL_OPCAO_SAIR);
 
 	imprimirSeparador();
 	imprimirCursor();
@@ -76,10 +78,10 @@ void imprimirMenuInicial() {
 
 void iniciarMenuNovoJogo() {
 
-	system("cls");
-
 	int opcao = 0;
 	int exit = 1;
+
+	system("cls");
 
 	imprimirTitulo("Começar Novo Jogo");
 	imprimirInstrucao("Escreva o seu nome:\n");
@@ -118,6 +120,8 @@ void iniciarMenuNovoJogo() {
 
 	}
 
+	system("cls");
+
 	strcpy(EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel->treinador->nome, NOME_JOGADOR);
 
 	imprimirInicioDoJogo();
@@ -146,6 +150,8 @@ void iniciarMenuPreparacaoEpoca() {
 		switch (opcao) {
 
 		case MENU_PREPARACAO_EPOCA_OPCAO_TRANSFERENCIA_JOGADORES:
+
+			system("cls");
 
 			if (nTransferencias < NUMERO_TRANSFERENCIAS) {
 
@@ -181,7 +187,6 @@ void iniciarMenuPreparacaoEpoca() {
 
 void imprimirMenuPreparacaoEpoca() {
 
-	system("cls");
 
 	char buffer[60];
 	// guarda a string formatada no buffer
@@ -189,11 +194,12 @@ void imprimirMenuPreparacaoEpoca() {
 
 	imprimirTitulo(buffer);
 
-	imprimirOpcao("%i: Sair do jogo\n", MENU_PREPARACAO_EPOCA_OPCAO_SAIR);
 	imprimirOpcao("%i: Compra e venda de jogadores", MENU_PREPARACAO_EPOCA_OPCAO_TRANSFERENCIA_JOGADORES);
 	printf(" (%i/%i)\n", nTransferencias, NUMERO_TRANSFERENCIAS);
 	imprimirOpcao("%i: Ver equipas\n", MENU_PREPARACAO_EPOCA_OPCAO_INFORMACAO);
 	imprimirOpcao("%i: Iniciar época\n", MENU_PREPARACAO_EPOCA_INICIAR_EPOCA);
+	imprimirOpcao("%i: Sair do jogo\n", MENU_PREPARACAO_EPOCA_OPCAO_SAIR);
+
 
 	imprimirSeparador();
 	imprimirCursor();
@@ -296,6 +302,8 @@ void iniciarMenuCompraEVenda(int *equipasSelecionadas) {
 
 	}
 
+	system("cls");
+
 	imprimirInstrucao("Escolha o jogador da SUA equipa para TROCAR:\n\n");
 	listarJogadores(EQUIPAS[INDICE_EQUIPA_JOGADOR]);
 
@@ -330,6 +338,7 @@ void iniciarMenuCompraEVenda(int *equipasSelecionadas) {
 
 	float valorTransf = obterValorTransferencia(EQUIPAS[equipaEscolhida]->plantel->jogadores[jogadorEscolhido]);
 
+	printf("Pretende trocar %s por %s\n", EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel->jogadores[jogadorATrocar], EQUIPAS[equipaEscolhida]->plantel->jogadores[jogadorEscolhido]);
 	printf("Valor da transferência: %.2f%s\n", valorTransf, SIMBOLO_EURO);
 	printf("Os seus fundos: %.2f%s\n", EQUIPAS[INDICE_EQUIPA_JOGADOR]->fundos, SIMBOLO_EURO);
 
@@ -346,6 +355,10 @@ void iniciarMenuCompraEVenda(int *equipasSelecionadas) {
 			getchar();
 
 			switch (opcao) {
+			case 0:
+				// FALTA INSERIR AQUI QUALQUER COISA PARA VOLTAR AO MenuPreparacaoEpoca() SEM ACRESCENTAR AO NUMERO DAS TRANSFERÊNCIAS
+
+				break;
 
 			case 1:
 
@@ -355,8 +368,6 @@ void iniciarMenuCompraEVenda(int *equipasSelecionadas) {
 
 				imprimirCabecalho("PARABÉNS!");
 				printf("%s faz agora parte da sua equipa!\n", EQUIPAS[INDICE_EQUIPA_JOGADOR]->plantel->jogadores[jogadorATrocar]->nome);
-
-				Sleep(3000);
 
 				exit = 0;
 
@@ -388,10 +399,10 @@ void iniciarMenuInformacao() {
 
 		system("cls");
 		imprimirCabecalho("Informação");
-		imprimirOpcao("%i: Voltar\n", MENU_INFORMACAO_OPCAO_SAIR);
 		imprimirOpcao("%i: Ver equipas\n", MENU_INFORMACAO_VER_EQUIPAS);
 		imprimirOpcao("%i: Ver jornada\n", MENU_INFORMACAO_VER_JORNADA);
 		imprimirOpcao("%i: Ver sorteio\n", MENU_INFORMACAO_VER_SORTEIO);
+		imprimirOpcao("%i: Voltar\n", MENU_INFORMACAO_OPCAO_SAIR);
 
 		imprimirCursor();
 
@@ -495,8 +506,8 @@ void imprimirMenuDecorrerEpoca() {
 
 	imprimirTitulo("Decorrer da Época");
 
-	imprimirOpcao("%i: Sair do jogo\n", MENU_DECORRER_EPOCA_OPCAO_SAIR);
 	imprimirOpcao("%i: Ver equipas\n", MENU_DECORRER_EPOCA_OPCAO_VER_EQUIPA);
+	imprimirOpcao("%i: Sair do jogo\n", MENU_DECORRER_EPOCA_OPCAO_SAIR);
 
 	char buffer[50];
 	snprintf(buffer, sizeof(buffer), "%i: Iniciar jornada %i\n", MENU_DECORRER_EPOCA_OPCAO_PROXIMA_JORNADA, nJornada + 1);
@@ -534,6 +545,7 @@ void iniciarMenuPreparacaoJogo() {
 }
 
 void iniciarMenuEscolhaDeTatica() {
+
 
 	system("cls");
 
@@ -705,7 +717,8 @@ void imprimirMenuIntervaloJogo() {
 
 	imprimirOpcao("%i: Alterar tática\n", MENU_INTERVALO_JOGO_OPCAO_ALTERAR_TATICA);
 	imprimirOpcao("%i: Substituições\n", MENU_INTERVALO_JOGO_OPCAO_SUBSTITUICOES);
-	imprimirOpcao("%i: Jogar 2ª parte.\n", MENU_INTERVALO_JOGO_OPCAO_JOGAR_2PARTE);
+	imprimirOpcao("%i: Jogar 2ª parte\n", MENU_INTERVALO_JOGO_OPCAO_JOGAR_2PARTE);
+	imprimirOpcao("%i: Sair\n", MENU_INTERVALO_JOGO_OPCAO_SAIR);
 
 	imprimirSeparador();
 	imprimirCursor();
@@ -812,6 +825,7 @@ void imprimirMenuAnteJogo() {
 	imprimirOpcao("%i: Ver o meu onze\n", MENU_INICIAR_JOGO_OPCAO_VER_MEU_ONZE);
 	imprimirOpcao("%i: Ver o onze oponente\n", MENU_INICIAR_JOGO_OPCAO_VER_ONZE_OPONENTE);
 	imprimirOpcao("%i: Jogar a 1ª parte\n", MENU_INICIAR_JOGO_OPCAO_JOGAR_PARTIDA);
+	imprimirOpcao("%i: Sair\n", MENU_INICIAR_JOGO_OPCAO_SAIR);
 
 	imprimirSeparador();
 	imprimirCursor();
