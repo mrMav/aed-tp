@@ -533,7 +533,7 @@ void imprimirFinalDoJogo() {
 
 	imprimirTitulo("ACABOU A ÉPOCA!");
 
-	printf("\nParabéns! Conseguiu o &i lugar!\n", obterPosicaoEquipa(equipaJogador));
+	printf("\nParabéns! Conseguiu o %i lugar!\n", obterPosicaoEquipa(equipaJogador));
 
 	iniciarPrimirParaContinuar();
 

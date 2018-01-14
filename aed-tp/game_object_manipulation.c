@@ -507,20 +507,19 @@ void realizarParteDeJogo(Jogo* jogo, int parte) {
 	Calcular os golos.
 	Os golos são a diferença entre poderes de ataque e defesa
 	*/
-
-
+	
 	int golosA = poderesEquipaA[1] - poderesEquipaB[0];
 	int golosB = poderesEquipaB[1] - poderesEquipaA[0];
 
-	printf("Equipa A:\n");
-	printf("%.2f\n", poderesEquipaA[0]);
-	printf("%.2f\n", poderesEquipaA[1]);
-	printf("%i\n", golosA);
+	//printf("Equipa A:\n");
+	//printf("%.2f\n", poderesEquipaA[0]);
+	//printf("%.2f\n", poderesEquipaA[1]);
+	//printf("%i\n", golosA);
 
-	printf("Equipa B:\n");
-	printf("%.2f\n", poderesEquipaB[0]);
-	printf("%.2f\n", poderesEquipaB[1]);
-	printf("%i\n", golosB);
+	//printf("Equipa B:\n");
+	//printf("%.2f\n", poderesEquipaB[0]);
+	//printf("%.2f\n", poderesEquipaB[1]);
+	//printf("%i\n", golosB);
 
 	jogo->resultados->golosEquipaA += golosA >= 0 ? golosA : 0;
 	jogo->resultados->golosEquipaB += golosB >= 0 ? golosB : 0;
