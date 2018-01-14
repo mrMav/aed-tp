@@ -508,8 +508,8 @@ void realizarParteDeJogo(Jogo* jogo, int parte) {
 	Os golos são a diferença entre poderes de ataque e defesa
 	*/
 	
-	int golosA = poderesEquipaA[1] - poderesEquipaB[0];
-	int golosB = poderesEquipaB[1] - poderesEquipaA[0];
+	int golosA = poderesEquipaA[1] - poderesEquipaB[0] / randomInt(1, 3);
+	int golosB = poderesEquipaB[1] - poderesEquipaA[0] / randomInt(1, 3);
 
 	//printf("Equipa A:\n");
 	//printf("%.2f\n", poderesEquipaA[0]);
