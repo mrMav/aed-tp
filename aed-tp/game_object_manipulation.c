@@ -499,8 +499,8 @@ void realizarParteDeJogo(Jogo* jogo, int parte) {
 	int golosB = poderesEquipaB[1] - poderesEquipaA[0];
 
 	printf("Equipa A:\n");
-	printf("%.2f\n", poderesEquipaA[0]);
-	printf("%.2f\n", poderesEquipaA[1]);
+	printf("%.2f\n", poderesEquipaA[0]/2);
+	printf("%.2f\n", poderesEquipaA[1]/2);
 	printf("%i\n", golosA);
 
 	printf("Equipa B:\n");
@@ -522,10 +522,10 @@ void realizarParteDeJogo(Jogo* jogo, int parte) {
 	}
 	else if (parte == 2) {
 
-		jogo->resultados->poderDefesaEquipaASegundaParte = poderesEquipaA[0];
+		jogo->resultados->poderDefesaEquipaASegundaParte = poderesEquipaA[0]/2;
 		jogo->resultados->poderAtaqueEquipaASegundaParte = poderesEquipaA[1];
 
-		jogo->resultados->poderDefesaEquipaBSegundaParte = poderesEquipaB[0];
+		jogo->resultados->poderDefesaEquipaBSegundaParte = poderesEquipaB[0]/2;
 		jogo->resultados->poderAtaqueEquipaBSegundaParte = poderesEquipaB[1];
 
 	}

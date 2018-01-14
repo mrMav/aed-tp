@@ -419,6 +419,8 @@ void iniciarMenuInformacao() {
 
 			while (exit) {
 
+				system("cls");
+
 				imprimirInstrucao("Selecione uma equipa para ver mais informações:\n");
 				listarEquipas();
 
@@ -440,6 +442,7 @@ void iniciarMenuInformacao() {
 				}
 
 			}
+			system("cls");
 
 			imprimeEquipa(EQUIPAS[equipaEscolhida]);
 			imprimePlantel(EQUIPAS[equipaEscolhida]->plantel);
@@ -451,11 +454,14 @@ void iniciarMenuInformacao() {
 
 		case MENU_INFORMACAO_VER_JORNADA:
 
+			system("cls");
+
 			imprimirJornada(nJornada);
 
 			break;
 
 		case MENU_INFORMACAO_VER_SORTEIO:
+			system("cls");
 
 			imprimirTabelaSorteios();
 
@@ -510,12 +516,11 @@ void imprimirMenuDecorrerEpoca() {
 	imprimirTitulo("Decorrer da Época");
 
 	imprimirOpcao("%i: Ver equipas\n", MENU_DECORRER_EPOCA_OPCAO_VER_EQUIPA);
-	imprimirOpcao("%i: Sair do jogo\n", MENU_DECORRER_EPOCA_OPCAO_SAIR);
 
 	char buffer[50];
 	snprintf(buffer, sizeof(buffer), "%i: Iniciar jornada %i\n", MENU_DECORRER_EPOCA_OPCAO_PROXIMA_JORNADA, nJornada + 1);
 	imprimirOpcao(buffer, 0);
-
+	imprimirOpcao("%i: Sair do jogo\n", MENU_DECORRER_EPOCA_OPCAO_SAIR);
 	imprimirSeparador();
 	imprimirCursor();
 }
@@ -560,8 +565,8 @@ void iniciarMenuEscolhaDeTatica() {
 	int rndOrNot = -1;
 	int exit = 1;
 
-	printf("\nManter o seu onze actual, escolher aleatóriamente ou fazer 11 manualmente?\n");
-	printf("\n0.Manter\n1.Aleatóriamente\n2.Manualmente\n");
+	printf("\nManter o seu onze actual, escolher aleatoriamente ou fazer o 11 manualmente?\n");
+	printf("\n0.Manter\n1.Aleatoriamente\n2.Manualmente\n");
 	while (exit) {
 
 		imprimirCursor();
@@ -634,6 +639,8 @@ void iniciarMenuEscolhaDeTatica() {
 		resetEstadoJogo(equipaJogador);
 
 		//escolher gr
+		system("cls");
+
 		imprimirInstrucao("Escolher 1 Guarda-Redes:\n\n");
 
 		listarJogadoresAindaNaoEscolhidosParaJogo(0);  // zero é a primeira parte  
@@ -642,6 +649,8 @@ void iniciarMenuEscolhaDeTatica() {
 		j->estadoEmJogo[0] = POSICAO_GR;
 
 		// escolher defesas
+		system("cls");
+
 		snprintf(buffer, sizeof(buffer), "Escolher %c Defesas:\n\n", Tatica[0]);
 		imprimirInstrucao(buffer);
 		listarJogadoresAindaNaoEscolhidosParaJogo(0);  // zero é a primeira parte
@@ -652,6 +661,8 @@ void iniciarMenuEscolhaDeTatica() {
 			j->estadoEmJogo[0] = POSICAO_DEF;
 
 		}
+		// escolher médios
+		system("cls");
 
 		snprintf(buffer, sizeof(buffer), "Escolher %c Médios:\n\n", Tatica[2]);
 		imprimirInstrucao(buffer);
@@ -663,6 +674,8 @@ void iniciarMenuEscolhaDeTatica() {
 			j->estadoEmJogo[0] = POSICAO_MED;
 
 		}
+		// escolher avançados
+		system("cls");
 
 		snprintf(buffer, sizeof(buffer), "Escolher %c Avançados:\n\n", Tatica[4]);
 		imprimirInstrucao(buffer);
